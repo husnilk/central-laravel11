@@ -1,0 +1,4 @@
+models:
+    Permission: { uuid: 'char:36', name: string, guard_name: string }
+    Role: { uuid: 'char:36', name: string, guard_name: string }
+    User: { username: 'string nullable', name: string, email: string, email_verified_at: 'timestamp nullable', password: string, type: 'integer default:1', active: 'integer default:1', avatar: 'string nullable', profile_photo: 'text nullable', remember_token: 'string:100 nullable' }
