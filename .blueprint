@@ -1,4 +1,785 @@
+created:
+    - app/Http/Controllers/Api/BuildingController.php
+    - app/Http/Controllers/Api/RoomController.php
+    - app/Http/Controllers/Api/FacultyController.php
+    - app/Http/Controllers/Api/DepartmentController.php
+    - app/Http/Controllers/Api/StudentController.php
+    - app/Http/Controllers/Api/LecturerController.php
+    - app/Http/Controllers/Api/StaffController.php
+    - app/Http/Controllers/Api/CurriculumController.php
+    - app/Http/Controllers/Api/CurriculumPeoController.php
+    - app/Http/Controllers/Api/CurriculumPloController.php
+    - app/Http/Controllers/Api/CurriculumPeoPloController.php
+    - app/Http/Controllers/Api/CurriculumIndicatorController.php
+    - app/Http/Controllers/Api/CurriculumBokController.php
+    - app/Http/Controllers/Api/CurriculumBokDetailController.php
+    - app/Http/Controllers/Api/CourseController.php
+    - app/Http/Controllers/Api/CoursePlanController.php
+    - app/Http/Controllers/Api/CoursePlanDetailActivityController.php
+    - app/Http/Controllers/Api/CoursePlanMediaController.php
+    - app/Http/Controllers/Api/CoursePlanRequirementController.php
+    - app/Http/Controllers/Api/CoursePlanLoController.php
+    - app/Http/Controllers/Api/CoursePlanReferenceController.php
+    - app/Http/Controllers/Api/CoursePlanMaterialController.php
+    - app/Http/Controllers/Api/CoursePlanLecturerController.php
+    - app/Http/Controllers/Api/CoursePlanDetailController.php
+    - app/Http/Controllers/Api/CourseCurriculumIndicatorController.php
+    - app/Http/Controllers/Api/CoursePlanAssessmentController.php
+    - app/Http/Controllers/Api/AssessmentDetailController.php
+    - app/Http/Controllers/Api/AssessmentCriteriaController.php
+    - app/Http/Controllers/Api/AssessmentRubricController.php
+    - app/Http/Controllers/Api/AssessmentController.php
+    - app/Http/Controllers/Api/PeriodController.php
+    - app/Http/Controllers/Api/ClassCourseController.php
+    - app/Http/Controllers/Api/ClassScheduleController.php
+    - app/Http/Controllers/Api/ClassLecturerController.php
+    - app/Http/Controllers/Api/CourseEnrollmentController.php
+    - app/Http/Controllers/Api/CourseEnrollmentDetailController.php
+    - app/Http/Controllers/Api/ClassMeetingController.php
+    - app/Http/Controllers/Api/ClassProblemController.php
+    - app/Http/Controllers/Api/ClassAttendanceController.php
+    - app/Http/Controllers/Api/ResearchSchemaController.php
+    - app/Http/Controllers/Api/ResearchController.php
+    - app/Http/Controllers/Api/ResearchMemberController.php
+    - app/Http/Controllers/Api/CommunityServiceSchemaController.php
+    - app/Http/Controllers/Api/CommunityServiceController.php
+    - app/Http/Controllers/Api/CommunityServiceMemberController.php
+    - app/Http/Controllers/Api/PublisherController.php
+    - app/Http/Controllers/Api/PublicationController.php
+    - app/Http/Controllers/Api/PublicationAuthorController.php
+    - app/Http/Controllers/Api/InternshipCompanyController.php
+    - app/Http/Controllers/Api/InternshipProposalController.php
+    - app/Http/Controllers/Api/InternshipController.php
+    - app/Http/Controllers/Api/InternshipLogbookController.php
+    - app/Http/Controllers/Api/InternshipSeminarAudienceController.php
+    - app/Http/Controllers/Api/ThesisRubricController.php
+    - app/Http/Controllers/Api/ThesisRubricDetailController.php
+    - app/Http/Controllers/Api/ThesisTopicController.php
+    - app/Http/Controllers/Api/ThesisController.php
+    - app/Http/Controllers/Api/ThesisSupervisorController.php
+    - app/Http/Controllers/Api/ThesisProposalController.php
+    - app/Http/Controllers/Api/ThesisProposalAudienceController.php
+    - app/Http/Controllers/Api/ThesisLogbookController.php
+    - app/Http/Controllers/Api/ThesisSeminarController.php
+    - app/Http/Controllers/Api/ThesisSeminarAudienceController.php
+    - app/Http/Controllers/Api/ThesisSeminarReviewerController.php
+    - app/Http/Controllers/Api/ThesisDefenseController.php
+    - app/Http/Controllers/Api/ThesisDefenseExaminerController.php
+    - app/Http/Controllers/Api/ThesisDefenseScoreController.php
+    - app/Http/Controllers/Api/CounsellingTopicController.php
+    - app/Http/Controllers/Api/CounsellingLogbookController.php
+    - app/Http/Controllers/Api/CounsellingLogbookDetailController.php
+    - database/factories/UserLoginFactory.php
+    - database/factories/BuildingFactory.php
+    - database/factories/RoomFactory.php
+    - database/factories/FacultyFactory.php
+    - database/factories/DepartmentFactory.php
+    - database/factories/LecturerFactory.php
+    - database/factories/StudentFactory.php
+    - database/factories/StaffFactory.php
+    - database/factories/CurriculumFactory.php
+    - database/factories/CurriculumPeoFactory.php
+    - database/factories/CurriculumPloFactory.php
+    - database/factories/CurriculumPeoPloFactory.php
+    - database/factories/CurriculumIndicatorFactory.php
+    - database/factories/CurriculumBokFactory.php
+    - database/factories/CurriculumBokDetailFactory.php
+    - database/factories/CourseFactory.php
+    - database/factories/CoursePlanFactory.php
+    - database/factories/CoursePlanRequirementFactory.php
+    - database/factories/CoursePlanLoFactory.php
+    - database/factories/CoursePlanReferenceFactory.php
+    - database/factories/CoursePlanMaterialFactory.php
+    - database/factories/CoursePlanMediaFactory.php
+    - database/factories/CoursePlanLecturerFactory.php
+    - database/factories/CoursePlanDetailFactory.php
+    - database/factories/CoursePlanDetailActivityFactory.php
+    - database/factories/CourseCurriculumIndicatorFactory.php
+    - database/factories/CoursePlanAssessmentFactory.php
+    - database/factories/AssessmentDetailFactory.php
+    - database/factories/AssessmentCriteriaFactory.php
+    - database/factories/AssessmentRubricFactory.php
+    - database/factories/PeriodFactory.php
+    - database/factories/ClassCourseFactory.php
+    - database/factories/ClassScheduleFactory.php
+    - database/factories/ClassLecturerFactory.php
+    - database/factories/CourseEnrollmentFactory.php
+    - database/factories/CourseEnrollmentDetailFactory.php
+    - database/factories/AssessmentFactory.php
+    - database/factories/ClassMeetingFactory.php
+    - database/factories/ClassAttendanceFactory.php
+    - database/factories/ClassProblemFactory.php
+    - database/factories/ResearchSchemaFactory.php
+    - database/factories/ResearchFactory.php
+    - database/factories/ResearchMemberFactory.php
+    - database/factories/CommunityServiceSchemaFactory.php
+    - database/factories/CommunityServiceFactory.php
+    - database/factories/CommunityServiceMemberFactory.php
+    - database/factories/PublisherFactory.php
+    - database/factories/PublicationFactory.php
+    - database/factories/PublicationAuthorFactory.php
+    - database/factories/InternshipCompanyFactory.php
+    - database/factories/InternshipProposalFactory.php
+    - database/factories/InternshipFactory.php
+    - database/factories/InternshipLogbookFactory.php
+    - database/factories/InternshipSeminarAudienceFactory.php
+    - database/factories/ThesisRubricFactory.php
+    - database/factories/ThesisRubricDetailFactory.php
+    - database/factories/ThesisTopicFactory.php
+    - database/factories/ThesisFactory.php
+    - database/factories/ThesisSupervisorFactory.php
+    - database/factories/ThesisDataRequestFactory.php
+    - database/factories/ThesisProposalFactory.php
+    - database/factories/ThesisProposalAudienceFactory.php
+    - database/factories/ThesisLogbookFactory.php
+    - database/factories/ThesisSeminarFactory.php
+    - database/factories/ThesisSeminarAudienceFactory.php
+    - database/factories/ThesisSeminarReviewerFactory.php
+    - database/factories/ThesisDefenseFactory.php
+    - database/factories/ThesisDefenseExaminerFactory.php
+    - database/factories/ThesisDefenseScoreFactory.php
+    - database/factories/CounsellingTopicFactory.php
+    - database/factories/CounsellingLogbookFactory.php
+    - database/factories/CounsellingLogbookDetailFactory.php
+    - database/migrations/2024_06_03_142759_create_user_logins_table.php
+    - database/migrations/2024_06_03_142800_create_buildings_table.php
+    - database/migrations/2024_06_03_142801_create_rooms_table.php
+    - database/migrations/2024_06_03_142802_create_faculties_table.php
+    - database/migrations/2024_06_03_142803_create_departments_table.php
+    - database/migrations/2024_06_03_142804_create_lecturers_table.php
+    - database/migrations/2024_06_03_142805_create_students_table.php
+    - database/migrations/2024_06_03_142806_create_staff_table.php
+    - database/migrations/2024_06_03_142807_create_curricula_table.php
+    - database/migrations/2024_06_03_142808_create_curriculum_peos_table.php
+    - database/migrations/2024_06_03_142809_create_curriculum_plos_table.php
+    - database/migrations/2024_06_03_142810_create_curriculum_peo_plos_table.php
+    - database/migrations/2024_06_03_142811_create_curriculum_indicators_table.php
+    - database/migrations/2024_06_03_142812_create_curriculum_boks_table.php
+    - database/migrations/2024_06_03_142813_create_curriculum_bok_details_table.php
+    - database/migrations/2024_06_03_142814_create_courses_table.php
+    - database/migrations/2024_06_03_142815_create_course_plans_table.php
+    - database/migrations/2024_06_03_142816_create_course_plan_requirements_table.php
+    - database/migrations/2024_06_03_142817_create_course_plan_los_table.php
+    - database/migrations/2024_06_03_142818_create_course_plan_references_table.php
+    - database/migrations/2024_06_03_142819_create_course_plan_materials_table.php
+    - database/migrations/2024_06_03_142820_create_course_plan_media_table.php
+    - database/migrations/2024_06_03_142821_create_course_plan_lecturers_table.php
+    - database/migrations/2024_06_03_142822_create_course_plan_details_table.php
+    - database/migrations/2024_06_03_142823_create_course_plan_detail_activities_table.php
+    - database/migrations/2024_06_03_142824_create_course_curriculum_indicators_table.php
+    - database/migrations/2024_06_03_142825_create_course_plan_assessments_table.php
+    - database/migrations/2024_06_03_142826_create_assessment_details_table.php
+    - database/migrations/2024_06_03_142827_create_assessment_criterias_table.php
+    - database/migrations/2024_06_03_142828_create_assessment_rubrics_table.php
+    - database/migrations/2024_06_03_142829_create_periods_table.php
+    - database/migrations/2024_06_03_142830_create_class_courses_table.php
+    - database/migrations/2024_06_03_142831_create_class_schedules_table.php
+    - database/migrations/2024_06_03_142832_create_class_lecturers_table.php
+    - database/migrations/2024_06_03_142833_create_course_enrollments_table.php
+    - database/migrations/2024_06_03_142834_create_course_enrollment_details_table.php
+    - database/migrations/2024_06_03_142835_create_assessments_table.php
+    - database/migrations/2024_06_03_142836_create_class_meetings_table.php
+    - database/migrations/2024_06_03_142837_create_class_attendances_table.php
+    - database/migrations/2024_06_03_142838_create_class_problems_table.php
+    - database/migrations/2024_06_03_142839_create_research_schemas_table.php
+    - database/migrations/2024_06_03_142840_create_research_table.php
+    - database/migrations/2024_06_03_142841_create_research_members_table.php
+    - database/migrations/2024_06_03_142842_create_community_service_schemas_table.php
+    - database/migrations/2024_06_03_142843_create_community_services_table.php
+    - database/migrations/2024_06_03_142844_create_community_service_members_table.php
+    - database/migrations/2024_06_03_142845_create_publishers_table.php
+    - database/migrations/2024_06_03_142846_create_publications_table.php
+    - database/migrations/2024_06_03_142847_create_publication_authors_table.php
+    - database/migrations/2024_06_03_142848_create_internship_companies_table.php
+    - database/migrations/2024_06_03_142849_create_internship_proposals_table.php
+    - database/migrations/2024_06_03_142850_create_internships_table.php
+    - database/migrations/2024_06_03_142851_create_internship_logbooks_table.php
+    - database/migrations/2024_06_03_142852_create_internship_seminar_audiences_table.php
+    - database/migrations/2024_06_03_142853_create_thesis_rubrics_table.php
+    - database/migrations/2024_06_03_142854_create_thesis_rubric_details_table.php
+    - database/migrations/2024_06_03_142855_create_thesis_topics_table.php
+    - database/migrations/2024_06_03_142856_create_theses_table.php
+    - database/migrations/2024_06_03_142857_create_thesis_supervisors_table.php
+    - database/migrations/2024_06_03_142858_create_thesis_data_requests_table.php
+    - database/migrations/2024_06_03_142859_create_thesis_proposals_table.php
+    - database/migrations/2024_06_03_142900_create_thesis_proposal_audiences_table.php
+    - database/migrations/2024_06_03_142901_create_thesis_logbooks_table.php
+    - database/migrations/2024_06_03_142902_create_thesis_seminars_table.php
+    - database/migrations/2024_06_03_142903_create_thesis_seminar_audiences_table.php
+    - database/migrations/2024_06_03_142904_create_thesis_seminar_reviewers_table.php
+    - database/migrations/2024_06_03_142905_create_thesis_defenses_table.php
+    - database/migrations/2024_06_03_142906_create_thesis_defense_examiners_table.php
+    - database/migrations/2024_06_03_142907_create_thesis_defense_scores_table.php
+    - database/migrations/2024_06_03_142908_create_counselling_topics_table.php
+    - database/migrations/2024_06_03_142909_create_counselling_logbooks_table.php
+    - database/migrations/2024_06_03_142910_create_counselling_logbook_details_table.php
+    - app/Models/UserLogin.php
+    - app/Models/Building.php
+    - app/Models/Room.php
+    - app/Models/Faculty.php
+    - app/Models/Department.php
+    - app/Models/Lecturer.php
+    - app/Models/Student.php
+    - app/Models/Staff.php
+    - app/Models/Curriculum.php
+    - app/Models/CurriculumPeo.php
+    - app/Models/CurriculumPlo.php
+    - app/Models/CurriculumPeoPlo.php
+    - app/Models/CurriculumIndicator.php
+    - app/Models/CurriculumBok.php
+    - app/Models/CurriculumBokDetail.php
+    - app/Models/Course.php
+    - app/Models/CoursePlan.php
+    - app/Models/CoursePlanRequirement.php
+    - app/Models/CoursePlanLo.php
+    - app/Models/CoursePlanReference.php
+    - app/Models/CoursePlanMaterial.php
+    - app/Models/CoursePlanMedia.php
+    - app/Models/CoursePlanLecturer.php
+    - app/Models/CoursePlanDetail.php
+    - app/Models/CoursePlanDetailActivity.php
+    - app/Models/CourseCurriculumIndicator.php
+    - app/Models/CoursePlanAssessment.php
+    - app/Models/AssessmentDetail.php
+    - app/Models/AssessmentCriteria.php
+    - app/Models/AssessmentRubric.php
+    - app/Models/Period.php
+    - app/Models/ClassCourse.php
+    - app/Models/ClassSchedule.php
+    - app/Models/ClassLecturer.php
+    - app/Models/CourseEnrollment.php
+    - app/Models/CourseEnrollmentDetail.php
+    - app/Models/Assessment.php
+    - app/Models/ClassMeeting.php
+    - app/Models/ClassAttendance.php
+    - app/Models/ClassProblem.php
+    - app/Models/ResearchSchema.php
+    - app/Models/Research.php
+    - app/Models/ResearchMember.php
+    - app/Models/CommunityServiceSchema.php
+    - app/Models/CommunityService.php
+    - app/Models/CommunityServiceMember.php
+    - app/Models/Publisher.php
+    - app/Models/Publication.php
+    - app/Models/PublicationAuthor.php
+    - app/Models/InternshipCompany.php
+    - app/Models/InternshipProposal.php
+    - app/Models/Internship.php
+    - app/Models/InternshipLogbook.php
+    - app/Models/InternshipSeminarAudience.php
+    - app/Models/ThesisRubric.php
+    - app/Models/ThesisRubricDetail.php
+    - app/Models/ThesisTopic.php
+    - app/Models/Thesis.php
+    - app/Models/ThesisSupervisor.php
+    - app/Models/ThesisDataRequest.php
+    - app/Models/ThesisProposal.php
+    - app/Models/ThesisProposalAudience.php
+    - app/Models/ThesisLogbook.php
+    - app/Models/ThesisSeminar.php
+    - app/Models/ThesisSeminarAudience.php
+    - app/Models/ThesisSeminarReviewer.php
+    - app/Models/ThesisDefense.php
+    - app/Models/ThesisDefenseExaminer.php
+    - app/Models/ThesisDefenseScore.php
+    - app/Models/CounsellingTopic.php
+    - app/Models/CounsellingLogbook.php
+    - app/Models/CounsellingLogbookDetail.php
+    - database/seeders/BuildingSeeder.php
+    - database/seeders/RoomSeeder.php
+    - database/seeders/FacultySeeder.php
+    - database/seeders/DepartmentSeeder.php
+    - database/seeders/StudentSeeder.php
+    - database/seeders/LecturerSeeder.php
+    - database/seeders/StaffSeeder.php
+    - database/seeders/CurriculumSeeder.php
+    - database/seeders/CurriculumPeoSeeder.php
+    - database/seeders/CurriculumPloSeeder.php
+    - database/seeders/CurriculumPeoPloSeeder.php
+    - database/seeders/CurriculumIndicatorSeeder.php
+    - database/seeders/CurriculumBokSeeder.php
+    - database/seeders/CurriculumBokDetailSeeder.php
+    - database/seeders/CourseSeeder.php
+    - database/seeders/CoursePlanSeeder.php
+    - database/seeders/CoursePlanMediaSeeder.php
+    - database/seeders/CoursePlanRequirementSeeder.php
+    - database/seeders/CoursePlanLoSeeder.php
+    - database/seeders/CoursePlanReferenceSeeder.php
+    - database/seeders/CoursePlanMaterialSeeder.php
+    - database/seeders/CoursePlanLecturerSeeder.php
+    - database/seeders/CoursePlanDetailSeeder.php
+    - database/seeders/CoursePlanDetailActivitySeeder.php
+    - database/seeders/CoursePlanAssessmentSeeder.php
+    - database/seeders/CourseCurriculumIndicatorSeeder.php
+    - database/seeders/AssessmentDetailSeeder.php
+    - database/seeders/AssessmentCriteriaSeeder.php
+    - database/seeders/AssessmentRubricSeeder.php
+    - database/seeders/AssessmentSeeder.php
+    - database/seeders/PeriodSeeder.php
+    - database/seeders/ClassCourseSeeder.php
+    - database/seeders/ClassScheduleSeeder.php
+    - database/seeders/ClassLecturerSeeder.php
+    - database/seeders/CourseEnrollmentSeeder.php
+    - database/seeders/CourseEnrollmentDetailSeeder.php
+    - database/seeders/ClassMeetingSeeder.php
+    - database/seeders/ClassAttendanceSeeder.php
+    - database/seeders/ClassProblemSeeder.php
+    - database/seeders/ResearchSchemaSeeder.php
+    - database/seeders/ResearchSeeder.php
+    - database/seeders/ResearchMemberSeeder.php
+    - database/seeders/CommunityServiceSchemaSeeder.php
+    - database/seeders/CommunityServiceSeeder.php
+    - database/seeders/CommunityServiceMemberSeeder.php
+    - database/seeders/PublisherSeeder.php
+    - database/seeders/PublicationTypeSeeder.php
+    - database/seeders/PublicationSeeder.php
+    - database/seeders/PublicationAuthorSeeder.php
+    - database/seeders/InternshipCompanySeeder.php
+    - database/seeders/InternshipProposalSeeder.php
+    - database/seeders/InternshipSeeder.php
+    - database/seeders/InternshipLogbookSeeder.php
+    - database/seeders/InternshipSeminarAudienceSeeder.php
+    - database/seeders/ThesisRubricSeeder.php
+    - database/seeders/ThesisRubricDetailSeeder.php
+    - database/seeders/ThesisTopicSeeder.php
+    - database/seeders/ThesisSeeder.php
+    - database/seeders/ThesisSupervisorSeeder.php
+    - database/seeders/ThesisProposalSeeder.php
+    - database/seeders/ThesisProposalAudienceSeeder.php
+    - database/seeders/ThesisLogbookSeeder.php
+    - database/seeders/ThesisSeminarSeeder.php
+    - database/seeders/ThesisSeminarAudienceSeeder.php
+    - database/seeders/ThesisSeminarReviewerSeeder.php
+    - database/seeders/ThesisDefenseSeeder.php
+    - database/seeders/ThesisDefenseExaminerSeeder.php
+    - database/seeders/ThesisDefenseScoreCounsellingTopicSeeder.php
+    - database/seeders/CounsellingLogbookSeeder.php
+    - database/seeders/CounsellingLogbookDetailSeeder.php
+    - tests/Feature/Http/Controllers/Api/BuildingControllerTest.php
+    - tests/Feature/Http/Controllers/Api/RoomControllerTest.php
+    - tests/Feature/Http/Controllers/Api/FacultyControllerTest.php
+    - tests/Feature/Http/Controllers/Api/DepartmentControllerTest.php
+    - tests/Feature/Http/Controllers/Api/StudentControllerTest.php
+    - tests/Feature/Http/Controllers/Api/LecturerControllerTest.php
+    - tests/Feature/Http/Controllers/Api/StaffControllerTest.php
+    - tests/Feature/Http/Controllers/Api/CurriculumControllerTest.php
+    - tests/Feature/Http/Controllers/Api/CurriculumPeoControllerTest.php
+    - tests/Feature/Http/Controllers/Api/CurriculumPloControllerTest.php
+    - tests/Feature/Http/Controllers/Api/CurriculumPeoPloControllerTest.php
+    - tests/Feature/Http/Controllers/Api/CurriculumIndicatorControllerTest.php
+    - tests/Feature/Http/Controllers/Api/CurriculumBokControllerTest.php
+    - tests/Feature/Http/Controllers/Api/CurriculumBokDetailControllerTest.php
+    - tests/Feature/Http/Controllers/Api/CourseControllerTest.php
+    - tests/Feature/Http/Controllers/Api/CoursePlanControllerTest.php
+    - tests/Feature/Http/Controllers/Api/CoursePlanDetailActivityControllerTest.php
+    - tests/Feature/Http/Controllers/Api/CoursePlanMediaControllerTest.php
+    - tests/Feature/Http/Controllers/Api/CoursePlanRequirementControllerTest.php
+    - tests/Feature/Http/Controllers/Api/CoursePlanLoControllerTest.php
+    - tests/Feature/Http/Controllers/Api/CoursePlanReferenceControllerTest.php
+    - tests/Feature/Http/Controllers/Api/CoursePlanMaterialControllerTest.php
+    - tests/Feature/Http/Controllers/Api/CoursePlanLecturerControllerTest.php
+    - tests/Feature/Http/Controllers/Api/CoursePlanDetailControllerTest.php
+    - tests/Feature/Http/Controllers/Api/CourseCurriculumIndicatorControllerTest.php
+    - tests/Feature/Http/Controllers/Api/CoursePlanAssessmentControllerTest.php
+    - tests/Feature/Http/Controllers/Api/AssessmentDetailControllerTest.php
+    - tests/Feature/Http/Controllers/Api/AssessmentCriteriaControllerTest.php
+    - tests/Feature/Http/Controllers/Api/AssessmentRubricControllerTest.php
+    - tests/Feature/Http/Controllers/Api/AssessmentControllerTest.php
+    - tests/Feature/Http/Controllers/Api/PeriodControllerTest.php
+    - tests/Feature/Http/Controllers/Api/ClassCourseControllerTest.php
+    - tests/Feature/Http/Controllers/Api/ClassScheduleControllerTest.php
+    - tests/Feature/Http/Controllers/Api/ClassLecturerControllerTest.php
+    - tests/Feature/Http/Controllers/Api/CourseEnrollmentControllerTest.php
+    - tests/Feature/Http/Controllers/Api/CourseEnrollmentDetailControllerTest.php
+    - tests/Feature/Http/Controllers/Api/ClassMeetingControllerTest.php
+    - tests/Feature/Http/Controllers/Api/ClassProblemControllerTest.php
+    - tests/Feature/Http/Controllers/Api/ClassAttendanceControllerTest.php
+    - tests/Feature/Http/Controllers/Api/ResearchSchemaControllerTest.php
+    - tests/Feature/Http/Controllers/Api/ResearchControllerTest.php
+    - tests/Feature/Http/Controllers/Api/ResearchMemberControllerTest.php
+    - tests/Feature/Http/Controllers/Api/CommunityServiceSchemaControllerTest.php
+    - tests/Feature/Http/Controllers/Api/CommunityServiceControllerTest.php
+    - tests/Feature/Http/Controllers/Api/CommunityServiceMemberControllerTest.php
+    - tests/Feature/Http/Controllers/Api/PublisherControllerTest.php
+    - tests/Feature/Http/Controllers/Api/PublicationControllerTest.php
+    - tests/Feature/Http/Controllers/Api/PublicationAuthorControllerTest.php
+    - tests/Feature/Http/Controllers/Api/InternshipCompanyControllerTest.php
+    - tests/Feature/Http/Controllers/Api/InternshipProposalControllerTest.php
+    - tests/Feature/Http/Controllers/Api/InternshipControllerTest.php
+    - tests/Feature/Http/Controllers/Api/InternshipLogbookControllerTest.php
+    - tests/Feature/Http/Controllers/Api/InternshipSeminarAudienceControllerTest.php
+    - tests/Feature/Http/Controllers/Api/ThesisRubricControllerTest.php
+    - tests/Feature/Http/Controllers/Api/ThesisRubricDetailControllerTest.php
+    - tests/Feature/Http/Controllers/Api/ThesisTopicControllerTest.php
+    - tests/Feature/Http/Controllers/Api/ThesisControllerTest.php
+    - tests/Feature/Http/Controllers/Api/ThesisSupervisorControllerTest.php
+    - tests/Feature/Http/Controllers/Api/ThesisProposalControllerTest.php
+    - tests/Feature/Http/Controllers/Api/ThesisProposalAudienceControllerTest.php
+    - tests/Feature/Http/Controllers/Api/ThesisLogbookControllerTest.php
+    - tests/Feature/Http/Controllers/Api/ThesisSeminarControllerTest.php
+    - tests/Feature/Http/Controllers/Api/ThesisSeminarAudienceControllerTest.php
+    - tests/Feature/Http/Controllers/Api/ThesisSeminarReviewerControllerTest.php
+    - tests/Feature/Http/Controllers/Api/ThesisDefenseControllerTest.php
+    - tests/Feature/Http/Controllers/Api/ThesisDefenseExaminerControllerTest.php
+    - tests/Feature/Http/Controllers/Api/ThesisDefenseScoreControllerTest.php
+    - tests/Feature/Http/Controllers/Api/CounsellingTopicControllerTest.php
+    - tests/Feature/Http/Controllers/Api/CounsellingLogbookControllerTest.php
+    - tests/Feature/Http/Controllers/Api/CounsellingLogbookDetailControllerTest.php
+    - app/Http/Requests/BuildingStoreRequest.php
+    - app/Http/Requests/BuildingUpdateRequest.php
+    - app/Http/Requests/RoomStoreRequest.php
+    - app/Http/Requests/RoomUpdateRequest.php
+    - app/Http/Requests/FacultyStoreRequest.php
+    - app/Http/Requests/FacultyUpdateRequest.php
+    - app/Http/Requests/DepartmentStoreRequest.php
+    - app/Http/Requests/DepartmentUpdateRequest.php
+    - app/Http/Requests/StudentStoreRequest.php
+    - app/Http/Requests/StudentUpdateRequest.php
+    - app/Http/Requests/LecturerStoreRequest.php
+    - app/Http/Requests/LecturerUpdateRequest.php
+    - app/Http/Requests/StaffStoreRequest.php
+    - app/Http/Requests/StaffUpdateRequest.php
+    - app/Http/Requests/CurriculumStoreRequest.php
+    - app/Http/Requests/CurriculumUpdateRequest.php
+    - app/Http/Requests/CurriculumPeoStoreRequest.php
+    - app/Http/Requests/CurriculumPeoUpdateRequest.php
+    - app/Http/Requests/CurriculumPloStoreRequest.php
+    - app/Http/Requests/CurriculumPloUpdateRequest.php
+    - app/Http/Requests/CurriculumPeoPloStoreRequest.php
+    - app/Http/Requests/CurriculumPeoPloUpdateRequest.php
+    - app/Http/Requests/CurriculumIndicatorStoreRequest.php
+    - app/Http/Requests/CurriculumIndicatorUpdateRequest.php
+    - app/Http/Requests/CurriculumBokStoreRequest.php
+    - app/Http/Requests/CurriculumBokUpdateRequest.php
+    - app/Http/Requests/CurriculumBokDetailStoreRequest.php
+    - app/Http/Requests/CurriculumBokDetailUpdateRequest.php
+    - app/Http/Requests/CourseStoreRequest.php
+    - app/Http/Requests/CourseUpdateRequest.php
+    - app/Http/Requests/CoursePlanStoreRequest.php
+    - app/Http/Requests/CoursePlanUpdateRequest.php
+    - app/Http/Requests/CoursePlanDetailActivityStoreRequest.php
+    - app/Http/Requests/CoursePlanDetailActivityUpdateRequest.php
+    - app/Http/Requests/CoursePlanMediaStoreRequest.php
+    - app/Http/Requests/CoursePlanMediaUpdateRequest.php
+    - app/Http/Requests/CoursePlanRequirementStoreRequest.php
+    - app/Http/Requests/CoursePlanRequirementUpdateRequest.php
+    - app/Http/Requests/CoursePlanLoStoreRequest.php
+    - app/Http/Requests/CoursePlanLoUpdateRequest.php
+    - app/Http/Requests/CoursePlanReferenceStoreRequest.php
+    - app/Http/Requests/CoursePlanReferenceUpdateRequest.php
+    - app/Http/Requests/CoursePlanMaterialStoreRequest.php
+    - app/Http/Requests/CoursePlanMaterialUpdateRequest.php
+    - app/Http/Requests/CoursePlanLecturerStoreRequest.php
+    - app/Http/Requests/CoursePlanLecturerUpdateRequest.php
+    - app/Http/Requests/CoursePlanDetailStoreRequest.php
+    - app/Http/Requests/CoursePlanDetailUpdateRequest.php
+    - app/Http/Requests/CourseCurriculumIndicatorStoreRequest.php
+    - app/Http/Requests/CourseCurriculumIndicatorUpdateRequest.php
+    - app/Http/Requests/CoursePlanAssessmentStoreRequest.php
+    - app/Http/Requests/CoursePlanAssessmentUpdateRequest.php
+    - app/Http/Requests/AssessmentDetailStoreRequest.php
+    - app/Http/Requests/AssessmentDetailUpdateRequest.php
+    - app/Http/Requests/AssessmentCriterionStoreRequest.php
+    - app/Http/Requests/AssessmentCriterionUpdateRequest.php
+    - app/Http/Requests/AssessmentRubricStoreRequest.php
+    - app/Http/Requests/AssessmentRubricUpdateRequest.php
+    - app/Http/Requests/AssessmentStoreRequest.php
+    - app/Http/Requests/AssessmentUpdateRequest.php
+    - app/Http/Requests/PeriodStoreRequest.php
+    - app/Http/Requests/PeriodUpdateRequest.php
+    - app/Http/Requests/ClassCourseStoreRequest.php
+    - app/Http/Requests/ClassCourseUpdateRequest.php
+    - app/Http/Requests/ClassScheduleStoreRequest.php
+    - app/Http/Requests/ClassScheduleUpdateRequest.php
+    - app/Http/Requests/ClassLecturerStoreRequest.php
+    - app/Http/Requests/ClassLecturerUpdateRequest.php
+    - app/Http/Requests/CourseEnrollmentStoreRequest.php
+    - app/Http/Requests/CourseEnrollmentUpdateRequest.php
+    - app/Http/Requests/CourseEnrollmentDetailStoreRequest.php
+    - app/Http/Requests/CourseEnrollmentDetailUpdateRequest.php
+    - app/Http/Requests/ClassMeetingStoreRequest.php
+    - app/Http/Requests/ClassMeetingUpdateRequest.php
+    - app/Http/Requests/ClassProblemStoreRequest.php
+    - app/Http/Requests/ClassProblemUpdateRequest.php
+    - app/Http/Requests/ClassAttendanceStoreRequest.php
+    - app/Http/Requests/ClassAttendanceUpdateRequest.php
+    - app/Http/Requests/ResearchSchemaStoreRequest.php
+    - app/Http/Requests/ResearchSchemaUpdateRequest.php
+    - app/Http/Requests/ResearchStoreRequest.php
+    - app/Http/Requests/ResearchUpdateRequest.php
+    - app/Http/Requests/ResearchMemberStoreRequest.php
+    - app/Http/Requests/ResearchMemberUpdateRequest.php
+    - app/Http/Requests/CommunityServiceSchemaStoreRequest.php
+    - app/Http/Requests/CommunityServiceSchemaUpdateRequest.php
+    - app/Http/Requests/CommunityServiceStoreRequest.php
+    - app/Http/Requests/CommunityServiceUpdateRequest.php
+    - app/Http/Requests/CommunityServiceMemberStoreRequest.php
+    - app/Http/Requests/CommunityServiceMemberUpdateRequest.php
+    - app/Http/Requests/PublisherStoreRequest.php
+    - app/Http/Requests/PublisherUpdateRequest.php
+    - app/Http/Requests/PublicationStoreRequest.php
+    - app/Http/Requests/PublicationUpdateRequest.php
+    - app/Http/Requests/PublicationAuthorStoreRequest.php
+    - app/Http/Requests/PublicationAuthorUpdateRequest.php
+    - app/Http/Requests/InternshipCompanyStoreRequest.php
+    - app/Http/Requests/InternshipCompanyUpdateRequest.php
+    - app/Http/Requests/InternshipProposalStoreRequest.php
+    - app/Http/Requests/InternshipProposalUpdateRequest.php
+    - app/Http/Requests/InternshipStoreRequest.php
+    - app/Http/Requests/InternshipUpdateRequest.php
+    - app/Http/Requests/InternshipLogbookStoreRequest.php
+    - app/Http/Requests/InternshipLogbookUpdateRequest.php
+    - app/Http/Requests/InternshipSeminarAudienceStoreRequest.php
+    - app/Http/Requests/InternshipSeminarAudienceUpdateRequest.php
+    - app/Http/Requests/ThesisRubricStoreRequest.php
+    - app/Http/Requests/ThesisRubricUpdateRequest.php
+    - app/Http/Requests/ThesisRubricDetailStoreRequest.php
+    - app/Http/Requests/ThesisRubricDetailUpdateRequest.php
+    - app/Http/Requests/ThesisTopicStoreRequest.php
+    - app/Http/Requests/ThesisTopicUpdateRequest.php
+    - app/Http/Requests/ThesiStoreRequest.php
+    - app/Http/Requests/ThesiUpdateRequest.php
+    - app/Http/Requests/ThesisSupervisorStoreRequest.php
+    - app/Http/Requests/ThesisSupervisorUpdateRequest.php
+    - app/Http/Requests/ThesisProposalStoreRequest.php
+    - app/Http/Requests/ThesisProposalUpdateRequest.php
+    - app/Http/Requests/ThesisProposalAudienceStoreRequest.php
+    - app/Http/Requests/ThesisProposalAudienceUpdateRequest.php
+    - app/Http/Requests/ThesisLogbookStoreRequest.php
+    - app/Http/Requests/ThesisLogbookUpdateRequest.php
+    - app/Http/Requests/ThesisSeminarStoreRequest.php
+    - app/Http/Requests/ThesisSeminarUpdateRequest.php
+    - app/Http/Requests/ThesisSeminarAudienceStoreRequest.php
+    - app/Http/Requests/ThesisSeminarAudienceUpdateRequest.php
+    - app/Http/Requests/ThesisSeminarReviewerStoreRequest.php
+    - app/Http/Requests/ThesisSeminarReviewerUpdateRequest.php
+    - app/Http/Requests/ThesisDefenseStoreRequest.php
+    - app/Http/Requests/ThesisDefenseUpdateRequest.php
+    - app/Http/Requests/ThesisDefenseExaminerStoreRequest.php
+    - app/Http/Requests/ThesisDefenseExaminerUpdateRequest.php
+    - app/Http/Requests/ThesisDefenseScoreStoreRequest.php
+    - app/Http/Requests/ThesisDefenseScoreUpdateRequest.php
+    - app/Http/Requests/CounsellingTopicStoreRequest.php
+    - app/Http/Requests/CounsellingTopicUpdateRequest.php
+    - app/Http/Requests/CounsellingLogbookStoreRequest.php
+    - app/Http/Requests/CounsellingLogbookUpdateRequest.php
+    - app/Http/Requests/CounsellingLogbookDetailStoreRequest.php
+    - app/Http/Requests/CounsellingLogbookDetailUpdateRequest.php
+    - app/Http/Resources/BuildingCollection.php
+    - app/Http/Resources/BuildingResource.php
+    - app/Http/Resources/RoomCollection.php
+    - app/Http/Resources/RoomResource.php
+    - app/Http/Resources/FacultyCollection.php
+    - app/Http/Resources/FacultyResource.php
+    - app/Http/Resources/DepartmentCollection.php
+    - app/Http/Resources/DepartmentResource.php
+    - app/Http/Resources/StudentCollection.php
+    - app/Http/Resources/StudentResource.php
+    - app/Http/Resources/LecturerCollection.php
+    - app/Http/Resources/LecturerResource.php
+    - app/Http/Resources/StaffCollection.php
+    - app/Http/Resources/StaffResource.php
+    - app/Http/Resources/CurriculumCollection.php
+    - app/Http/Resources/CurriculumResource.php
+    - app/Http/Resources/CurriculumPeoCollection.php
+    - app/Http/Resources/CurriculumPeoResource.php
+    - app/Http/Resources/CurriculumPloCollection.php
+    - app/Http/Resources/CurriculumPloResource.php
+    - app/Http/Resources/CurriculumPeoPloCollection.php
+    - app/Http/Resources/CurriculumPeoPloResource.php
+    - app/Http/Resources/CurriculumIndicatorCollection.php
+    - app/Http/Resources/CurriculumIndicatorResource.php
+    - app/Http/Resources/CurriculumBokCollection.php
+    - app/Http/Resources/CurriculumBokResource.php
+    - app/Http/Resources/CurriculumBokDetailCollection.php
+    - app/Http/Resources/CurriculumBokDetailResource.php
+    - app/Http/Resources/CourseCollection.php
+    - app/Http/Resources/CourseResource.php
+    - app/Http/Resources/CoursePlanCollection.php
+    - app/Http/Resources/CoursePlanResource.php
+    - app/Http/Resources/CoursePlanDetailActivityCollection.php
+    - app/Http/Resources/CoursePlanDetailActivityResource.php
+    - app/Http/Resources/CoursePlanMediaCollection.php
+    - app/Http/Resources/CoursePlanMediaResource.php
+    - app/Http/Resources/CoursePlanRequirementCollection.php
+    - app/Http/Resources/CoursePlanRequirementResource.php
+    - app/Http/Resources/CoursePlanLoCollection.php
+    - app/Http/Resources/CoursePlanLoResource.php
+    - app/Http/Resources/CoursePlanReferenceCollection.php
+    - app/Http/Resources/CoursePlanReferenceResource.php
+    - app/Http/Resources/CoursePlanMaterialCollection.php
+    - app/Http/Resources/CoursePlanMaterialResource.php
+    - app/Http/Resources/CoursePlanLecturerCollection.php
+    - app/Http/Resources/CoursePlanLecturerResource.php
+    - app/Http/Resources/CoursePlanDetailCollection.php
+    - app/Http/Resources/CoursePlanDetailResource.php
+    - app/Http/Resources/CourseCurriculumIndicatorCollection.php
+    - app/Http/Resources/CourseCurriculumIndicatorResource.php
+    - app/Http/Resources/CoursePlanAssessmentCollection.php
+    - app/Http/Resources/CoursePlanAssessmentResource.php
+    - app/Http/Resources/AssessmentDetailCollection.php
+    - app/Http/Resources/AssessmentDetailResource.php
+    - app/Http/Resources/AssessmentCriterionCollection.php
+    - app/Http/Resources/AssessmentCriterionResource.php
+    - app/Http/Resources/AssessmentRubricCollection.php
+    - app/Http/Resources/AssessmentRubricResource.php
+    - app/Http/Resources/AssessmentCollection.php
+    - app/Http/Resources/AssessmentResource.php
+    - app/Http/Resources/PeriodCollection.php
+    - app/Http/Resources/PeriodResource.php
+    - app/Http/Resources/ClassCourseCollection.php
+    - app/Http/Resources/ClassCourseResource.php
+    - app/Http/Resources/ClassScheduleCollection.php
+    - app/Http/Resources/ClassScheduleResource.php
+    - app/Http/Resources/ClassLecturerCollection.php
+    - app/Http/Resources/ClassLecturerResource.php
+    - app/Http/Resources/CourseEnrollmentCollection.php
+    - app/Http/Resources/CourseEnrollmentResource.php
+    - app/Http/Resources/CourseEnrollmentDetailCollection.php
+    - app/Http/Resources/CourseEnrollmentDetailResource.php
+    - app/Http/Resources/ClassMeetingCollection.php
+    - app/Http/Resources/ClassMeetingResource.php
+    - app/Http/Resources/ClassProblemCollection.php
+    - app/Http/Resources/ClassProblemResource.php
+    - app/Http/Resources/ClassAttendanceCollection.php
+    - app/Http/Resources/ClassAttendanceResource.php
+    - app/Http/Resources/ResearchSchemaCollection.php
+    - app/Http/Resources/ResearchSchemaResource.php
+    - app/Http/Resources/ResearchCollection.php
+    - app/Http/Resources/ResearchResource.php
+    - app/Http/Resources/ResearchMemberCollection.php
+    - app/Http/Resources/ResearchMemberResource.php
+    - app/Http/Resources/CommunityServiceSchemaCollection.php
+    - app/Http/Resources/CommunityServiceSchemaResource.php
+    - app/Http/Resources/CommunityServiceCollection.php
+    - app/Http/Resources/CommunityServiceResource.php
+    - app/Http/Resources/CommunityServiceMemberCollection.php
+    - app/Http/Resources/CommunityServiceMemberResource.php
+    - app/Http/Resources/PublisherCollection.php
+    - app/Http/Resources/PublisherResource.php
+    - app/Http/Resources/PublicationCollection.php
+    - app/Http/Resources/PublicationResource.php
+    - app/Http/Resources/PublicationAuthorCollection.php
+    - app/Http/Resources/PublicationAuthorResource.php
+    - app/Http/Resources/InternshipCompanyCollection.php
+    - app/Http/Resources/InternshipCompanyResource.php
+    - app/Http/Resources/InternshipProposalCollection.php
+    - app/Http/Resources/InternshipProposalResource.php
+    - app/Http/Resources/InternshipCollection.php
+    - app/Http/Resources/InternshipResource.php
+    - app/Http/Resources/InternshipLogbookCollection.php
+    - app/Http/Resources/InternshipLogbookResource.php
+    - app/Http/Resources/InternshipSeminarAudienceCollection.php
+    - app/Http/Resources/InternshipSeminarAudienceResource.php
+    - app/Http/Resources/ThesisRubricCollection.php
+    - app/Http/Resources/ThesisRubricResource.php
+    - app/Http/Resources/ThesisRubricDetailCollection.php
+    - app/Http/Resources/ThesisRubricDetailResource.php
+    - app/Http/Resources/ThesisTopicCollection.php
+    - app/Http/Resources/ThesisTopicResource.php
+    - app/Http/Resources/ThesiCollection.php
+    - app/Http/Resources/ThesiResource.php
+    - app/Http/Resources/ThesisSupervisorCollection.php
+    - app/Http/Resources/ThesisSupervisorResource.php
+    - app/Http/Resources/ThesisProposalCollection.php
+    - app/Http/Resources/ThesisProposalResource.php
+    - app/Http/Resources/ThesisProposalAudienceCollection.php
+    - app/Http/Resources/ThesisProposalAudienceResource.php
+    - app/Http/Resources/ThesisLogbookCollection.php
+    - app/Http/Resources/ThesisLogbookResource.php
+    - app/Http/Resources/ThesisSeminarCollection.php
+    - app/Http/Resources/ThesisSeminarResource.php
+    - app/Http/Resources/ThesisSeminarAudienceCollection.php
+    - app/Http/Resources/ThesisSeminarAudienceResource.php
+    - app/Http/Resources/ThesisSeminarReviewerCollection.php
+    - app/Http/Resources/ThesisSeminarReviewerResource.php
+    - app/Http/Resources/ThesisDefenseCollection.php
+    - app/Http/Resources/ThesisDefenseResource.php
+    - app/Http/Resources/ThesisDefenseExaminerCollection.php
+    - app/Http/Resources/ThesisDefenseExaminerResource.php
+    - app/Http/Resources/ThesisDefenseScoreCollection.php
+    - app/Http/Resources/ThesisDefenseScoreResource.php
+    - app/Http/Resources/CounsellingTopicCollection.php
+    - app/Http/Resources/CounsellingTopicResource.php
+    - app/Http/Resources/CounsellingLogbookCollection.php
+    - app/Http/Resources/CounsellingLogbookResource.php
+    - app/Http/Resources/CounsellingLogbookDetailCollection.php
+    - app/Http/Resources/CounsellingLogbookDetailResource.php
+updated:
+    - routes/api.php
 models:
     Permission: { uuid: 'char:36', name: string, guard_name: string }
     Role: { uuid: 'char:36', name: string, guard_name: string }
-    User: { username: 'string nullable', name: string, email: string, email_verified_at: 'timestamp nullable', password: string, type: 'integer default:1', active: 'integer default:1', avatar: 'string nullable', profile_photo: 'text nullable', remember_token: 'string:100 nullable' }
+    User: { id: 'char:36', username: 'string nullable', name: string, email: string, email_verified_at: 'timestamp nullable', password: string, type: 'integer default:1', active: 'integer default:1', avatar: 'string nullable', profile_photo: 'text nullable', remember_token: 'string:100 nullable' }
+    UserLogin: { user_id: uuid, ip_address: string, user_agent: string, payload: string, last_activity: integer }
+    Building: { id: 'uuid primary', name: string, floors: 'integer nullable', build_year: 'year nullable', relationships: { hasMany: Room } }
+    Room: { id: 'uuid primary', building_id: 'uuid foreign:buildings.id', name: string, floor: 'integer nullable', number: 'integer nullable', capacity: 'integer nullable', size: 'integer nullable', location: 'geography:point nullable', public: 'integer nullable', status: 'integer nullable', availability: 'integer default:1', relationships: { belongsTo: Building } }
+    Faculty: { id: 'uuid primary', name: string, abbreviation: 'string nullable', type: integer, relationships: { hasMany: Department } }
+    Department: { id: 'uuid primary', name: string, faculty_id: 'uuid foreign:faculties.id', abbreviation: 'string nullable', national_code: 'string nullable', relationships: { hasMany: 'Lecturer, Student, Staff, Curriculum', belongsTo: Faculty } }
+    Lecturer: { id: 'uuid primary foreign:lecturers.id', nik: 'string unique', name: string, nip: 'string nullable', nidn: 'string nullable', karpeg: 'string nullable', npwp: 'string nullable', gender: 'enum:M,F nullable', birthday: 'date nullable', birthplace: 'string nullable', phone: 'string nullable', address: 'string nullable', department_id: 'uuid foreign:departments.id', photo: 'string nullable', marital_status: 'integer nullable', religion: 'integer nullable', association_type: 'integer nullable', status: 'integer default:1', relationships: { hasMany: Student, belongsTo: Department } }
+    Student: { id: 'uuid primary foreign:students.id', nik: 'string nullable', nim: 'string unique', name: string, year: 'integer nullable', gender: 'enum:M,F nullable', birthday: 'date nullable', birthplace: 'string nullable', phone: 'string nullable', address: 'text nullable', department_id: 'uuid foreign:departments.id', photo: 'string nullable', marital_status: 'integer nullable', religion: integer, status: 'integer default:1', counselor_id: 'uuid nullable foreign:lecturers.id', relationships: { belongsTo: Department } }
+    Staff: { id: 'uuid primary foreign:staffs.id', nik: string, name: string, nip: 'string nullable', karpeg: 'string nullable', npwp: 'string nullable', gender: 'enum:M,F nullable', birthday: 'date nullable', birthplace: 'string nullable', phone: 'string nullable', address: 'text nullable', department_id: 'uuid foreign:departments.id', photo: 'string nullable', marital_status: 'integer nullable', religion: 'integer nullable', association_type: 'integer nullable', status: 'integer default:1', relationships: { belongsTo: Department } }
+    Curriculum: { id: 'uuid primary', name: string, department_id: 'uuid foreign:departments.id', year_start: integer, year_end: integer, active: integer, description: 'text nullable', relationships: { hasMany: 'CurriculumPeo, CurriculumPlo, Course, CurriculumBok' } }
+    CurriculumPeo: { id: 'uuid primary', curriculum_id: 'uuid foreign:curricula.id onUpdate:cascade', code: string, profile: text, description: 'text nullable', relationships: { hasMany: CurriculumPeoPlo, belongsTo: Curriculum } }
+    CurriculumPlo: { id: 'uuid primary', curriculum_id: 'uuid foreign:curricula.id onUpdate:cascade', code: string, outcome: text, description: 'text nullable', min_grade: integer, relationships: { hasMany: 'CurriculumIndicator, CurriculumPeoPlo', belongsTo: Curriculum } }
+    CurriculumPeoPlo: { id: 'uuid primary', curriculum_peo_id: 'uuid foreign:curriculum_peos.id', curriculum_plo_id: 'uuid foreign:curriculum_plos.id', relationships: { belongsTo: 'CurriculumPeo, CurriculumPlo' } }
+    CurriculumIndicator: { id: 'uuid primary', curriculum_plo_id: 'uuid foreign:curriculum_plos.id onUpdate:cascade', code: string, indicator: string, min_grade: integer, relationships: { hasMany: 'CoursePlanLo, CourseCurriculumIndicator', belongsTo: CurriculumPlo } }
+    CurriculumBok: { id: 'uuid primary', curriculum_id: 'uuid foreign:curricula.id onUpdate:cascade', code: string, name: string, relationships: { hasMany: CurriculumBokDetail, belongsTo: Curriculum } }
+    CurriculumBokDetail: { id: 'uuid primary', curriculum_bok_id: 'uuid foreign:curriculum_boks.id onUpdate:cascade', lo: text, relationships: { belongsTo: CurriculumBok } }
+    Course: { id: 'uuid primary', curriculum_id: 'uuid foreign:curricula.id onUpdate:cascade', code: string, name: string, alias_name: 'string nullable', credit: integer, semester: integer, mandatory: integer, description: 'text nullable', relationships: { belongsTo: Curriculum, hasMany: 'CoursePlan, CoursePlanRequirement, ClassCourse, CurriculumIndicatorCourse' } }
+    CoursePlan: { id: 'uuid primary', course_id: 'uuid foreign:courses.id onUpdate:cascade', rev: integer, code: string, name: string, alias_name: 'string nullable', credit: integer, semester: integer, mandatory: integer, description: text, ilearn_url: 'string nullable', validated_by: 'uuid foreign:lecturers.id nullable onUpdate:cascade', validated_at: 'timestamp nullable', learning_strategy: 'text nullable', learning_management: 'text nullable', participant: 'text nullable', class_observation: 'text nullable', constraint: 'text nullable', improvement: 'text nullable', relationships: { belongsTo: Course, hasMany: 'CoursePlanRequirement, CoursePlanReference, CoursePlanMaterial, CoursePlanDetail, CoursePlanAssessment, CoursePlanLecturers, CoursePlanLo, CoursePlanMedia, ClassCourse' } }
+    CoursePlanRequirement: { id: 'uuid primary', course_plan_id: 'uuid foreign:course_plans.id onUpdate:cascade', req_course_id: 'uuid foreign:courses.id onUpdate:cascade', req_level: integer, relationships: { belongsTo: CoursePlan } }
+    CoursePlanLo: { id: 'uuid primary', course_plan_id: 'uuid foreign:course_plans.id onUpdate:cascade', curriculum_indicator_id: 'uuid foreign:curriculum_indicators.id onUpdate:cascade', code: string, name: text, relationships: { hasMany: AssessmentDetail, belongsTo: 'CurriculumIndicator, CoursePlan' } }
+    CoursePlanReference: { id: 'uuid primary', course_plan_id: 'uuid foreign:course_plans.id onUpdate:cascade', title: string, author: string, publisher: string, year: integer, type: integer, primary: integer, relationships: { belongsTo: CoursePlan } }
+    CoursePlanMaterial: { id: 'uuid primary', course_plan_id: 'uuid foreign:course_plans.id onUpdate:cascade', topic: string, relationships: { belongsTo: CoursePlan } }
+    CoursePlanMedia: { id: 'uuid primary', course_plan_id: 'uuid foreign:course_plans.id onUpdate:cascade', type: integer, media: string, relationships: { belongsTo: CoursePlan } }
+    CoursePlanLecturer: { id: 'uuid primary', course_plan_id: 'uuid foreign:course_plans.id onUpdate:cascade', lecturer_id: 'uuid foreign:lecturers.id onUpdate:cascade', creator: 'integer default:0', relationships: { belongsTo: 'CoursePlan, Lecturer' } }
+    CoursePlanDetail: { id: 'uuid primary', course_plan_id: 'uuid foreign:course_plans.id onUpdate:cascade', week: integer, course_plan_lo_id: 'uuid foreign:course_plan_los.id nullable onUpdate:cascade', grade_indicator: 'text nullable', grade_criteria: 'text nullable', media: 'text nullable', material: 'text nullable', reference: 'text nullable', method: 'string nullable', activity: 'integer nullable', est_time: 'integer nullable', student_activity: 'text nullable', relationships: { hasMany: 'CoursePlanDetailActivity, ClassMeeting', belongsTo: 'CoursePlan, CoursePlanLo' } }
+    CoursePlanDetailActivity: { id: 'uuid primary', course_plan_detail_id: 'uuid foreign:course_plan_details.id onUpdate:cascade', activity: 'integer nullabe', method: 'string nullable', est_time: 'integer nullable', student_activity: text, relationships: { belongsTo: CoursePlanDetail } }
+    CourseCurriculumIndicator: { id: 'uuid primary', course_id: 'uuid foreign:courses.id onUpdate:cascade', curriculum_indicator_id: 'uuid foreign:curriculum_indicators.id onUpdate:cascade', relationships: { belongsTo: 'Course, CurriculumIndicator' } }
+    CoursePlanAssessment: { id: 'uuid primary', course_plan_id: 'uuid foreign:course_plans.id onUpdate:cascade', name: string, percentage: 'double:8,2', relationships: { belongsTo: CoursePlan, hasMany: AssessmentDetail } }
+    AssessmentDetail: { id: 'uuid primary', course_plan_assessment_id: 'uuid foreign:course_plan_assessments.id onUpdate:cascade', course_plan_lo_id: 'uuid foreign:course_plan_los.id onUpdate:cascade', percentage: 'double:8,2', relationships: { belongsTo: 'CoursePlanAssessment, CoursePlanLo', hasMany: Assessment } }
+    AssessmentCriteria: { id: 'uuid primary', assessment_detail_id: 'uuid foreign:assessment_details.id', criteria: string, method: 'integer nullable', relationships: { belongsTo: AssessmentDetail, hasMany: AssessmentRubric } }
+    AssessmentRubric: { id: 'uuid primary', assessment_criteria_id: 'uuid foreign:assessment_criterias.id', rubric: 'string nullable', grade: 'double:8,2', relationships: { belongsTo: AssessmentCriteria } }
+    Period: { id: 'uuid primary', year: integer, semester: integer, active: 'boolean default:false', relationships: { hasMany: 'ClassCourse, CourseEnrollment' } }
+    ClassCourse: { id: 'uuid primary', course_id: 'uuid foreign:courses.id onUpdate:cascade', period_id: 'uuid foreign:periods.id onUpdate:cascade', course_plan_id: 'uuid foreign:course_plans.id onUpdate:cascade', name: string, course_code: 'string nullable', course_name: 'string nullable', course_credits: 'integer nullable', course_semester: 'integer nullable', meeting_nonconformity: 'text nullable', meeting_verified: 'boolean nullable', relationships: { belongsTo: 'Period, CoursePlan, Course', hasMany: 'ClassSchedule, ClassClecturer, CourseEnrollment, ClassMeeting' } }
+    ClassSchedule: { id: 'uuid primary', class_id: 'uuid foreign:class_courses.id onUpdate:cascade', room_id: 'uuid foreign:rooms.id onUpdate:cascade', weekday: integer, start_at: time, end_at: time, relationships: { belongsTo: 'ClassCourse, Room' } }
+    ClassLecturer: { id: 'uuid primary', class_id: 'uuid foreign:class_courses.id onUpdate:cascade', lecturer_id: 'uuid foreign:lecturers.id onUpdate:cascade', position: 'integer default:1', grading: 'integer default:1', relationships: { belongsTo: 'ClassCourse, Lecturer' } }
+    CourseEnrollment: { id: 'uuid primary', student_id: 'uuid foreign:students.id onUpdate:cascade', period_id: 'uuid foreign:periods.id onUpdate:cascade', counselor_id: 'uuid foreign:lecturers.id onUpdate:cascade', status: 'integer default:1', mid_term_passcode: 'string nullable', final_term_passcode: 'string nullable', registered_at: date, gpa: 'double:8,2', relationships: { belongsTo: 'Student, Period', hasMany: CourseEnrollmentDetail } }
+    CourseEnrollmentDetail: { id: 'uuid primary', course_enrollment_id: 'uuid foreign:course_enrollments.id onUpdate:cascade', class_id: 'uuid foreign:class_courses.id onUpdate:cascade', status: 'integer default:1', in_transcript: 'integer default:1', weight: 'double nullable', grade: 'double nullable', relationships: { belongsTo: 'CourseEnrollment, ClassCourse', hasMany: 'Assessment, ClassAttendance' } }
+    Assessment: { id: 'uuid primary', assessment_detail_id: 'uuid foreign:assessment_details.id onUpdate:cascade', course_enrollment_detail_id: 'uuid foreign:course_enrollment_details.id onUpdate:cascade', grade: 'double:8,2', relationships: { belongsTo: 'AssessmentDetail, CourseEnrollmentDetail' } }
+    ClassMeeting: { id: 'uuid primary', meet_no: integer, class_id: 'uuid foreign:class_courses.id onUpdate:cascade', course_plan_detail_id: 'uuid foreign:course_plan_details.id onUpdate:cascade', class_lecturer_id: 'uuid foreign:class_lecturers.id onUpdate:cascade', material_real: text, assessment_real: text, method: 'integer default:1', ol_platform: 'string nullable', ol_links: 'string nullable', room_id: 'uuid foreign:rooms.id nullable onUpdate:cascade', meeting_start_at: 'timestamp nullable', meeting_end_at: 'timestamp nullable', relationships: { belongsTo: 'ClassCourse, CoursePlanDetail, Room, Lecturer', hasMany: ClassAttendance } }
+    ClassAttendance: { id: 'uuid primary', course_enrollment_detail_id: 'uuid foreign:course_enrollment_details.id onUpdate:cascade', class_meeting_id: 'uuid foreign:class_meetings.id onUpdate:cascade', status: 'integer default:1', meet_no: integer, device_id: 'string nullable', device_name: 'string nullable', latitude: 'double nullable', longitude: 'double nullable', attendance_status: 'integer default:0', need_attention: 'integer default:0', information: text, permit_reason: 'text nullable', permit_file: 'string nullable', rating: 'double nullable', feedback: 'text nullable', relationships: { belongsTo: 'CourseEnrollmentDetail, ClassMeeting' } }
+    ClassProblem: { id: 'uuid primary', class_course_id: 'uuid foreign:class_courses.id', course_enrollment_detail_id: 'uuid foreign:course_enrollment_details.id', problem: text, solution: 'text nullable', relationships: { belongsTo: ClassCourse } }
+    ResearchSchema: { id: 'uuid primary', name: string, relationships: { hasMany: Research } }
+    Research: { id: 'uuid primary', title: string, research_schema_id: 'uuid foreign:research_schemas.id', start_at: 'integer nullable', fund_amount: 'integer nullable', proposal_file: 'string nullable', report_file: 'string nullable', relationships: { belongsTo: ResearchSchema, hasMany: ResearchMember } }
+    ResearchMember: { id: 'uuid primary', user_id: 'uuid foreign:users.id', research_id: 'uuid foreign:research.id', position: "integer default:1'", relationships: { belongsTo: 'User, Research' } }
+    CommunityServiceSchema: { id: 'uuid primary', name: string, relationships: { hasMany: CommunityService } }
+    CommunityService: { id: 'uuid primary', title: string, community_service_schema_id: 'uuid foreign:community_service_schemas.id', partner: 'string nullable', start_at: 'integer nullable', fund_amount: 'integer nullable', proposal_file: 'string nullable', report_file: 'string nullable', relationships: { belongsTo: CommunityServiceSchema, hasMany: CommunityServiceMember } }
+    CommunityServiceMember: { id: 'uuid primary', user_id: 'uuid foreign:users.id', community_service_id: 'uuid foreign:community_services.id', position: integer, relationships: { belongsTo: 'User, CommunityService' } }
+    Publisher: { id: 'uuid primary', name: string, type: 'enum:"journal","conference","proceeding","book","thesis"', international: 'integer default:0', indexed: 'integer default:0', relationships: { hasMany: Publication } }
+    Publication: { id: 'uuid primary', title: string, publisher_id: 'uuid foreign:publishers.id', published_at: date, file: 'string nullable', relationships: { belongsTo: Publisher } }
+    PublicationAuthor: { id: 'uuid primary', publication_id: 'uuid foreign:publications.id', user_id: 'uuid foreign:users.id', position: integer, corresponding: integer, relationships: { belongsTo: 'Publication, User' } }
+    InternshipCompany: { id: 'uuid primary', name: string, address: text, relationships: { hasMany: InternshipProposal } }
+    InternshipProposal: { id: 'uuid primary', company_id: 'uuid foreign:internship_companies.id', type: 'integer default:1', title: string, job_desc: 'text nullable', start_at: date, end_at: date, status: 'enum:"draft","open", "proposed","need_revision","revised","rejected","accepted" default:"draft"', note: 'text nullable', active: 'integer default:1', response_letter: 'string nullable', background: 'text nullable', relationships: { belongsTo: InternshipCompany, hasMany: Internship } }
+    Internship: { id: 'uuid primary', internship_proposal_id: 'uuid foreign:internship_proposals.id', student_id: 'uuid foreign:students.id', advisor_id: 'uuid foreign:lecturers.id nullable', status: 'enum:"accepted","rejected","ongoing","seminar","administration","finished","cancelled"', start_at: 'date nullable,', end_at: 'date nullable', report_title: 'text nullable', seminar_date: 'date nullable', seminar_room_id: 'uuid foreign:rooms.id', link_seminar: 'string nullable', seminar_deadline: 'date nullable', attendees_list: 'string nullable', internship_score: 'string nullable', activity_report: 'string nullable', news_event: 'string nullable', work_report: 'string nullable', certificate: 'string nullable', report_receipt: 'string nullable', grade: 'string nullable', relationships: { belongsTo: 'InternshipProposal, Student, Lecturer', hasMany: 'InternshipLogbook, InternshipSeminarAudience' } }
+    InternshipLogbook: { id: 'uuid primary', internship_id: 'uuid foreign:internships.id', date: date, activities: 'text nullable', note: 'text nullable', relationships: { belongsTo: Internship } }
+    InternshipSeminarAudience: { id: 'uuid primary', internship_id: 'uuid foreign:internships.id', student_id: 'uuid foreign:students.id', role: 'enum:"audience","moderator","questioner"', question: 'text nullable', relationships: { belongsTo: 'Internship, Student' } }
+    ThesisRubric: { id: 'uuid primary', name: text, active: 'integer default:0', relationships: { hasMany: 'ThesisRubricDetail, ThesisTrial' } }
+    ThesisRubricDetail: { id: 'uuid primary', thesis_rubric_id: 'uuid foreign:thesis_rubrics.id', description: text, percentage: 'float:10 default:0', relationships: { belongsTo: ThesisRubric, hasMany: ThesisTrialExaminerScore } }
+    ThesisTopic: { id: 'uuid primary', name: string, description: 'text nullable', relationships: { hasMany: Thesis } }
+    Thesis: { id: 'uuid primary', topic_id: 'uuid foreign:thesis_topics.id', student_id: 'uuid foreign:students.id', title: 'text nullable', abstract: 'text nullable', start_at: 'date nullable', status: 'integer default:0', grade: 'string nullable', grade_by: 'biginteger unsigned nullable', created_by: 'uuid foreign:users.id', relationships: { belongsTo: 'ThesisTopic, User, Student', hasMany: 'ThesisProposal, ThesisSupervisor, ThesisLogbook, ThesisSeminar, ThesisTrial' } }
+    ThesisSupervisor: { id: 'uuid primary', thesis_id: 'uuid foreign:theses.id', lecturer_id: 'uuid foreign:lecturers.id', position: 'integer default:0', status: 'integer default:0', created_by: 'uuid foreign:users.id', relationships: { belongsTo: 'Thesis, Lecturer', hasMany: ThesisLogbook } }
+    ThesisDataRequest: { id: 'uuid primary', thesis_id: 'uuid foreign:theses.id', supervisor_id: 'uuid foreign:thesis_supervisors.id', request_at: datetime, requested_data: text, request_to_person: 'text nullable', request_to_position: 'text nullable', request_to_org: 'text nullable', request_to_address: 'text nullable', status: 'integer default:0', relationships: { belongsTo: 'Thesis, Student' } }
+    ThesisProposal: { id: 'uuid primary', thesis_id: 'uuid foreign:theses.id', datetime: datetime, room_id: 'uuid foreign:rooms.id nullable', grade: 'string nullable', graded_by: 'uuid foreign:users.id', status: 'integer default:0', file_proposal: 'string nullable', relationships: { belongsTo: 'Thesis, Room, User', hasMany: ThesisProposalAudience } }
+    ThesisProposalAudience: { id: 'uuid primary', student_id: 'uuid foreign:students.id', thesis_proposal_id: 'uuid foreign:thesis_proposals.id', relationships: { belongsTo: 'Student, ThesisProposal' } }
+    ThesisLogbook: { id: 'uuid primary', thesis_id: 'uuid foreign:theses.id', supervisor_id: 'uuid foreign:thesis_supervisors.id', date: date, progress: text, problem: 'text nullable', file_progress: 'string nullable', supervised_by: 'uuid foreign:thesis_supervisors.id nullable', supervised_at: 'datetime nullable', notes: 'text nullable', file_notes: 'string nullable', status: 'integer default:0', relationships: { belongsTo: 'Thesis, ThesisSupervisor' } }
+    ThesisSeminar: { id: 'uuid primary', thesis_id: 'uuid foreign:theses.id', registered_at: 'datetime nullable', method: 'integer default:1', seminar_at: 'datetime nullable', room_id: 'uuid foreign:rooms.id nullable', online_url: 'text nullable', file_report: 'string nullable', file_slide: 'string nullable', file_journal: 'string nullable', file_attendance: 'string nullable', recommendation: 'integer nullable', status: 'integer default:0', description: 'text nullable', relationships: { belongsTo: 'Thesis, Room', hasMany: 'ThesisSeminarAudience, ThesisSeminarReviewer' } }
+    ThesisSeminarAudience: { id: 'uuid primary', thesis_seminar_id: 'uuid foreign:thesis_seminars.id', student_id: 'uuid foreign:students.id', relationships: { belongsTo: 'ThesisSeminar, Student' } }
+    ThesisSeminarReviewer: { id: 'uuid primary', thesis_seminar_id: 'uuid foreign:thesis_seminars.id', reviewer_id: 'uuid foreign:lecturers.id', status: 'integer default:1', position: 'string nullable', recommendation: 'integer nullable', notes: 'text nullable', relationships: { belongsTo: 'ThesisSeminar, Lecturer' } }
+    ThesisDefense: { id: 'uuid primary', thesis_id: 'uuid foreign:theses.id', thesis_rubric_id: 'uuid foreign:thesis_rubrics.id', file_report: 'string nullable', file_slide: 'string nullable', file_journal: 'string nullable', status: 'integer default:0', registered_at: datetime, method: 'integer default:1', trial_at: 'date nullable', start_at: 'time nullable', end_at: 'time nullable', room_id: 'uuid foreign:rooms.id', online_url: 'text nullable', score: 'float:10 nullable', grade: 'string nullable', description: 'text nullable', relationships: { belongsTo: 'Thesis, ThesisRubric, Room', hasMany: ThesisDefenseExaminer } }
+    ThesisDefenseExaminer: { id: 'uuid primary', thesis_defense_id: 'uuid foreign:thesis_defenses.id', examiner_id: 'uuid foreign:lecturers.id', status: 'integer default:0', position: 'integer default:0', notes: 'text nullable', relationships: { belongsTo: 'ThesisDefense, Lecturer', hasMany: ThesisDefenseScore } }
+    ThesisDefenseScore: { id: 'uuid primary', thesis_defense_examiner_id: 'uuid foreign:thesis_defense_examiners.id', thesis_rubric_detail_id: 'uuid foreign:thesis_rubric_details.id', score: 'float:10 nullable', notes: 'text nullable', relationships: { belongsTo: 'ThesisDefenseExaminer, ThesisRubricDetail' } }
+    CounsellingTopic: { id: 'uuid primary', name: string, relationships: { hasMany: CounsellingLogbook } }
+    CounsellingLogbook: { id: 'uuid primary', student_id: 'uuid foreign:students.id', counsellor_id: 'uuid foreign:lecturers.id', counselling_topic_id: 'uuid foreign:counselling_categories.id', period_id: 'uuid foreign:periods.id', date: date, status: 'integer default:0', file: 'string nullable', relationships: { belongsTo: 'Student, CounsellingCategory, Period' } }
+    CounsellingLogbookDetail: { id: 'uuid primary', 'no': 'integer default:1', counselling_logbook_id: 'uuid foreign:counselling_logbooks.id', user_id: 'uuid foreign:users.id', description: 'text nullable', relationships: { belongsTo: CounsellingLogbook } }

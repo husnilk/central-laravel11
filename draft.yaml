@@ -1,5 +1,1042 @@
 models:
-  # ...
+  #########################################################################
+  # Data Master
+  #########################################################################
+  UserLogin:
+    user_id: uuid
+    ip_address: string
+    user_agent: string
+    payload: string
+    last_activity: integer
+
+  Building:
+    id: uuid primary
+    name: string
+    floors: integer nullable
+    build_year: year nullable
+    relationships:
+      hasMany: Room
+
+  Room:
+    id: uuid primary
+    building_id: uuid foreign:buildings.id
+    name: string
+    floor: integer nullable
+    number: integer nullable
+    capacity: integer nullable
+    size: integer nullable
+    location: geography:point nullable
+    public: integer nullable
+    status: integer nullable
+    availability: integer default:1
+    relationships:
+      belongsTo: Building
+
+  Faculty:
+    id: uuid primary
+    name: string
+    abbreviation: string nullable
+    type: integer
+    relationships:
+      hasMany: Department
+
+  Department:
+    id: uuid primary
+    name: string
+    faculty_id: uuid foreign:faculties.id
+    abbreviation: string nullable
+    national_code: string nullable
+    relationships:
+      hasMany: Lecturer, Student, Staff, Curriculum
+      belongsTo: Faculty
+
+  Lecturer:
+    id: uuid primary foreign:lecturers.id
+    nik: string unique
+    name: string
+    nip: string nullable
+    nidn: string nullable
+    karpeg: string nullable
+    npwp: string nullable
+    gender: enum:M,F nullable
+    birthday: date nullable
+    birthplace: string nullable
+    phone: string nullable
+    address: string nullable
+    department_id: uuid foreign:departments.id
+    photo: string nullable
+    marital_status: integer nullable
+    religion: integer nullable
+    association_type: integer nullable
+    status: integer default:1
+    relationships:
+      hasMany: Student
+      belongsTo: Department
+
+  Student:
+    id: uuid primary foreign:students.id
+    nik: string nullable
+    nim: string unique
+    name: string
+    year: integer nullable
+    gender: enum:M,F nullable
+    birthday: date nullable
+    birthplace: string nullable
+    phone: string nullable
+    address: text nullable
+    department_id: uuid foreign:departments.id
+    photo: string nullable
+    marital_status: integer nullable
+    religion: integer
+    status: integer default:1
+    counselor_id: uuid nullable foreign:lecturers.id
+    relationships:
+      belongsTo: Department
+
+  Staff:
+    id: uuid primary foreign:staffs.id
+    nik: string
+    name: string
+    nip: string nullable
+    karpeg: string nullable
+    npwp: string nullable
+    gender: enum:M,F nullable
+    birthday: date nullable
+    birthplace: string nullable
+    phone: string nullable
+    address: text nullable
+    department_id: uuid foreign:departments.id
+    photo: string nullable
+    marital_status: integer nullable
+    religion: integer nullable
+    association_type: integer nullable
+    status: integer default:1
+    relationships:
+      belongsTo: Department
+
+  #########################################################################
+  # Manajemen Kurikulum
+  #########################################################################
+  Curriculum: #Kurikulum
+    id: uuid primary
+    name: string
+    department_id: uuid foreign:departments.id
+    year_start: integer
+    year_end: integer
+    active: integer
+    description: text nullable
+    relationships:
+      hasMany: CurriculumPeo, CurriculumPlo, Course, CurriculumBok
+
+  CurriculumPeo: #Profil Lulusan/PPM
+    id: uuid primary
+    curriculum_id: uuid foreign:curricula.id onUpdate:cascade
+    code: string
+    profile: text
+    description: text nullable
+    relationships:
+      hasMany: CurriculumPeoPlo
+      belongsTo: Curriculum
+
+  # 1 curriculum => banyak CPL
+  CurriculumPlo: # Capaian Pembelajaran
+    id: uuid primary
+    curriculum_id: uuid foreign:curricula.id onUpdate:cascade
+    code: string
+    outcome: text
+    description: text nullable
+    min_grade: integer
+    relationships:
+      hasMany: CurriculumIndicator, CurriculumPeoPlo
+      belongsTo: Curriculum
+
+  CurriculumPeoPlo:
+    id: uuid primary
+    curriculum_peo_id: uuid foreign:curriculum_peos.id
+    curriculum_plo_id: uuid foreign:curriculum_plos.id
+    relationships:
+      belongsTo: CurriculumPeo, CurriculumPlo
+
+  CurriculumIndicator: # Indikator Capaian Pembelajaran
+    id: uuid primary
+    curriculum_plo_id: uuid foreign:curriculum_plos.id onUpdate:cascade
+    code: string
+    indicator: string
+    min_grade: integer
+    relationships:
+      hasMany: CoursePlanLo, CourseCurriculumIndicator
+      belongsTo: CurriculumPlo
+
+  CurriculumBok: #Bahan Kajian
+    id: uuid primary
+    curriculum_id: uuid foreign:curricula.id onUpdate:cascade
+    code: string
+    name: string
+    relationships:
+      hasMany: CurriculumBokDetail
+      belongsTo: Curriculum
+
+  CurriculumBokDetail: # Topik dari bahan Kajian
+    id: uuid primary
+    curriculum_bok_id: uuid foreign:curriculum_boks.id onUpdate:cascade
+    lo: text
+    relationships:
+      belongsTo: CurriculumBok
+
+  Course: # Mata Kuliah
+    id: uuid primary
+    curriculum_id: uuid foreign:curricula.id onUpdate:cascade
+    code: string
+    name: string
+    alias_name: string nullable
+    credit: integer
+    semester: integer
+    mandatory: integer
+    description: text nullable
+    relationships:
+      belongsTo: Curriculum
+      hasMany: CoursePlan, CoursePlanRequirement, ClassCourse, CurriculumIndicatorCourse
+
+
+  CoursePlan: # RPS
+    id: uuid primary
+    course_id: uuid foreign:courses.id onUpdate:cascade
+    rev: integer
+    code: string
+    name: string
+    alias_name: string nullable
+    credit: integer
+    semester: integer
+    mandatory: integer
+    description: text
+    ilearn_url: string nullable
+    #! material: text nullable
+    validated_by: uuid foreign:lecturers.id nullable onUpdate:cascade
+    validated_at: timestamp nullable
+    ## evaluasi portofolio
+    learning_strategy: text nullable
+    learning_management: text nullable
+    participant: text nullable
+    class_observation: text nullable
+    constraint: text nullable
+    improvement: text nullable
+    relationships:
+      belongsTo: Course
+      hasMany: CoursePlanRequirement, CoursePlanReference, CoursePlanMaterial, CoursePlanDetail, CoursePlanAssessment, CoursePlanLecturers, CoursePlanLo, CoursePlanMedia, ClassCourse
+
+  CoursePlanRequirement: # Mata Kuliah Prasyarat
+    id: uuid primary
+    course_plan_id: uuid foreign:course_plans.id onUpdate:cascade
+    req_course_id: uuid foreign:courses.id onUpdate:cascade
+    req_level: integer
+    relationships:
+      belongsTo: CoursePlan
+
+  CoursePlanLo: # CPMK
+    id: uuid primary
+    course_plan_id: uuid foreign:course_plans.id onUpdate:cascade
+    curriculum_indicator_id: uuid foreign:curriculum_indicators.id onUpdate:cascade
+    #! type: integer default:1
+    code: string
+    name: text
+    #! parent_id: id foreign:course_plan_los.id nullable
+    relationships:
+      hasMany: AssessmentDetail
+      belongsTo: CurriculumIndicator, CoursePlan
+
+  CoursePlanReference: # Referensi yang digunakan dalam RPS
+    id: uuid primary
+    course_plan_id: uuid foreign:course_plans.id onUpdate:cascade
+    title: string
+    author: string
+    publisher: string
+    year: integer
+    type: integer
+    #! description: text nullable
+    primary: integer
+    relationships:
+      belongsTo: CoursePlan
+
+  CoursePlanMaterial: # Materi Ajar dalam RPS
+    id: uuid primary
+    course_plan_id: uuid foreign:course_plans.id onUpdate:cascade
+    topic: string
+    relationships:
+      belongsTo: CoursePlan
+
+  CoursePlanMedia:
+    id: uuid primary
+    course_plan_id: uuid foreign:course_plans.id onUpdate:cascade
+    type: integer
+    media: string
+    relationships:
+      belongsTo: CoursePlan
+
+  CoursePlanLecturer: # Dosen perancang RPS
+    id: uuid primary
+    course_plan_id: uuid foreign:course_plans.id onUpdate:cascade
+    lecturer_id: uuid foreign:lecturers.id onUpdate:cascade
+    creator: integer default:0
+    relationships:
+      belongsTo: CoursePlan, Lecturer
+
+  ## Belum terhubung ke assesment yang diberikan
+  CoursePlanDetail: # Pertemuan Mingguan RPS
+    id: uuid primary
+    course_plan_id: uuid foreign:course_plans.id onUpdate:cascade
+    week: integer
+    course_plan_lo_id: uuid foreign:course_plan_los.id nullable onUpdate:cascade
+    grade_indicator: text nullable #indikator
+    grade_criteria: text nullable #bentuk penilaian
+    media: text nullable
+    material: text nullable
+    reference: text nullable
+    #! assessment_weight: double:8,2 nullable #bobot penilaian
+    method: string nullable #synchronus dkk
+    activity: integer nullable #kosongin aja
+    est_time: integer nullable
+    student_activity: text nullable #kegiatan didalam method
+    relationships:
+      hasMany: CoursePlanDetailActivity, ClassMeeting
+      belongsTo: CoursePlan, CoursePlanLo
+
+  CoursePlanDetailActivity:
+    id: uuid primary
+    course_plan_detail_id: uuid foreign:course_plan_details.id onUpdate:cascade
+    activity: integer nullabe # sync/async
+    method: string nullable #async - AM/SM/AK
+    est_time: integer nullable
+    student_activity: text #kegiatan
+    relationships:
+      belongsTo: CoursePlanDetail
+
+  CourseCurriculumIndicator:
+    id: uuid primary
+    course_id: uuid foreign:courses.id onUpdate:cascade
+    curriculum_indicator_id: uuid foreign:curriculum_indicators.id onUpdate:cascade
+    relationships:
+      belongsTo: Course, CurriculumIndicator
+
+  #########################################################################
+  # Assessment
+  #########################################################################
+  CoursePlanAssessment: # Metode Penilaian RPS
+    id: uuid primary
+    course_plan_id: uuid foreign:course_plans.id onUpdate:cascade
+    name: string
+    percentage: double:8,2
+    #! flag: integer
+    relationships:
+      belongsTo: CoursePlan
+      hasMany: AssessmentDetail
+
+  AssessmentDetail: # Persentase Metode Penilaian per CPMK
+    id: uuid primary
+    course_plan_assessment_id: uuid foreign:course_plan_assessments.id onUpdate:cascade
+    course_plan_lo_id: uuid foreign:course_plan_los.id onUpdate:cascade
+    percentage: double:8,2
+    relationships:
+      belongsTo: CoursePlanAssessment, CoursePlanLo
+      hasMany: Assessment
+
+  AssessmentCriteria: # Kriteria Penilaian
+    id: uuid primary
+    assessment_detail_id: uuid foreign:assessment_details.id
+    criteria: string
+    method: integer nullable
+    relationships:
+      belongsTo: AssessmentDetail
+      hasMany: AssessmentRubric
+
+  AssessmentRubric: # Rubrik penilaian dari masing-masing kriteria penilaian
+    id: uuid primary
+    assessment_criteria_id: uuid foreign:assessment_criterias.id
+    rubric: string nullable
+    grade: double:8,2
+    relationships:
+      belongsTo: AssessmentCriteria
+
+  #########################################################################
+  # Manajemen Kelas
+  #########################################################################
+  Period: # Semester Tahun Ajaran
+    id: uuid primary
+    year: integer
+    semester: integer
+    active: boolean default:false
+    relationships:
+      hasMany: ClassCourse, CourseEnrollment
+
+  ClassCourse: # Kelas dalam Perkuliahan
+    id: uuid primary
+    course_id: uuid foreign:courses.id onUpdate:cascade
+    period_id: uuid foreign:periods.id onUpdate:cascade
+    course_plan_id: uuid foreign:course_plans.id onUpdate:cascade
+    name: string
+    course_code: string nullable
+    course_name: string nullable
+    course_credits: integer nullable
+    course_semester: integer nullable
+    meeting_nonconformity: text nullable # temuan ketidaksesuaian bap
+    meeting_verified: boolean nullable #verifikasi bap
+    relationships:
+      belongsTo: Period, CoursePlan, Course
+      hasMany: ClassSchedule, ClassClecturer, CourseEnrollment, ClassMeeting
+
+  ClassSchedule: #Jadwal Perkuliahan
+    id: uuid primary
+    class_id: uuid foreign:class_courses.id onUpdate:cascade
+    room_id: uuid foreign:rooms.id onUpdate:cascade
+    weekday: integer
+    start_at: time
+    end_at: time
+    relationships:
+      belongsTo: ClassCourse, Room
+
+  ClassLecturer: #Dosen Pengampu Kelas
+    id: uuid primary
+    class_id: uuid foreign:class_courses.id onUpdate:cascade
+    lecturer_id: uuid foreign:lecturers.id onUpdate:cascade
+    position: integer default:1
+    grading: integer default:1
+    relationships:
+      belongsTo: ClassCourse, Lecturer
+
+  ## Manajemen KRS Mahasiswa
+  CourseEnrollment: # KRS Mahasiswa
+    id: uuid primary
+    student_id: uuid foreign:students.id onUpdate:cascade
+    period_id: uuid foreign:periods.id onUpdate:cascade
+    counselor_id: uuid foreign:lecturers.id onUpdate:cascade
+    status: integer default:1 #1:active
+    mid_term_passcode: string nullable
+    final_term_passcode: string nullable
+    registered_at: date
+    gpa: double:8,2
+    relationships:
+      belongsTo: Student, Period
+      hasMany: CourseEnrollmentDetail
+
+  CourseEnrollmentDetail: #Detail KRS mahasiswa per semester
+    id: uuid primary
+    course_enrollment_id: uuid foreign:course_enrollments.id onUpdate:cascade
+    class_id: uuid foreign:class_courses.id onUpdate:cascade
+    status: integer default:1
+    in_transcript: integer default:1
+    weight: double nullable
+    grade: double nullable
+    relationships:
+      belongsTo: CourseEnrollment, ClassCourse
+      hasMany: Assessment, ClassAttendance
+
+  ## Manajemen Nilai per Kelas
+  Assessment:
+    id: uuid primary
+    assessment_detail_id: uuid foreign:assessment_details.id onUpdate:cascade
+    course_enrollment_detail_id: uuid foreign:course_enrollment_details.id onUpdate:cascade
+    grade: double:8,2
+    relationships:
+      belongsTo: AssessmentDetail, CourseEnrollmentDetail
+
+  #########################################################################
+  # Manajemen Kehadiran
+  #########################################################################
+  ClassMeeting: # Realisasi Pertemuan Mingguan
+    id: uuid primary
+    meet_no: integer
+    class_id: uuid foreign:class_courses.id onUpdate:cascade
+    course_plan_detail_id: uuid foreign:course_plan_details.id onUpdate:cascade
+    class_lecturer_id: uuid foreign:class_lecturers.id onUpdate:cascade
+    material_real: text
+    assessment_real: text # dropdown/select/checkbox saja
+    method: integer default:1 # 1= offline
+    ol_platform: string nullable
+    ol_links: string nullable
+    room_id: uuid foreign:rooms.id nullable onUpdate:cascade
+    meeting_start_at: timestamp nullable
+    meeting_end_at: timestamp nullable
+    relationships:
+      belongsTo: ClassCourse, CoursePlanDetail, Room, Lecturer
+      hasMany: ClassAttendance
+
+  ClassAttendance: # Absensi Kehadiran Mahasiswa
+    id: uuid primary
+    course_enrollment_detail_id: uuid foreign:course_enrollment_details.id onUpdate:cascade
+    class_meeting_id: uuid foreign:class_meetings.id onUpdate:cascade
+    status: integer default:1
+    meet_no: integer
+    device_id: string nullable
+    device_name: string nullable
+    latitude: double nullable
+    longitude: double nullable
+    attendance_status: integer default:0
+    need_attention: integer default:0
+    information: text
+    permit_reason: text nullable
+    permit_file: string nullable
+    rating: double nullable
+    feedback: text nullable
+    relationships:
+      belongsTo: CourseEnrollmentDetail, ClassMeeting
+
+  ClassProblem:
+    id: uuid primary
+    class_course_id: uuid foreign:class_courses.id
+    course_enrollment_detail_id: uuid foreign:course_enrollment_details.id
+    problem: text
+    solution: text nullable
+    relationships:
+      belongsTo: ClassCourse
+
+  #########################################################################
+  # Manajemen Data Penelitian
+  #########################################################################
+  ResearchSchema:
+    id: uuid primary
+    name: string
+    relationships:
+      hasMany: Research
+
+  Research:
+    id: uuid primary
+    title: string
+    research_schema_id: uuid foreign:research_schemas.id
+    start_at: integer nullable
+    fund_amount: integer nullable
+    proposal_file: string nullable
+    report_file: string nullable
+    relationships:
+      belongsTo: ResearchSchema
+      hasMany: ResearchMember
+
+  ResearchMember:
+    id: uuid primary
+    user_id: uuid foreign:users.id
+    research_id: uuid foreign:research.id
+    position: integer default:1'
+    relationships:
+      belongsTo: User, Research
+
+  #########################################################################
+  # Manajemen Data Pengabdian
+  #########################################################################
+  CommunityServiceSchema:
+    id: uuid primary
+    name: string
+    relationships:
+      hasMany: CommunityService
+
+  CommunityService:
+    id: uuid primary
+    title: string
+    community_service_schema_id: uuid foreign:community_service_schemas.id
+    partner: string nullable
+    start_at: integer nullable
+    fund_amount: integer nullable
+    proposal_file: string nullable
+    report_file: string nullable
+    relationships:
+      belongsTo: CommunityServiceSchema
+      hasMany: CommunityServiceMember
+
+  CommunityServiceMember:
+    id: uuid primary
+    user_id: uuid foreign:users.id
+    community_service_id: uuid foreign:community_services.id
+    position: integer
+    relationships:
+      belongsTo: User, CommunityService
+
+  #########################################################################
+  # Manajemen Data Publikasi
+  #########################################################################
+  Publisher:
+    id: uuid primary
+    name: string
+    type: enum:"journal","conference","proceeding","book","thesis"
+    international: integer default:0
+    indexed: integer default:0
+    relationships:
+      hasMany: Publication
+
+  Publication:
+    id: uuid primary
+    title: string
+    publisher_id: uuid foreign:publishers.id
+    published_at: date
+    file: string nullable
+    relationships:
+      belongsTo: Publisher
+
+  PublicationAuthor:
+    id: uuid primary
+    publication_id: uuid foreign:publications.id
+    user_id: uuid foreign:users.id
+    position: integer
+    corresponding: integer
+    relationships:
+      belongsTo: Publication, User
+
+  #########################################################################
+  # Manajemen Kerja Praktek
+  #########################################################################
+  InternshipCompany:
+    id: uuid primary
+    name: string
+    address: text
+    relationships:
+      hasMany: InternshipProposal
+
+  InternshipProposal:
+    id: uuid primary
+    company_id: uuid foreign:internship_companies.id
+    type: integer default:1 #1=internal(student->company), 2=external (company->student)
+    title: string
+    job_desc: text nullable
+    start_at: date
+    end_at: date
+    status: enum:"draft","open", "proposed","need_revision","revised","rejected","accepted" default:"draft"
+    note: text nullable
+    active: integer default:1
+    response_letter: string nullable
+    background: text nullable
+    relationships:
+      belongsTo: InternshipCompany
+      hasMany: Internship
+
+  Internship:
+    id: uuid primary
+    internship_proposal_id: uuid foreign:internship_proposals.id
+    student_id: uuid foreign:students.id
+    advisor_id: uuid foreign:lecturers.id nullable
+    status: enum:"accepted","rejected","ongoing","seminar","administration","finished","cancelled"
+    start_at: date nullable,
+    end_at: date nullable
+    report_title: text nullable
+    seminar_date: date nullable
+    seminar_room_id: uuid foreign:rooms.id
+    link_seminar: string nullable
+    seminar_deadline: date nullable
+    attendees_list: string nullable
+    internship_score: string nullable
+    activity_report: string nullable
+    news_event: string nullable
+    work_report: string nullable
+    certificate: string nullable
+    report_receipt: string nullable
+    grade: string nullable
+    relationships:
+      belongsTo: InternshipProposal, Student, Lecturer
+      hasMany: InternshipLogbook, InternshipSeminarAudience
+
+  InternshipLogbook:
+    id: uuid primary
+    internship_id: uuid foreign:internships.id
+    date: date
+    activities: text nullable
+    note: text nullable
+    relationships:
+      belongsTo: Internship
+
+  InternshipSeminarAudience:
+    id: uuid primary
+    internship_id: uuid foreign:internships.id
+    student_id: uuid foreign:students.id
+    role: enum:"audience","moderator","questioner"
+    question: text nullable
+    relationships:
+      belongsTo: Internship, Student
+
+  #########################################################################
+  # Manajemen Tugas Akhir
+  #########################################################################
+  ThesisRubric:
+    id: uuid primary
+    name: text
+    active: integer default:0
+    relationships:
+      hasMany: ThesisRubricDetail, ThesisTrial
+
+  ThesisRubricDetail:
+    id: uuid primary
+    thesis_rubric_id: uuid foreign:thesis_rubrics.id
+    description: text
+    percentage: float:10 default:0
+    relationships:
+      belongsTo: ThesisRubric
+      hasMany: ThesisTrialExaminerScore
+
+  ThesisTopic:
+    id: uuid primary
+    name: string
+    description: text nullable
+    relationships:
+      hasMany: Thesis
+
+  Thesis:
+    id: uuid primary
+    topic_id: uuid foreign:thesis_topics.id
+    student_id: uuid foreign:students.id
+    title: text nullable
+    abstract: text nullable
+    start_at: date nullable
+    status: integer default:0
+    grade: string nullable
+    grade_by: biginteger unsigned nullable
+    created_by: uuid foreign:users.id
+    relationships:
+      belongsTo: ThesisTopic, User, Student
+      hasMany: ThesisProposal, ThesisSupervisor, ThesisLogbook, ThesisSeminar, ThesisTrial
+
+  ThesisSupervisor:
+    id: uuid primary
+    thesis_id: uuid foreign:theses.id
+    lecturer_id: uuid foreign:lecturers.id
+    position: integer default:0
+    status: integer default:0
+    created_by: uuid foreign:users.id
+    relationships:
+      belongsTo: Thesis, Lecturer
+      hasMany: ThesisLogbook
+
+  ThesisDataRequest:
+    id: uuid primary
+    thesis_id: uuid foreign:theses.id
+    supervisor_id: uuid foreign:thesis_supervisors.id
+    request_at: datetime
+    requested_data: text
+    request_to_person: text nullable
+    request_to_position: text nullable
+    request_to_org: text nullable
+    request_to_address: text nullable
+    status: integer default:0
+    relationships:
+      belongsTo: Thesis, Student
+
+  ThesisProposal:
+    id: uuid primary
+    thesis_id: uuid foreign:theses.id
+    datetime: datetime
+    room_id: uuid foreign:rooms.id nullable
+    grade: string nullable
+    graded_by: uuid foreign:users.id
+    status: integer default:0
+    file_proposal: string nullable
+    relationships:
+      belongsTo: Thesis, Room, User
+      hasMany: ThesisProposalAudience
+
+  ThesisProposalAudience:
+    id: uuid primary
+    student_id: uuid foreign:students.id
+    thesis_proposal_id: uuid foreign:thesis_proposals.id
+    relationships:
+      belongsTo: Student, ThesisProposal
+
+  ThesisLogbook:
+    id: uuid primary
+    thesis_id: uuid foreign:theses.id
+    supervisor_id: uuid foreign:thesis_supervisors.id
+    date: date
+    progress: text
+    problem: text nullable
+    file_progress: string nullable
+    supervised_by: uuid foreign:thesis_supervisors.id nullable
+    supervised_at: datetime nullable
+    notes: text nullable
+    file_notes: string nullable
+    status: integer default:0
+    relationships:
+      belongsTo: Thesis, ThesisSupervisor
+
+  ThesisSeminar:
+    id: uuid primary
+    thesis_id: uuid foreign:theses.id
+    registered_at: datetime nullable
+    method: integer default:1
+    seminar_at: datetime nullable
+    room_id: uuid foreign:rooms.id nullable
+    online_url: text nullable
+    file_report: string nullable
+    file_slide: string nullable
+    file_journal: string nullable
+    file_attendance: string nullable
+    recommendation: integer nullable
+    status: integer default:0
+    description: text nullable
+    relationships:
+      belongsTo: Thesis, Room
+      hasMany: ThesisSeminarAudience, ThesisSeminarReviewer
+
+  ThesisSeminarAudience:
+    id: uuid primary
+    thesis_seminar_id: uuid foreign:thesis_seminars.id
+    student_id: uuid foreign:students.id
+    relationships:
+      belongsTo: ThesisSeminar, Student
+
+  ThesisSeminarReviewer:
+    id: uuid primary
+    thesis_seminar_id: uuid foreign:thesis_seminars.id
+    reviewer_id: uuid foreign:lecturers.id
+    status: integer default:1
+    position: string nullable
+    recommendation: integer nullable
+    notes: text nullable
+    relationships:
+      belongsTo: ThesisSeminar, Lecturer
+
+  ThesisDefense:
+    id: uuid primary
+    thesis_id: uuid foreign:theses.id
+    thesis_rubric_id: uuid foreign:thesis_rubrics.id
+    file_report: string nullable
+    file_slide: string nullable
+    file_journal: string nullable
+    status: integer default:0
+    registered_at: datetime
+    method: integer default:1
+    trial_at: date nullable
+    start_at: time nullable
+    end_at: time nullable
+    room_id: uuid foreign:rooms.id
+    online_url: text nullable
+    score: float:10 nullable
+    grade: string nullable
+    description: text nullable
+    relationships:
+      belongsTo: Thesis, ThesisRubric, Room
+      hasMany: ThesisDefenseExaminer
+
+  ThesisDefenseExaminer:
+    id: uuid primary
+    thesis_defense_id: uuid foreign:thesis_defenses.id
+    examiner_id: uuid foreign:lecturers.id
+    status: integer default:0
+    position: integer default:0
+    notes: text nullable
+    relationships:
+      belongsTo: ThesisDefense, Lecturer
+      hasMany: ThesisDefenseScore
+
+  ThesisDefenseScore:
+    id: uuid primary
+    thesis_defense_examiner_id: uuid foreign:thesis_defense_examiners.id
+    thesis_rubric_detail_id: uuid foreign:thesis_rubric_details.id
+    score: float:10 nullable
+    notes: text nullable
+    relationships:
+      belongsTo: ThesisDefenseExaminer, ThesisRubricDetail
+
+  #########################################################################
+  # Manajemen Bimbingan Akademik
+  #########################################################################
+  CounsellingTopic:
+    id: uuid primary
+    name: string
+    relationships:
+      hasMany: CounsellingLogbook
+
+  CounsellingLogbook:
+    id: uuid primary
+    student_id: uuid foreign:students.id
+    counsellor_id: uuid foreign:lecturers.id
+    counselling_topic_id: uuid foreign:counselling_categories.id
+    period_id: uuid foreign:periods.id
+    date: date
+    status: integer default:0
+    file: string nullable
+    relationships:
+      belongsTo: Student, CounsellingCategory, Period
+
+  CounsellingLogbookDetail:
+    id: uuid primary
+    no: integer default:1
+    counselling_logbook_id: uuid foreign:counselling_logbooks.id
+    user_id: uuid foreign:users.id
+    description: text nullable
+    relationships:
+      belongsTo: CounsellingLogbook
+
+seeders:
+  # Data Master
+  Building, Room, Faculty, Department, Student, Lecturer, Staff,
+  # Manejemen Kurikulum
+  Curriculum, CurriculumPeo, CurriculumPlo, CurriculumPeoPlo, CurriculumIndicator, CurriculumBok, CurriculumBokDetail, Course,
+  CoursePlan, CoursePlanMedia, CoursePlanRequirement, CoursePlanLo, CoursePlanReference, CoursePlanMaterial, CoursePlanLecturer,
+  CoursePlanDetail, CoursePlanDetailActivity, CoursePlanAssessment, CourseCurriculumIndicator,
+  # Assessment
+  AssessmentDetail, AssessmentCriteria, AssessmentRubric, Assessment,
+  # Manajemen Kelas
+  Period, ClassCourse, ClassSchedule, ClassLecturer, CourseEnrollment, CourseEnrollmentDetail,
+  # Manajemen Kehadiran
+  ClassMeeting, ClassAttendance, ClassProblem,
+  # Manajemen Penelitian dan Pengabdian
+  ResearchSchema, Research, ResearchMember,
+  CommunityServiceSchema, CommunityService, CommunityServiceMember,
+  # Manajemen Data Publikasi
+  Publisher, PublicationType, Publication, PublicationAuthor,
+  # Manajemen Kerja Praktek
+  InternshipCompany, InternshipProposal, Internship, InternshipLogbook, InternshipSeminarAudience,
+  # Manajemen Tugas Akhir
+  ThesisRubric, ThesisRubricDetail, ThesisTopic, Thesis, ThesisSupervisor, ThesisProposal, ThesisProposalAudience, ThesisLogbook,
+  ThesisSeminar, ThesisSeminarAudience, ThesisSeminarReviewer, ThesisDefense, ThesisDefenseExaminer, ThesisDefenseScore
+  # Manajemen Bimbingan Akademik
+  CounsellingTopic, CounsellingLogbook, CounsellingLogbookDetail
 
 controllers:
-  # ...
+  # Data Master
+  Building:
+    resource: api
+  Room:
+    resource: api
+  Faculty:
+    resource: api
+  Department:
+    resource: api
+  Student:
+    resource: api
+  Lecturer:
+    resource: api
+  Staff:
+    resource: api
+  # Manajemen Kurikulum RPS
+  Curriculum:
+    resource: api
+  CurriculumPeo:
+    resource: api
+  CurriculumPlo:
+    resource: api
+  CurriculumPeoPlo:
+    resource: api
+  CurriculumIndicator:
+    resource: api
+  CurriculumBok:
+    resource: api
+  CurriculumBokDetail:
+    resource: api
+  Course:
+    resource: api
+  CoursePlan:
+    resource: api
+  CoursePlanDetailActivity:
+    resource: api
+  CoursePlanMedia:
+    resource: api
+  CoursePlanRequirement:
+    resource: api
+  CoursePlanLo:
+    resource: api
+  CoursePlanReference:
+    resource: api
+  CoursePlanMaterial:
+    resource: api
+  CoursePlanLecturer:
+    resource: api
+  CoursePlanDetail:
+    resource: api
+  CourseCurriculumIndicator:
+    resource: api
+  # Assessment
+  CoursePlanAssessment:
+    resource: api
+  AssessmentDetail:
+    resource: api
+  AssessmentCriteria:
+    resource: api
+  AssessmentRubric:
+    resource: api
+  Assessment:
+    resource: api
+  # Manajemen Kelas
+  Period:
+    resource: api
+  ClassCourse:
+    resource: api
+  ClassSchedule:
+    resource: api
+  ClassLecturer:
+    resource: api
+  CourseEnrollment:
+    resource: api
+  CourseEnrollmentDetail:
+    resource: api
+  # Manajemen Kehadiran
+  ClassMeeting:
+    resource: api
+  ClassProblem:
+    resource: api
+  ClassAttendance:
+    resource: api
+  # Manajemen Penelitian
+  ResearchSchema:
+    resource: api
+  Research:
+    resource: api
+  ResearchMember:
+    resource: api
+  # Manajemen Data Pengabdian
+  CommunityServiceSchema:
+    resource: api
+  CommunityService:
+    resource: api
+  CommunityServiceMember:
+    resource: api
+  # Manajemen Data Publikasi
+  Publisher:
+    resource: api
+  Publication:
+    resource: api
+  PublicationAuthor:
+    resource: api
+  # Manajemen Kerja Praktek
+  InternshipCompany:
+    resource: api
+  InternshipProposal:
+    resource: api
+  Internship:
+    resource: api
+  InternshipLogbook:
+    resource: api
+  InternshipSeminarAudience:
+    resource: api
+  #Manajemen Tugas Akhir
+  ThesisRubric:
+    resource: api
+  ThesisRubricDetail:
+    resource: api
+  ThesisTopic:
+    resource: api
+  Thesis:
+    resource: api
+  ThesisSupervisor:
+    resource: api
+  ThesisProposal:
+    resource: api
+  ThesisProposalAudience:
+    resource: api
+  ThesisLogbook:
+    resource: api
+  ThesisSeminar:
+    resource: api
+  ThesisSeminarAudience:
+    resource: api
+  ThesisSeminarReviewer:
+    resource: api
+  ThesisDefense:
+    resource: api
+  ThesisDefenseExaminer:
+    resource: api
+  ThesisDefenseScore:
+    resource: api
+  CounsellingTopic:
+    resource: api
+  CounsellingLogbook:
+    resource: api
+  CounsellingLogbookDetail:
+    resource: api
+
+
+
+
+
