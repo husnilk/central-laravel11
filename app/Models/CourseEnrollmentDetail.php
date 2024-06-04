@@ -40,11 +40,6 @@ class CourseEnrollmentDetail extends Model
         return $this->belongsTo(ClassCourse::class);
     }
 
-    public function class(): BelongsTo
-    {
-        return $this->belongsTo(ClassCourse::class);
-    }
-
     public function assessments(): HasMany
     {
         return $this->hasMany(Assessment::class);

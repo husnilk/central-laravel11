@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class CounsellingLogbook extends Model
 {
@@ -33,11 +34,6 @@ class CounsellingLogbook extends Model
         return $this->belongsTo(Student::class);
     }
 
-    public function counsellingCategory(): BelongsTo
-    {
-        return $this->belongsTo(CounsellingCategory::class);
-    }
-
     public function period(): BelongsTo
     {
         return $this->belongsTo(Period::class);
@@ -48,8 +44,13 @@ class CounsellingLogbook extends Model
         return $this->belongsTo(Lecturer::class);
     }
 
-    public function counsellingTopic(): BelongsTo
+    public function topic(): BelongsTo
     {
-        return $this->belongsTo(CounsellingCategory::class);
+        return $this->belongsTo(CounsellingTopic::class);
+    }
+
+    public function details(): HasMany
+    {
+        return $this->hasMany(CounsellingLogbookDetail::class);
     }
 }

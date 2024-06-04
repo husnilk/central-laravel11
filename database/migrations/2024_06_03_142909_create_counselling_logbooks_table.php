@@ -22,7 +22,6 @@ return new class extends Migration
             $table->date('date');
             $table->integer('status')->default(0);
             $table->string('file')->nullable();
-            $table->foreignId('counselling_category_id');
             $table->timestamps();
         });
 

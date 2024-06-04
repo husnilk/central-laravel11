@@ -32,9 +32,9 @@ class Student extends Model
         return $this->belongsTo(Department::class);
     }
 
-    public function id(): BelongsTo
+    public function user(): BelongsTo
     {
-        return $this->belongsTo(Student::class);
+        return $this->belongsTo(User::class);
     }
 
     public function counselor(): BelongsTo

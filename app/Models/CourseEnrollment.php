@@ -44,7 +44,7 @@ class CourseEnrollment extends Model
         return $this->belongsTo(Lecturer::class);
     }
 
-    public function courseEnrollmentDetails(): HasMany
+    public function details(): HasMany
     {
         return $this->hasMany(CourseEnrollmentDetail::class);
     }
