@@ -1,0 +1,136 @@
+models:
+  #########################################################################
+  # Data Master
+  #########################################################################
+  UserLogin:
+    user_id: uuid
+    ip_address: string
+    user_agent: string
+    payload: string
+    last_activity: integer
+
+  Building:
+    id: uuid primary
+    name: string
+    floors: integer nullable
+    build_year: year nullable
+    relationships:
+      hasMany: Room
+
+  Room:
+    id: uuid primary
+    building_id: uuid foreign:buildings.id
+    name: string
+    floor: integer nullable
+    number: integer nullable
+    capacity: integer nullable
+    size: integer nullable
+    location: geography:point nullable
+    public: integer nullable
+    status: integer nullable
+    availability: integer default:1
+    relationships:
+      belongsTo: Building
+
+  Faculty:
+    id: uuid primary
+    name: string
+    abbreviation: string nullable
+    type: integer
+    relationships:
+      hasMany: Department
+
+  Department:
+    id: uuid primary
+    name: string
+    faculty_id: uuid foreign:faculties.id
+    abbreviation: string nullable
+    national_code: string nullable
+    relationships:
+      hasMany: Lecturer, Student, Staff, Curriculum
+      belongsTo: Faculty
+
+  Lecturer:
+    id: uuid primary foreign:lecturers.id
+    nik: string unique
+    name: string
+    nip: string nullable
+    nidn: string nullable
+    karpeg: string nullable
+    npwp: string nullable
+    gender: enum:M,F nullable
+    birthday: date nullable
+    birthplace: string nullable
+    phone: string nullable
+    address: string nullable
+    department_id: uuid foreign:departments.id
+    photo: string nullable
+    marital_status: integer nullable
+    religion: integer nullable
+    association_type: integer nullable
+    status: integer default:1
+    relationships:
+      hasMany: Student
+      belongsTo: Department
+
+  Student:
+    id: uuid primary foreign:students.id
+    nik: string nullable
+    nim: string unique
+    name: string
+    year: integer nullable
+    gender: enum:M,F nullable
+    birthday: date nullable
+    birthplace: string nullable
+    phone: string nullable
+    address: text nullable
+    department_id: uuid foreign:departments.id
+    photo: string nullable
+    marital_status: integer nullable
+    religion: integer
+    status: integer default:1
+    counselor_id: uuid nullable foreign:lecturers.id
+    relationships:
+      belongsTo: Department
+
+  Staff:
+    id: uuid primary foreign:staffs.id
+    nik: string
+    name: string
+    nip: string nullable
+    karpeg: string nullable
+    npwp: string nullable
+    gender: integer nullable
+    birthday: date nullable
+    birthplace: string nullable
+    phone: string nullable
+    address: text nullable
+    department_id: uuid foreign:departments.id
+    photo: string nullable
+    marital_status: integer nullable
+    religion: integer nullable
+    association_type: integer nullable
+    status: integer default:1
+    relationships:
+      belongsTo: Department
+
+seeders:
+  # Data Master
+  Building, Room, Faculty, Department, Student, Lecturer, Staff,
+
+controllers:
+  # Data Master
+  Building:
+    resource: api
+  Room:
+    resource: api
+  Faculty:
+    resource: api
+  Department:
+    resource: api
+  Student:
+    resource: api
+  Lecturer:
+    resource: api
+  Staff:
+    resource: api
