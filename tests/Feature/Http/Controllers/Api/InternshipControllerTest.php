@@ -32,7 +32,6 @@ final class InternshipControllerTest extends TestCase
         $response->assertJsonStructure([]);
     }
 
-
     #[Test]
     public function store_uses_form_request_validation(): void
     {
@@ -77,7 +76,6 @@ final class InternshipControllerTest extends TestCase
         $response->assertJsonStructure([]);
     }
 
-
     #[Test]
     public function show_behaves_as_expected(): void
     {
@@ -88,7 +86,6 @@ final class InternshipControllerTest extends TestCase
         $response->assertOk();
         $response->assertJsonStructure([]);
     }
-
 
     #[Test]
     public function update_uses_form_request_validation(): void
@@ -132,7 +129,6 @@ final class InternshipControllerTest extends TestCase
         $this->assertEquals($seminar_room->id, $internship->seminar_room_id);
         $this->assertEquals($lecturer->id, $internship->lecturer_id);
     }
-
 
     #[Test]
     public function destroy_deletes_and_responds_with(): void

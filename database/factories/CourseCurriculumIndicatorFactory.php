@@ -2,11 +2,10 @@
 
 namespace Database\Factories;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Str;
 use App\Models\Course;
 use App\Models\CourseCurriculumIndicator;
 use App\Models\CurriculumIndicator;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 class CourseCurriculumIndicatorFactory extends Factory
 {

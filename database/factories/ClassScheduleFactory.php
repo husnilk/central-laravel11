@@ -2,11 +2,10 @@
 
 namespace Database\Factories;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Str;
 use App\Models\ClassCourse;
 use App\Models\ClassSchedule;
 use App\Models\Room;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 class ClassScheduleFactory extends Factory
 {

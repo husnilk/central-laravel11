@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('publishers', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->string('name');
-            $table->enum('type', ["journal","conference","proceeding","book","thesis"]);
+            $table->enum('type', ['journal', 'conference', 'proceeding', 'book', 'thesis']);
             $table->integer('international')->default(0);
             $table->integer('indexed')->default(0);
             $table->timestamps();

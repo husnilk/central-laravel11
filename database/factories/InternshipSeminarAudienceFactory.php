@@ -2,11 +2,10 @@
 
 namespace Database\Factories;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Str;
 use App\Models\Internship;
 use App\Models\InternshipSeminarAudience;
 use App\Models\Student;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 class InternshipSeminarAudienceFactory extends Factory
 {
@@ -25,7 +24,7 @@ class InternshipSeminarAudienceFactory extends Factory
         return [
             'internship_id' => Internship::factory(),
             'student_id' => Student::factory(),
-            'role' => $this->faker->randomElement(["audience","moderator","questioner"]),
+            'role' => $this->faker->randomElement(['audience', 'moderator', 'questioner']),
             'question' => $this->faker->text(),
         ];
     }

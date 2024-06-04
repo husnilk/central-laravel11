@@ -6,7 +6,7 @@ return [
     'photo_size' => [
         's' => '60',
         'm' => '200',
-        'l' => '450'
+        'l' => '450',
     ],
 
     'system_roles' => [
@@ -26,7 +26,7 @@ return [
         'ijazah' => 'ijazah',
         'community_services' => [
             'report_file' => 'community_services/report',
-            'proposal_file' => 'community_services/proposal'
+            'proposal_file' => 'community_services/proposal',
         ],
         'thesis' => [
             'logbook' => 'thesis/logbook',
@@ -50,7 +50,7 @@ return [
         'B' => 'B',
         'B-' => 'B-',
         'C+' => 'C+',
-        'C' => 'C'
+        'C' => 'C',
     ],
 
     'position' => [
@@ -64,7 +64,7 @@ return [
         3 => 'Ayah/Ibu Mertua',
         4 => 'Anak Kandung',
         5 => 'Saudara Kandung',
-        6 => 'Anak Angkat'
+        6 => 'Anak Angkat',
     ],
 
     'gender' => [
@@ -75,7 +75,7 @@ return [
     'marital_status' => [
         1 => 'Belum Menikah',
         2 => 'Menikah',
-        3 => 'Janda/Duda'
+        3 => 'Janda/Duda',
     ],
 
     'religion' => [
@@ -83,17 +83,17 @@ return [
         2 => 'Kristen Protestan',
         3 => 'Kristen Katolik',
         4 => 'Hindu',
-        5 => 'Budha'
+        5 => 'Budha',
     ],
 
     'alive_status' => [
         0 => 'Meninggal',
-        1 => 'Masih Hidup'
+        1 => 'Masih Hidup',
     ],
 
     'domestic' => [
         0 => 'Dalam Negri',
-        1 => 'Luar Negri'
+        1 => 'Luar Negri',
     ],
 
     'education_level' => [
@@ -107,7 +107,7 @@ return [
         8 => 'D4',
         9 => 'S1',
         10 => 'S2',
-        11 => 'S3'
+        11 => 'S3',
     ],
 
     'attendance_student' => [
@@ -123,51 +123,51 @@ return [
     ],
 
     'day_convertion' => [
-        "Sunday" => "Minggu",
-        "Monday" => "Senin",
-        "Tuesday" => "Selasa",
-        "Wednesday" => "Rabu",
-        "Thursday" => "Kamis",
-        "Friday" => "Jumat",
-        "Saturday" => "Sabtu",
+        'Sunday' => 'Minggu',
+        'Monday' => 'Senin',
+        'Tuesday' => 'Selasa',
+        'Wednesday' => 'Rabu',
+        'Thursday' => 'Kamis',
+        'Friday' => 'Jumat',
+        'Saturday' => 'Sabtu',
     ],
 
     'grade_convertion' => [
-        "A" => [
-            "min" => 80,
-            "max" => 100,
+        'A' => [
+            'min' => 80,
+            'max' => 100,
         ],
-        "A-" => [
-            "min" => 75,
-            "max" => 80,
+        'A-' => [
+            'min' => 75,
+            'max' => 80,
         ],
-        "B+" => [
-            "min" => 70,
-            "max" => 75,
+        'B+' => [
+            'min' => 70,
+            'max' => 75,
         ],
-        "B" => [
-            "min" => 65,
-            "max" => 70,
+        'B' => [
+            'min' => 65,
+            'max' => 70,
         ],
-        "B-" => [
-            "min" => 60,
-            "max" => 65,
+        'B-' => [
+            'min' => 60,
+            'max' => 65,
         ],
-        "C+" => [
-            "min" => 55,
-            "max" => 60,
+        'C+' => [
+            'min' => 55,
+            'max' => 60,
         ],
-        "C" => [
-            "min" => 50,
-            "max" => 55,
+        'C' => [
+            'min' => 50,
+            'max' => 55,
         ],
-        "D" => [
-            "min" => 45,
-            "max" => 50,
+        'D' => [
+            'min' => 45,
+            'max' => 50,
         ],
-        "E" => [
-            "min" => 0,
-            "max" => 45,
+        'E' => [
+            'min' => 0,
+            'max' => 45,
         ],
     ],
 ];

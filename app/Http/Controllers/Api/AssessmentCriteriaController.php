@@ -7,7 +7,6 @@ use App\Http\Requests\AssessmentCriteriaStoreRequest;
 use App\Http\Requests\AssessmentCriteriaUpdateRequest;
 use App\Http\Resources\AssessmentCriterionCollection;
 use App\Http\Resources\AssessmentCriterionResource;
-use App\Models\AssessmentCriteria;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 

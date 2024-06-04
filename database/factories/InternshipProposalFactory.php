@@ -2,10 +2,9 @@
 
 namespace Database\Factories;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Str;
 use App\Models\InternshipCompany;
 use App\Models\InternshipProposal;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 class InternshipProposalFactory extends Factory
 {
@@ -28,7 +27,7 @@ class InternshipProposalFactory extends Factory
             'job_desc' => $this->faker->text(),
             'start_at' => $this->faker->date(),
             'end_at' => $this->faker->date(),
-            'status' => $this->faker->randomElement(["draft","open",""]),
+            'status' => $this->faker->randomElement(['draft', 'open', '']),
             'note' => $this->faker->text(),
             'active' => $this->faker->numberBetween(-10000, 10000),
             'response_letter' => $this->faker->word(),

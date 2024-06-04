@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreignUuid('internship_proposal_id')->constrained();
             $table->foreignUuid('student_id')->constrained();
             $table->foreignUuid('advisor_id')->nullable()->constrained('lecturers');
-            $table->enum('status', ["accepted","rejected","ongoing","seminar","administration","finished","cancelled"]);
+            $table->enum('status', ['accepted', 'rejected', 'ongoing', 'seminar', 'administration', 'finished', 'cancelled']);
             $table->date('start_at');
             $table->date('end_at')->nullable();
             $table->text('report_title')->nullable();

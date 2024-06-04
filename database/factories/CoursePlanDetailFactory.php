@@ -2,11 +2,10 @@
 
 namespace Database\Factories;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Str;
 use App\Models\CoursePlan;
 use App\Models\CoursePlanDetail;
 use App\Models\CoursePlanLo;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 class CoursePlanDetailFactory extends Factory
 {

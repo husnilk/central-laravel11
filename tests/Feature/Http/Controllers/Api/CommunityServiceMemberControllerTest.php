@@ -29,7 +29,6 @@ final class CommunityServiceMemberControllerTest extends TestCase
         $response->assertJsonStructure([]);
     }
 
-
     #[Test]
     public function store_uses_form_request_validation(): void
     {
@@ -65,7 +64,6 @@ final class CommunityServiceMemberControllerTest extends TestCase
         $response->assertJsonStructure([]);
     }
 
-
     #[Test]
     public function show_behaves_as_expected(): void
     {
@@ -76,7 +74,6 @@ final class CommunityServiceMemberControllerTest extends TestCase
         $response->assertOk();
         $response->assertJsonStructure([]);
     }
-
 
     #[Test]
     public function update_uses_form_request_validation(): void
@@ -111,7 +108,6 @@ final class CommunityServiceMemberControllerTest extends TestCase
         $this->assertEquals($community_service->id, $communityServiceMember->community_service_id);
         $this->assertEquals($position, $communityServiceMember->position);
     }
-
 
     #[Test]
     public function destroy_deletes_and_responds_with(): void

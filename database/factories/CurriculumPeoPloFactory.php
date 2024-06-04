@@ -2,11 +2,10 @@
 
 namespace Database\Factories;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Str;
 use App\Models\CurriculumPeo;
 use App\Models\CurriculumPeoPlo;
 use App\Models\CurriculumPlo;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 class CurriculumPeoPloFactory extends Factory
 {

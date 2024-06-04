@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('nim')->unique();
             $table->string('name');
             $table->integer('year')->nullable();
-            $table->enum('gender', ["M","F"])->nullable();
+            $table->enum('gender', ['M', 'F'])->nullable();
             $table->date('birthday')->nullable();
             $table->string('birthplace')->nullable();
             $table->string('phone')->nullable();

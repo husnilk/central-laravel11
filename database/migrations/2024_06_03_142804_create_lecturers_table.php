@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('nidn')->nullable();
             $table->string('karpeg')->nullable();
             $table->string('npwp')->nullable();
-            $table->enum('gender', ["M","F"])->nullable();
+            $table->enum('gender', ['M', 'F'])->nullable();
             $table->date('birthday')->nullable();
             $table->string('birthplace')->nullable();
             $table->string('phone')->nullable();

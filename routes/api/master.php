@@ -1,6 +1,5 @@
 <?php
 
-
 use App\Http\Controllers\Api\BuildingController;
 use App\Http\Controllers\Api\DepartmentController;
 use App\Http\Controllers\Api\FacultyController;
@@ -9,7 +8,6 @@ use App\Http\Controllers\Api\RoomController;
 use App\Http\Controllers\Api\StaffController;
 use App\Http\Controllers\Api\StudentController;
 use Illuminate\Support\Facades\Route;
-
 
 /*--------------------------------------------------------------------------
 / Manajemen Data Master

@@ -2,13 +2,12 @@
 
 namespace Database\Factories;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Str;
 use App\Models\Internship;
 use App\Models\InternshipProposal;
 use App\Models\Lecturer;
 use App\Models\Room;
 use App\Models\Student;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 class InternshipFactory extends Factory
 {
@@ -28,7 +27,7 @@ class InternshipFactory extends Factory
             'internship_proposal_id' => InternshipProposal::factory(),
             'student_id' => Student::factory(),
             'advisor_id' => Lecturer::factory(),
-            'status' => $this->faker->randomElement(["accepted","rejected","ongoing","seminar","administration","finished","cancelled"]),
+            'status' => $this->faker->randomElement(['accepted', 'rejected', 'ongoing', 'seminar', 'administration', 'finished', 'cancelled']),
             'start_at' => $this->faker->date(),
             'end_at' => $this->faker->date(),
             'report_title' => $this->faker->text(),

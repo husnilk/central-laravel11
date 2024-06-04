@@ -34,5 +34,4 @@ return new class extends Migration
             $table->dropColumn('profile_photo');
         });
     }
-
 };

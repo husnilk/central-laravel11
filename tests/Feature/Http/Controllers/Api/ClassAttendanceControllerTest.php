@@ -29,7 +29,6 @@ final class ClassAttendanceControllerTest extends TestCase
         $response->assertJsonStructure([]);
     }
 
-
     #[Test]
     public function store_uses_form_request_validation(): void
     {
@@ -77,7 +76,6 @@ final class ClassAttendanceControllerTest extends TestCase
         $response->assertJsonStructure([]);
     }
 
-
     #[Test]
     public function show_behaves_as_expected(): void
     {
@@ -88,7 +86,6 @@ final class ClassAttendanceControllerTest extends TestCase
         $response->assertOk();
         $response->assertJsonStructure([]);
     }
-
 
     #[Test]
     public function update_uses_form_request_validation(): void
@@ -135,7 +132,6 @@ final class ClassAttendanceControllerTest extends TestCase
         $this->assertEquals($need_attention, $classAttendance->need_attention);
         $this->assertEquals($information, $classAttendance->information);
     }
-
 
     #[Test]
     public function destroy_deletes_and_responds_with(): void

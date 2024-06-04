@@ -30,7 +30,6 @@ final class ThesisDefenseExaminerControllerTest extends TestCase
         $response->assertJsonStructure([]);
     }
 
-
     #[Test]
     public function store_uses_form_request_validation(): void
     {
@@ -72,7 +71,6 @@ final class ThesisDefenseExaminerControllerTest extends TestCase
         $response->assertJsonStructure([]);
     }
 
-
     #[Test]
     public function show_behaves_as_expected(): void
     {
@@ -83,7 +81,6 @@ final class ThesisDefenseExaminerControllerTest extends TestCase
         $response->assertOk();
         $response->assertJsonStructure([]);
     }
-
 
     #[Test]
     public function update_uses_form_request_validation(): void
@@ -124,7 +121,6 @@ final class ThesisDefenseExaminerControllerTest extends TestCase
         $this->assertEquals($position, $thesisDefenseExaminer->position);
         $this->assertEquals($lecturer->id, $thesisDefenseExaminer->lecturer_id);
     }
-
 
     #[Test]
     public function destroy_deletes_and_responds_with(): void

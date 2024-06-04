@@ -31,7 +31,6 @@ final class CourseEnrollmentControllerTest extends TestCase
         $response->assertJsonStructure([]);
     }
 
-
     #[Test]
     public function store_uses_form_request_validation(): void
     {
@@ -76,7 +75,6 @@ final class CourseEnrollmentControllerTest extends TestCase
         $response->assertJsonStructure([]);
     }
 
-
     #[Test]
     public function show_behaves_as_expected(): void
     {
@@ -87,7 +85,6 @@ final class CourseEnrollmentControllerTest extends TestCase
         $response->assertOk();
         $response->assertJsonStructure([]);
     }
-
 
     #[Test]
     public function update_uses_form_request_validation(): void
@@ -131,7 +128,6 @@ final class CourseEnrollmentControllerTest extends TestCase
         $this->assertEquals($registered_at, $courseEnrollment->registered_at);
         $this->assertEquals($gpa, $courseEnrollment->gpa);
     }
-
 
     #[Test]
     public function destroy_deletes_and_responds_with(): void

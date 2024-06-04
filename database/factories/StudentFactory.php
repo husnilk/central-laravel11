@@ -2,12 +2,11 @@
 
 namespace Database\Factories;
 
-use App\Models\User;
-use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Str;
 use App\Models\Department;
 use App\Models\Lecturer;
 use App\Models\Student;
+use App\Models\User;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 class StudentFactory extends Factory
 {
@@ -29,7 +28,7 @@ class StudentFactory extends Factory
             'nim' => $this->faker->numerify('20########'),
             'name' => $this->faker->name(),
             'year' => $this->faker->year(),
-            'gender' => $this->faker->randomElement(["M","F"]),
+            'gender' => $this->faker->randomElement(['M', 'F']),
             'birthday' => $this->faker->date(),
             'birthplace' => $this->faker->city(),
             'phone' => $this->faker->phoneNumber(),

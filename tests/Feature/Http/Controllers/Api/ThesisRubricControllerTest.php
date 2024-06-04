@@ -27,7 +27,6 @@ final class ThesisRubricControllerTest extends TestCase
         $response->assertJsonStructure([]);
     }
 
-
     #[Test]
     public function store_uses_form_request_validation(): void
     {
@@ -60,7 +59,6 @@ final class ThesisRubricControllerTest extends TestCase
         $response->assertJsonStructure([]);
     }
 
-
     #[Test]
     public function show_behaves_as_expected(): void
     {
@@ -71,7 +69,6 @@ final class ThesisRubricControllerTest extends TestCase
         $response->assertOk();
         $response->assertJsonStructure([]);
     }
-
 
     #[Test]
     public function update_uses_form_request_validation(): void
@@ -103,7 +100,6 @@ final class ThesisRubricControllerTest extends TestCase
         $this->assertEquals($name, $thesisRubric->name);
         $this->assertEquals($active, $thesisRubric->active);
     }
-
 
     #[Test]
     public function destroy_deletes_and_responds_with(): void

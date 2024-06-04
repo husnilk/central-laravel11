@@ -2,14 +2,13 @@
 
 namespace Database\Factories;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Str;
 use App\Models\ClassCourse;
 use App\Models\ClassLecturer;
 use App\Models\ClassMeeting;
 use App\Models\CoursePlanDetail;
 use App\Models\Lecturer;
 use App\Models\Room;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 class ClassMeetingFactory extends Factory
 {

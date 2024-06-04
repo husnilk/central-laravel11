@@ -27,7 +27,6 @@ final class PublisherControllerTest extends TestCase
         $response->assertJsonStructure([]);
     }
 
-
     #[Test]
     public function store_uses_form_request_validation(): void
     {
@@ -66,7 +65,6 @@ final class PublisherControllerTest extends TestCase
         $response->assertJsonStructure([]);
     }
 
-
     #[Test]
     public function show_behaves_as_expected(): void
     {
@@ -77,7 +75,6 @@ final class PublisherControllerTest extends TestCase
         $response->assertOk();
         $response->assertJsonStructure([]);
     }
-
 
     #[Test]
     public function update_uses_form_request_validation(): void
@@ -115,7 +112,6 @@ final class PublisherControllerTest extends TestCase
         $this->assertEquals($international, $publisher->international);
         $this->assertEquals($indexed, $publisher->indexed);
     }
-
 
     #[Test]
     public function destroy_deletes_and_responds_with(): void

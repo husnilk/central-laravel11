@@ -19,16 +19,13 @@ class RolesAndPermissionsSeeder extends Seeder
         $gkm = null;
 
         foreach ($system_roles as $type => $role) {
-            if ($type === 'administrator'){
+            if ($type === 'administrator') {
                 $admin = Role::create(['name' => $role, 'guard_name' => 'api']);
-            }
-            elseif ($type === 'lecturer'){
+            } elseif ($type === 'lecturer') {
                 $dosen = Role::create(['name' => $role, 'guard_name' => 'api']);
-            }
-            elseif ($type === 'gkm'){
+            } elseif ($type === 'gkm') {
                 $gkm = Role::create(['name' => $role, 'guard_name' => 'api']);
-            }
-            else{
+            } else {
                 Role::create(['name' => $role, 'guard_name' => 'api']);
             }
         }

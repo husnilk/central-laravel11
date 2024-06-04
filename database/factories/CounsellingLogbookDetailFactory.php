@@ -2,11 +2,10 @@
 
 namespace Database\Factories;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Str;
 use App\Models\CounsellingLogbook;
 use App\Models\CounsellingLogbookDetail;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 class CounsellingLogbookDetailFactory extends Factory
 {

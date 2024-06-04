@@ -28,7 +28,6 @@ final class CoursePlanMediaControllerTest extends TestCase
         $response->assertJsonStructure([]);
     }
 
-
     #[Test]
     public function store_uses_form_request_validation(): void
     {
@@ -64,7 +63,6 @@ final class CoursePlanMediaControllerTest extends TestCase
         $response->assertJsonStructure([]);
     }
 
-
     #[Test]
     public function show_behaves_as_expected(): void
     {
@@ -75,7 +73,6 @@ final class CoursePlanMediaControllerTest extends TestCase
         $response->assertOk();
         $response->assertJsonStructure([]);
     }
-
 
     #[Test]
     public function update_uses_form_request_validation(): void
@@ -110,7 +107,6 @@ final class CoursePlanMediaControllerTest extends TestCase
         $this->assertEquals($type, $coursePlanMedia->type);
         $this->assertEquals($media, $coursePlanMedia->media);
     }
-
 
     #[Test]
     public function destroy_deletes_and_responds_with(): void

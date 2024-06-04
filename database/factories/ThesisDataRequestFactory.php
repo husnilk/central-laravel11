@@ -2,12 +2,11 @@
 
 namespace Database\Factories;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Str;
 use App\Models\Student;
 use App\Models\Thesis;
 use App\Models\ThesisDataRequest;
 use App\Models\ThesisSupervisor;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 class ThesisDataRequestFactory extends Factory
 {

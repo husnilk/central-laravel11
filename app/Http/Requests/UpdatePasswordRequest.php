@@ -34,11 +34,11 @@ class UpdatePasswordRequest extends FormRequest
     public function messages(): array
     {
         return [
-            "password_current.required" => "Password lama tidak boleh kosong",
-            "password_new.required" => "Password baru tidak boleh kosong",
-            "password_new.min" => "Password baru minimal 8 karakter",
-            "password_confirm.required" => "Konfirmasi password tidak boleh kosong",
-            "password_confirm.same" => "Password tidak cocok",
+            'password_current.required' => 'Password lama tidak boleh kosong',
+            'password_new.required' => 'Password baru tidak boleh kosong',
+            'password_new.min' => 'Password baru minimal 8 karakter',
+            'password_confirm.required' => 'Konfirmasi password tidak boleh kosong',
+            'password_confirm.same' => 'Password tidak cocok',
         ];
     }
 

@@ -2,13 +2,12 @@
 
 namespace Database\Factories;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Str;
 use App\Models\CounsellingCategory;
 use App\Models\CounsellingLogbook;
 use App\Models\Lecturer;
 use App\Models\Period;
 use App\Models\Student;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 class CounsellingLogbookFactory extends Factory
 {

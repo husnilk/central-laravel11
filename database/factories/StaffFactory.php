@@ -2,11 +2,10 @@
 
 namespace Database\Factories;
 
-use App\Models\User;
-use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Str;
 use App\Models\Department;
 use App\Models\Staff;
+use App\Models\User;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 class StaffFactory extends Factory
 {
@@ -29,7 +28,7 @@ class StaffFactory extends Factory
             'nip' => $this->faker->numerify('19##################'),
             'karpeg' => $this->faker->word(),
             'npwp' => $this->faker->word(),
-            'gender' => $this->faker->randomElement(["M","F"]),
+            'gender' => $this->faker->randomElement(['M', 'F']),
             'birthday' => $this->faker->date(),
             'birthplace' => $this->faker->city(),
             'phone' => $this->faker->phoneNumber(),

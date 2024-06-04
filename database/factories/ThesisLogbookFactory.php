@@ -2,11 +2,10 @@
 
 namespace Database\Factories;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Str;
 use App\Models\Thesis;
 use App\Models\ThesisLogbook;
 use App\Models\ThesisSupervisor;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 class ThesisLogbookFactory extends Factory
 {

@@ -7,7 +7,6 @@ use App\Http\Requests\ThesisStoreRequest;
 use App\Http\Requests\ThesisUpdateRequest;
 use App\Http\Resources\ThesiCollection;
 use App\Http\Resources\ThesiResource;
-use App\Models\Thesis;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 

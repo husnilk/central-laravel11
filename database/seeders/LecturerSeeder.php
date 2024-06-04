@@ -13,7 +13,7 @@ class LecturerSeeder extends Seeder
      */
     public function run(): void
     {
-//        Lecturer::factory()->count(5)->create();
+        //        Lecturer::factory()->count(5)->create();
         Department::factory()
             ->count(1)
             ->hasLecturers(5)

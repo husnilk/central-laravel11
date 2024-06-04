@@ -29,7 +29,6 @@ final class CourseCurriculumIndicatorControllerTest extends TestCase
         $response->assertJsonStructure([]);
     }
 
-
     #[Test]
     public function store_uses_form_request_validation(): void
     {
@@ -62,7 +61,6 @@ final class CourseCurriculumIndicatorControllerTest extends TestCase
         $response->assertJsonStructure([]);
     }
 
-
     #[Test]
     public function show_behaves_as_expected(): void
     {
@@ -73,7 +71,6 @@ final class CourseCurriculumIndicatorControllerTest extends TestCase
         $response->assertOk();
         $response->assertJsonStructure([]);
     }
-
 
     #[Test]
     public function update_uses_form_request_validation(): void
@@ -105,7 +102,6 @@ final class CourseCurriculumIndicatorControllerTest extends TestCase
         $this->assertEquals($course->id, $courseCurriculumIndicator->course_id);
         $this->assertEquals($curriculum_indicator->id, $courseCurriculumIndicator->curriculum_indicator_id);
     }
-
 
     #[Test]
     public function destroy_deletes_and_responds_with(): void

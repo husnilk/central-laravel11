@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UpdateProfileV2Request;
-use App\Http\Requests\UploadPhotoRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Config;
@@ -18,22 +17,20 @@ class ProfileController extends Controller
         $user = $request->user();
         $profil = collect();
 
-        if($user->type === User::LECTURER){
-            $profil = $user->load(['lecturer' => function($query){
-                $query->select("lecturers.*", "departments.name as department_name")
-                    ->join("departments", "lecturers.department_id", "departments.id");
+        if ($user->type === User::LECTURER) {
+            $profil = $user->load(['lecturer' => function ($query) {
+                $query->select('lecturers.*', 'departments.name as department_name')
+                    ->join('departments', 'lecturers.department_id', 'departments.id');
             }])->lecturer;
-        }
-        elseif($user->type === User::STUDENT){
-            $profil = $user->load(['student' => function($query){
-                $query->select("students.*", "departments.name as department_name")
-                    ->join("departments", "students.department_id", "departments.id");
+        } elseif ($user->type === User::STUDENT) {
+            $profil = $user->load(['student' => function ($query) {
+                $query->select('students.*', 'departments.name as department_name')
+                    ->join('departments', 'students.department_id', 'departments.id');
             }])->student;
-        }
-        elseif($user->type === User::STAFF){
-            $profil = $user->load(['staff' => function($query){
-                $query->select("staff.*", "departments.name as department_name")
-                    ->join("departments", "staff.department_id", "departments.id");
+        } elseif ($user->type === User::STAFF) {
+            $profil = $user->load(['staff' => function ($query) {
+                $query->select('staff.*', 'departments.name as department_name')
+                    ->join('departments', 'staff.department_id', 'departments.id');
             }])->staff;
         }
 
@@ -79,7 +76,7 @@ class ProfileController extends Controller
 
         return response()->json([
             'status' => 'success',
-            'message' => 'Berhasil mengupdate profile pengguna'
+            'message' => 'Berhasil mengupdate profile pengguna',
         ]);
     }
 
@@ -91,18 +88,19 @@ class ProfileController extends Controller
             if ($user->save()) {
                 return response()->json([
                     'status' => 'success',
-                    'message' => 'Token Aplikasi mobile telah didaftarkan'
+                    'message' => 'Token Aplikasi mobile telah didaftarkan',
                 ]);
             } else {
                 return response()->json([
                     'status' => 'failed',
-                    'message' => 'Gagal mendaftarkan token'
+                    'message' => 'Gagal mendaftarkan token',
                 ]);
             }
         }
+
         return response()->json([
             'status' => 'failed',
-            'message' => 'User tidak ditemukan'
+            'message' => 'User tidak ditemukan',
         ], 404);
     }
 
@@ -114,57 +112,57 @@ class ProfileController extends Controller
         $path = null;
 
         // cek email
-        $isExist = User::where("email", $data["email"])
-                        ->where("id", "!=", $request->user()->id)
-                        ->first();
+        $isExist = User::where('email', $data['email'])
+            ->where('id', '!=', $request->user()->id)
+            ->first();
 
-        if($isExist){
+        if ($isExist) {
             return response()->json([
-                "status" => "failed",
-                "message" => "Email sudah digunakan",
+                'status' => 'failed',
+                'message' => 'Email sudah digunakan',
             ], 400);
         }
 
         // update akun
-        $user->email = $data["email"];
+        $user->email = $data['email'];
         $user->save();
 
         // cek data profil civitas
-        if($civitas !== null){
+        if ($civitas !== null) {
             // update profile
-            $civitas->nik = $data["nik"] ?? null;
-            $civitas->birthday = $data["birthday"] ?? null;
-            $civitas->birthplace = $data["birthplace"] ? ucwords(strtolower($data["birthplace"])) : null;
-            $civitas->phone = $data["phone"] ?? null;
-            $civitas->address = $data["address"] ?? null;
-            $civitas->gender = in_array($data["gender"], ["M", "F"]) ? $data["gender"] : null;
-            $civitas->marital_status = $data["marital_status"] ?? null;
-            $civitas->religion = $data["religion"] ?? null;
+            $civitas->nik = $data['nik'] ?? null;
+            $civitas->birthday = $data['birthday'] ?? null;
+            $civitas->birthplace = $data['birthplace'] ? ucwords(strtolower($data['birthplace'])) : null;
+            $civitas->phone = $data['phone'] ?? null;
+            $civitas->address = $data['address'] ?? null;
+            $civitas->gender = in_array($data['gender'], ['M', 'F']) ? $data['gender'] : null;
+            $civitas->marital_status = $data['marital_status'] ?? null;
+            $civitas->religion = $data['religion'] ?? null;
 
-            switch($request->user()->type){
+            switch ($request->user()->type) {
                 case User::LECTURER:
-                    $civitas->nidn = $data["nidn"] ?? null;
-                    $civitas->karpeg = $data["karpeg"] ?? null;
-                    $path = Config::get("central.path.lecturer_photo");
+                    $civitas->nidn = $data['nidn'] ?? null;
+                    $civitas->karpeg = $data['karpeg'] ?? null;
+                    $path = Config::get('central.path.lecturer_photo');
                     break;
                 case User::STAFF:
-                    $civitas->karpeg = $data["karpeg"] ?? null;
-                    $path = Config::get("central.path.staff_photo");
+                    $civitas->karpeg = $data['karpeg'] ?? null;
+                    $path = Config::get('central.path.staff_photo');
                     break;
                 case User::STUDENT:
-                    $path = Config::get("central.path.student_photo");
+                    $path = Config::get('central.path.student_photo');
                     break;
             }
 
             // cek apakah ada foto yang diupload
-            if(array_key_exists("photo", $data)){
+            if (array_key_exists('photo', $data)) {
                 // jika ada foto, hapus dulu
-                if($civitas->photo){
-                    Storage::disk("public")->delete($civitas->photo);
+                if ($civitas->photo) {
+                    Storage::disk('public')->delete($civitas->photo);
                 }
 
                 // simpan foto
-                $filePath = Storage::disk("public")->put($path, $data["photo"]);
+                $filePath = Storage::disk('public')->put($path, $data['photo']);
                 $civitas->photo = $filePath;
             }
 
@@ -175,8 +173,8 @@ class ProfileController extends Controller
             'status' => 'success',
             'message' => 'Data berhasil diperbarui',
             'data' => [
-                "email" => $user->email,
-                ...$civitas->toArray()
+                'email' => $user->email,
+                ...$civitas->toArray(),
             ],
         ]);
     }

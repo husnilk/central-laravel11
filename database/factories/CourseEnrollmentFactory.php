@@ -2,12 +2,11 @@
 
 namespace Database\Factories;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Str;
 use App\Models\CourseEnrollment;
 use App\Models\Lecturer;
 use App\Models\Period;
 use App\Models\Student;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 class CourseEnrollmentFactory extends Factory
 {

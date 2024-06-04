@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\Building;
-use App\Models\Room;
 use Illuminate\Database\Seeder;
 
 class RoomSeeder extends Seeder

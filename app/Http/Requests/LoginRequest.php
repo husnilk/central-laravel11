@@ -25,18 +25,18 @@ class LoginRequest extends FormRequest
     public function rules(Request $request): array
     {
         return [
-            "email" => ["required", "email"],
-            "password" => ["required"],
+            'email' => ['required', 'email'],
+            'password' => ['required'],
         ];
     }
 
     public function messages(): array
     {
         return [
-            "email.required" => "Email tidak boleh kosong",
-            "email.email" => "Email tidak valid",
-            "email.unique" => "Email sudah digunakan",
-            "password.required" => "Password tidak boleh kosong",
+            'email.required' => 'Email tidak boleh kosong',
+            'email.email' => 'Email tidak valid',
+            'email.unique' => 'Email sudah digunakan',
+            'password.required' => 'Password tidak boleh kosong',
         ];
     }
 

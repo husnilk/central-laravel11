@@ -17,7 +17,9 @@ class User extends Authenticatable
     use HasApiTokens, HasFactory, HasPermissions, HasRoles, HasUuids, Notifiable;
 
     const STUDENT = 1;
+
     const LECTURER = 2;
+
     const STAFF = 3;
 
     /**

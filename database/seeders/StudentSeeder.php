@@ -3,8 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\Department;
-use App\Models\Faculty;
-use App\Models\Student;
 use Illuminate\Database\Seeder;
 
 class StudentSeeder extends Seeder

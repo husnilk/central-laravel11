@@ -2,10 +2,9 @@
 
 namespace Database\Factories;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Str;
 use App\Models\Publication;
 use App\Models\Publisher;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 class PublicationFactory extends Factory
 {

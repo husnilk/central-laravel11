@@ -28,7 +28,6 @@ final class LecturerControllerTest extends TestCase
         $response->assertJsonStructure([]);
     }
 
-
     #[Test]
     public function store_uses_form_request_validation(): void
     {
@@ -67,7 +66,6 @@ final class LecturerControllerTest extends TestCase
         $response->assertJsonStructure([]);
     }
 
-
     #[Test]
     public function show_behaves_as_expected(): void
     {
@@ -78,7 +76,6 @@ final class LecturerControllerTest extends TestCase
         $response->assertOk();
         $response->assertJsonStructure([]);
     }
-
 
     #[Test]
     public function update_uses_form_request_validation(): void
@@ -116,7 +113,6 @@ final class LecturerControllerTest extends TestCase
         $this->assertEquals($department->id, $lecturer->department_id);
         $this->assertEquals($status, $lecturer->status);
     }
-
 
     #[Test]
     public function destroy_deletes_and_responds_with(): void

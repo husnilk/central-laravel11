@@ -2,11 +2,10 @@
 
 namespace Database\Factories;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Str;
 use App\Models\Student;
 use App\Models\ThesisSeminar;
 use App\Models\ThesisSeminarAudience;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 class ThesisSeminarAudienceFactory extends Factory
 {

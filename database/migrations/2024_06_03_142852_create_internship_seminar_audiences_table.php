@@ -17,7 +17,7 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->foreignUuid('internship_id')->constrained();
             $table->foreignUuid('student_id')->constrained();
-            $table->enum('role', ["audience","moderator","questioner"]);
+            $table->enum('role', ['audience', 'moderator', 'questioner']);
             $table->text('question')->nullable();
             $table->timestamps();
         });

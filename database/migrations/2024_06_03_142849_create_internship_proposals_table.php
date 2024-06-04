@@ -21,7 +21,7 @@ return new class extends Migration
             $table->text('job_desc')->nullable();
             $table->date('start_at');
             $table->date('end_at');
-            $table->enum('status', ["draft","open",""])->default('draft');
+            $table->enum('status', ['draft', 'open', ''])->default('draft');
             $table->text('note')->nullable();
             $table->integer('active')->default(1);
             $table->string('response_letter')->nullable();

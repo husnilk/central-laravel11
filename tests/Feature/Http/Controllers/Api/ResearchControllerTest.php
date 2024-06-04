@@ -28,7 +28,6 @@ final class ResearchControllerTest extends TestCase
         $response->assertJsonStructure([]);
     }
 
-
     #[Test]
     public function store_uses_form_request_validation(): void
     {
@@ -61,7 +60,6 @@ final class ResearchControllerTest extends TestCase
         $response->assertJsonStructure([]);
     }
 
-
     #[Test]
     public function show_behaves_as_expected(): void
     {
@@ -72,7 +70,6 @@ final class ResearchControllerTest extends TestCase
         $response->assertOk();
         $response->assertJsonStructure([]);
     }
-
 
     #[Test]
     public function update_uses_form_request_validation(): void
@@ -104,7 +101,6 @@ final class ResearchControllerTest extends TestCase
         $this->assertEquals($title, $research->title);
         $this->assertEquals($research_schema->id, $research->research_schema_id);
     }
-
 
     #[Test]
     public function destroy_deletes_and_responds_with(): void

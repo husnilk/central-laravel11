@@ -2,12 +2,11 @@
 
 namespace Database\Factories;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Str;
 use App\Models\Room;
 use App\Models\Thesis;
 use App\Models\ThesisProposal;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 class ThesisProposalFactory extends Factory
 {

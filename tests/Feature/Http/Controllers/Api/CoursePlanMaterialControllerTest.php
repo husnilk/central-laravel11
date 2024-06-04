@@ -28,7 +28,6 @@ final class CoursePlanMaterialControllerTest extends TestCase
         $response->assertJsonStructure([]);
     }
 
-
     #[Test]
     public function store_uses_form_request_validation(): void
     {
@@ -61,7 +60,6 @@ final class CoursePlanMaterialControllerTest extends TestCase
         $response->assertJsonStructure([]);
     }
 
-
     #[Test]
     public function show_behaves_as_expected(): void
     {
@@ -72,7 +70,6 @@ final class CoursePlanMaterialControllerTest extends TestCase
         $response->assertOk();
         $response->assertJsonStructure([]);
     }
-
 
     #[Test]
     public function update_uses_form_request_validation(): void
@@ -104,7 +101,6 @@ final class CoursePlanMaterialControllerTest extends TestCase
         $this->assertEquals($course_plan->id, $coursePlanMaterial->course_plan_id);
         $this->assertEquals($topic, $coursePlanMaterial->topic);
     }
-
 
     #[Test]
     public function destroy_deletes_and_responds_with(): void

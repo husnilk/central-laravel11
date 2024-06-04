@@ -2,10 +2,9 @@
 
 namespace Database\Factories;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Str;
 use App\Models\Internship;
 use App\Models\InternshipLogbook;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 class InternshipLogbookFactory extends Factory
 {

@@ -29,7 +29,6 @@ final class PublicationAuthorControllerTest extends TestCase
         $response->assertJsonStructure([]);
     }
 
-
     #[Test]
     public function store_uses_form_request_validation(): void
     {
@@ -68,7 +67,6 @@ final class PublicationAuthorControllerTest extends TestCase
         $response->assertJsonStructure([]);
     }
 
-
     #[Test]
     public function show_behaves_as_expected(): void
     {
@@ -79,7 +77,6 @@ final class PublicationAuthorControllerTest extends TestCase
         $response->assertOk();
         $response->assertJsonStructure([]);
     }
-
 
     #[Test]
     public function update_uses_form_request_validation(): void
@@ -117,7 +114,6 @@ final class PublicationAuthorControllerTest extends TestCase
         $this->assertEquals($position, $publicationAuthor->position);
         $this->assertEquals($corresponding, $publicationAuthor->corresponding);
     }
-
 
     #[Test]
     public function destroy_deletes_and_responds_with(): void
