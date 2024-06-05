@@ -22,8 +22,13 @@ Route::apiResource('/my-course.problem', \App\Http\Controllers\Api\MyCourseProbl
 // INTERNSHIP
 Route::apiResource('/my-internships', \App\Http\Controllers\Api\MyInternshipController::class)
     ->only(['index', 'store', 'update', 'show']);
+Route::apiResource('/my-internship-proposals', \App\Http\Controllers\Api\MyInternshipProposalController::class)
+    ->only(['store', 'update']);
+Route::apiResource('/open-internship-proposals', \App\Http\Controllers\Api\OpenInternshipProposalController::class)
+    ->only(['index']);
 Route::apiResource('/internship-companies', \App\Http\Controllers\Api\InternshipCompanyController::class);
 Route::apiResource('/my-internships.logs', \App\Http\Controllers\Api\MyInternshipLogController::class);
+Route::post('/my-internships/{$intern_id}/logs/send', [\App\Http\Controllers\Api\MyInternshipLogbookController::class, 'send']);
 Route::apiResource('/my-internships.seminar', \App\Http\Controllers\Api\MyInternshipSeminarController::class);
 Route::apiResource('/my-internships.final', \App\Http\Controllers\Api\MyInternshipFinalController::class);
 

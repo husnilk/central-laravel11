@@ -601,7 +601,6 @@ models:
     response_letter: string nullable
     background: text nullable
     relationships:
-      belongsTo: InternshipCompany
       hasMany: Internship
 
   Internship:
@@ -609,12 +608,12 @@ models:
     internship_proposal_id: uuid foreign:internship_proposals.id
     student_id: uuid foreign:students.id
     advisor_id: uuid foreign:lecturers.id nullable
-    status: enum:"accepted","rejected","ongoing","seminar","administration","finished","cancelled"
+    status: enum:"proposed","accepted","rejected","ongoing","seminar","administration","finished","cancelled" default:"proposed"
     start_at: date nullable,
     end_at: date nullable
     report_title: text nullable
     seminar_date: date nullable
-    seminar_room_id: uuid foreign:rooms.id
+    seminar_room_id: uuid foreign:rooms.id nullable
     link_seminar: string nullable
     seminar_deadline: date nullable
     attendees_list: string nullable
@@ -626,7 +625,7 @@ models:
     report_receipt: string nullable
     grade: string nullable
     relationships:
-      belongsTo: InternshipProposal, Student, Lecturer
+      belongsTo: InternshipProposal, Student
       hasMany: InternshipLogbook, InternshipSeminarAudience
 
   InternshipLogbook:

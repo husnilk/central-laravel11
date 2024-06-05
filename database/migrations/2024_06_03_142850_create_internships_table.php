@@ -19,11 +19,11 @@ return new class extends Migration
             $table->foreignUuid('student_id')->constrained();
             $table->foreignUuid('advisor_id')->nullable()->constrained('lecturers');
             $table->enum('status', ['accepted', 'rejected', 'ongoing', 'seminar', 'administration', 'finished', 'cancelled']);
-            $table->date('start_at');
+            $table->date('start_at')->nullable();
             $table->date('end_at')->nullable();
             $table->text('report_title')->nullable();
             $table->date('seminar_date')->nullable();
-            $table->foreignUuid('seminar_room_id')->constrained('rooms');
+            $table->foreignUuid('seminar_room_id')->constrained('rooms')->nullable();
             $table->string('link_seminar')->nullable();
             $table->date('seminar_deadline')->nullable();
             $table->string('attendees_list')->nullable();
@@ -34,7 +34,6 @@ return new class extends Migration
             $table->string('certificate')->nullable();
             $table->string('report_receipt')->nullable();
             $table->string('grade')->nullable();
-            $table->foreignId('lecturer_id');
             $table->timestamps();
         });
 

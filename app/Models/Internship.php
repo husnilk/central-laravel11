@@ -32,7 +32,7 @@ class Internship extends Model
         'lecturer_id' => 'integer',
     ];
 
-    public function internshipProposal(): BelongsTo
+    public function proposal(): BelongsTo
     {
         return $this->belongsTo(InternshipProposal::class);
     }
@@ -42,27 +42,22 @@ class Internship extends Model
         return $this->belongsTo(Student::class);
     }
 
-    public function lecturer(): BelongsTo
-    {
-        return $this->belongsTo(Lecturer::class);
-    }
-
     public function advisor(): BelongsTo
     {
         return $this->belongsTo(Lecturer::class);
     }
 
-    public function seminarRoom(): BelongsTo
+    public function room(): BelongsTo
     {
         return $this->belongsTo(Room::class);
     }
 
-    public function internshipLogbooks(): HasMany
+    public function logs(): HasMany
     {
         return $this->hasMany(InternshipLogbook::class);
     }
 
-    public function internshipSeminarAudiences(): HasMany
+    public function audiences(): HasMany
     {
         return $this->hasMany(InternshipSeminarAudience::class);
     }
