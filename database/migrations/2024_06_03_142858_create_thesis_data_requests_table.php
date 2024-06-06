@@ -24,7 +24,6 @@ return new class extends Migration
             $table->text('request_to_org')->nullable();
             $table->text('request_to_address')->nullable();
             $table->integer('status')->default(0);
-            $table->foreignId('student_id');
             $table->timestamps();
         });
 

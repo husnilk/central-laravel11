@@ -29,7 +29,7 @@ return new class extends Migration
             $table->string('attendees_list')->nullable();
             $table->string('internship_score')->nullable();
             $table->string('activity_report')->nullable();
-            $table->string('news_event')->nullable();
+            $table->string('seminar_notes')->nullable();
             $table->string('work_report')->nullable();
             $table->string('certificate')->nullable();
             $table->string('report_receipt')->nullable();

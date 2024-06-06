@@ -28,12 +28,11 @@ class InternshipResource extends JsonResource
             'attendees_list' => $this->attendees_list,
             'internship_score' => $this->internship_score,
             'activity_report' => $this->activity_report,
-            'news_event' => $this->news_event,
+            'seminar_note' => $this->seminar_note,
             'work_report' => $this->work_report,
             'certificate' => $this->certificate,
             'report_receipt' => $this->report_receipt,
             'grade' => $this->grade,
-            'lecturer_id' => $this->lecturer_id,
             'internshipSeminarAudiences' => InternshipSeminarAudienceCollection::make($this->whenLoaded('internshipSeminarAudiences')),
         ];
     }

@@ -16,13 +16,28 @@ class MyInternshipFinalController extends Controller
             ->where('student_id', $student->id)
             ->first();
 
-        if($internship == null){
+        if ($internship == null) {
             return response()->json([
                 'status' => 'failed',
                 'message' => 'Data not found'
             ]);
         }
 
-
+        $finished = true;
+        if ($internship->students->count <= 0) $finished = false;
+        if (empty($internship->seminar_date)) $finished = false;
+        if ($finished) {
+            $internship->status = 'finished';
+            $internship->save();
+            return response()->json([
+                'status' => 'success',
+                'message' => 'You completed your internship successfully'
+            ]);
+        } else {
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Can not complete your Internship'
+            ]);
+        }
     }
 }
