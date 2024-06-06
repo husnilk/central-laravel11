@@ -4,10 +4,11 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Internship;
+use Illuminate\Http\Request;
 
 class MyInternshipController extends Controller
 {
-    public function indexi()
+    public function index()
     {
         $user = auth()->user();
         $internships = Internship::with('proposal.company')
@@ -33,5 +34,16 @@ class MyInternshipController extends Controller
             'message' => 'Welcome to MyInternship API',
             'internships' => $internships_response,
         ]);
+    }
+
+    public function show(Request $request, $internship_id)
+    {
+        $user = auth()->user();
+        $internship = Internship::with('proposal.company')
+            ->where('student_id', $user->id)
+            ->where('id', $internship_id)
+            ->first();
+
+        return response()->json($internship);
     }
 }
