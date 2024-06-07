@@ -33,7 +33,6 @@ class ThesisLogbookFactory extends Factory
             'notes' => $this->faker->text(),
             'file_notes' => $this->faker->word(),
             'status' => $this->faker->numberBetween(-10000, 10000),
-            'thesis_supervisor_id' => ThesisSupervisor::factory(),
         ];
     }
 }

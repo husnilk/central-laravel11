@@ -32,8 +32,6 @@ class ThesisFactory extends Factory
             'grade' => $this->faker->word(),
             'grade_by' => $this->faker->randomNumber(),
             'created_by' => User::factory(),
-            'thesis_topic_id' => ThesisTopic::factory(),
-            'user_id' => User::factory(),
         ];
     }
 }

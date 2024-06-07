@@ -9,7 +9,6 @@ use App\Models\User;
 use Faker\Factory as Faker;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
-use function Pest\Laravel\delete;
 
 class PmpUserSeeder extends Seeder
 {
@@ -151,18 +150,6 @@ class PmpUserSeeder extends Seeder
             ]);
         }
         $students = [
-            ['nim' => 1811522016, 'name' => 'FIRHAN HADI YOZA'],
-            ['nim' => 1811522018, 'name' => 'MUHAMMAD FACHRI ANANTA'],
-            ['nim' => 1811523011, 'name' => 'ACHMAD NABIL FIKRI'],
-            ['nim' => 1911521004, 'name' => 'RAHMI IRAS FAUZIAH'],
-            ['nim' => 1911522001, 'name' => 'KHAIRUL ZIKRIA BURHAN'],
-            ['nim' => 1911522028, 'name' => 'RANTI AGUSTIN'],
-            ['nim' => 1911522030, 'name' => 'MUHAMMAD FARHAN ZUHDI'],
-            ['nim' => 1911523003, 'name' => 'FATURAHMAN WAHABI'],
-            ['nim' => 1911523015, 'name' => 'MUHAMMAD AL HAFIZ'],
-            ['nim' => 1911523019, 'name' => 'FAUZAN MAIZARDI'],
-            ['nim' => 1911523021, 'name' => 'DHIYA NABILA DENTA'],
-            ['nim' => 1911523023, 'name' => 'M. AFDHAL SYAFLI'],
             ['nim' => 2011521001, 'name' => 'TAUFIK HIDAYAT'],
             ['nim' => 2011521002, 'name' => 'BAITUL AZIZAH'],
             ['nim' => 2011521003, 'name' => 'DINA LATHIFUNNISA . A'],
@@ -405,19 +392,19 @@ class PmpUserSeeder extends Seeder
             ->first();
         $lecturers = Lecturer::all();
 
-        foreach($students as $student){
+        foreach ($students as $student) {
             $newUser = User::create([
                 'username' => $student['nim'],
                 'email' => $student['nim'].'@students.unand.ac.id',
                 'password' => Hash::make('password'),
-                'name' => $student['name']
+                'name' => $student['name'],
             ]);
             $student['id'] = $newUser->id;
-            $student["year"] = intval("20".substr($student["nim"], 0, 2));
-            $student["department_id"] = $dept->id;
-            $student["counselor_id"] = array_rand($lecturers->pluck('id', 'id')->toArray());
+            $student['year'] = intval('20'.substr($student['nim'], 0, 2));
+            $student['department_id'] = $dept->id;
+            $student['counselor_id'] = array_rand($lecturers->pluck('id', 'id')->toArray());
             $student['religion'] = 1;
-            $student["name"] = ucfirst($student["name"]);
+            $student['name'] = ucfirst($student['name']);
             Student::create($student);
         }
     }

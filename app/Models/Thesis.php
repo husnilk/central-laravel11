@@ -46,7 +46,7 @@ class Thesis extends Model
         return $this->belongsTo(Student::class);
     }
 
-    public function created(): BelongsTo
+    public function createdby(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }

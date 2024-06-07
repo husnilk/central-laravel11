@@ -669,7 +669,7 @@ models:
     id: uuid primary
     name: string
     description: text nullable
-    relationships:
+    relationship:
       hasMany: Thesis
 
   Thesis:
@@ -781,7 +781,7 @@ models:
     recommendation: integer nullable
     notes: text nullable
     relationships:
-      belongsTo: ThesisSeminar, Lecturer
+      belongsTo: ThesisSeminar
 
   ThesisDefense:
     id: uuid primary
@@ -813,7 +813,7 @@ models:
     position: integer default:0
     notes: text nullable
     relationships:
-      belongsTo: ThesisDefense, Lecturer
+      belongsTo: ThesisDefense
       hasMany: ThesisDefenseScore
 
   ThesisDefenseScore:

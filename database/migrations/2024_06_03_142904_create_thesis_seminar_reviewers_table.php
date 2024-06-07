@@ -21,7 +21,6 @@ return new class extends Migration
             $table->string('position')->nullable();
             $table->integer('recommendation')->nullable();
             $table->text('notes')->nullable();
-            $table->foreignId('lecturer_id');
             $table->timestamps();
         });
 
