@@ -2,12 +2,14 @@
 
 namespace Database\Seeders;
 
+use App\Models\Department;
 use App\Models\Lecturer;
 use App\Models\Student;
 use App\Models\User;
 use Faker\Factory as Faker;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
+use function Pest\Laravel\delete;
 
 class PmpUserSeeder extends Seeder
 {
@@ -143,7 +145,10 @@ class PmpUserSeeder extends Seeder
 
         foreach ($users as $user) {
             $newUser = User::create($user);
-            $lecturer = Lecturer::create(array_merge(['id' => $newUser->id], $user));
+            $lecturer = Lecturer::factory()->create([
+                'id' => $newUser->id,
+                'name' => $user['name'],
+            ]);
         }
         $students = [
             ['nim' => 1811522016, 'name' => 'FIRHAN HADI YOZA'],
@@ -396,10 +401,22 @@ class PmpUserSeeder extends Seeder
             ['nim' => 2211523036, 'name' => 'NABILA R. DZAKIRA'],
             ['nim' => 2211523037, 'name' => 'RAHMATUL FA DILLA']];
 
+        $dept = Department::where('name', 'Sistem Informasi')
+            ->first();
+        $lecturers = Lecturer::all();
+
         foreach($students as $student){
+            $newUser = User::create([
+                'username' => $student['nim'],
+                'email' => $student['nim'].'@students.unand.ac.id',
+                'password' => Hash::make('password'),
+                'name' => $student['name']
+            ]);
+            $student['id'] = $newUser->id;
             $student["year"] = intval("20".substr($student["nim"], 0, 2));
-            $student["department_id"] = 1;
-            $student["counselor_id"] = rand(1, 15);
+            $student["department_id"] = $dept->id;
+            $student["counselor_id"] = array_rand($lecturers->pluck('id', 'id')->toArray());
+            $student['religion'] = 1;
             $student["name"] = ucfirst($student["name"]);
             Student::create($student);
         }

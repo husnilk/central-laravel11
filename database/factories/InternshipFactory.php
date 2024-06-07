@@ -38,12 +38,11 @@ class InternshipFactory extends Factory
             'attendees_list' => $this->faker->word(),
             'internship_score' => $this->faker->word(),
             'activity_report' => $this->faker->word(),
-            'news_event' => $this->faker->word(),
+            'seminar_notes' => $this->faker->word(),
             'work_report' => $this->faker->word(),
             'certificate' => $this->faker->word(),
             'report_receipt' => $this->faker->word(),
             'grade' => $this->faker->word(),
-            'lecturer_id' => Lecturer::factory(),
         ];
     }
 }
