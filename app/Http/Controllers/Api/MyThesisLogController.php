@@ -9,13 +9,14 @@ use Illuminate\Http\Request;
 
 class MyThesisLogController extends Controller
 {
-    public function index($thesis_id){
+    public function index($thesis_id)
+    {
         $student = auth()->user()->student;
         $thesis = Thesis::where('id', $thesis_id)
             ->where('student_id', $student)
             ->first();
 
-        if(is_null($thesis)){
+        if (is_null($thesis)) {
             return response()->json($this->isnotfound());
         }
 
@@ -25,7 +26,7 @@ class MyThesisLogController extends Controller
             'status' => 'success',
             'message' => 'Thesis Log retrieved successfully',
             'count' => $logs->count(),
-            'logs' => $logs
+            'logs' => $logs,
         ]);
     }
 
@@ -33,10 +34,10 @@ class MyThesisLogController extends Controller
     {
         $student = auth()->user()->student;
         $thesis = Thesis::where('id', $thesis_id)
-            ->where('student_id', $student)
+            ->where('student_id', $student->id)
             ->first();
 
-        if(is_null($thesis)){
+        if (is_null($thesis)) {
             return response()->json($this->isnotfound());
         }
 
@@ -50,7 +51,38 @@ class MyThesisLogController extends Controller
 
         return response()->json([
             'status' => 'success',
-            'message' => ''
-        ])
+            'message' => 'Log saved successfully',
+            'log' => $log,
+        ]);
+    }
+
+    public function update(Request $request, $thesis_id, $id)
+    {
+        $student = auth()->user()->student;
+        $log = ThesisLogbook::where('id', $id)
+            ->where('thesis_id', $thesis_id)
+            ->first();
+
+        if (is_null($log)) {
+            return response()->json($this->isnotfound());
+        }
+
+        if ($log->status > 0) {
+            return response()->json([
+                'status' => 'failed',
+                'message' => 'Log has been verified',
+            ]);
+        }
+
+        $log->date = $request->date;
+        $log->progress = $request->progress;
+        $log->status = 0;
+        $log->save();
+
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Log updated successfully',
+            'log' => $log,
+        ]);
     }
 }

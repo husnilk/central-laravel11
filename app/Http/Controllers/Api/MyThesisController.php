@@ -18,7 +18,7 @@ class MyThesisController extends Controller
             'status' => 'success',
             'message' => 'Theses retrieved successfully',
             'count' => $theses->count(),
-            'theses' => $theses
+            'theses' => $theses,
         ]);
     }
 
@@ -31,17 +31,18 @@ class MyThesisController extends Controller
         $thesis->title = $request->title;
         $thesis->abstract = $request->abstract;
         $thesis->created_by = auth()->user()->id;
-        $thesis->status = "proposed";
+        $thesis->status = 'proposed';
         $thesis->save();
 
         return response()->json([
             'status' => 'success',
             'message' => 'Thesis registered successfully',
-            'thesis' => $thesis
+            'thesis' => $thesis,
         ]);
     }
 
-    public function show($thesis_id){
+    public function show($thesis_id)
+    {
         $student = auth()->user()->student;
         $thesis = Thesis::where('student_id', $student->id)
             ->where('id', $thesis_id)
@@ -50,7 +51,7 @@ class MyThesisController extends Controller
         return response()->json([
             'status' => 'success',
             'message' => 'Thesis data retrieved successfully',
-            'thesis' => $thesis
+            'thesis' => $thesis,
         ]);
     }
 
@@ -64,13 +65,13 @@ class MyThesisController extends Controller
         $thesis->topic_id = $request->topid_id;
         $thesis->title = $request->title;
         $thesis->abstract = $request->abstract;
-        $thesis->status = "proposed";
+        $thesis->status = 'proposed';
         $thesis->save();
 
         return response()->json([
             'status' => 'success',
             'message' => 'Thesis updated successfully',
-            'thesis' => $thesis
+            'thesis' => $thesis,
         ]);
     }
 }
