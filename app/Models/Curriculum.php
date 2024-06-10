@@ -19,12 +19,12 @@ class Curriculum extends Model
      */
     protected $guarded = [];
 
-    public function curriculumPeos(): HasMany
+    public function peos(): HasMany
     {
         return $this->hasMany(CurriculumPeo::class);
     }
 
-    public function curriculumPlos(): HasMany
+    public function plos(): HasMany
     {
         return $this->hasMany(CurriculumPlo::class);
     }
@@ -34,7 +34,7 @@ class Curriculum extends Model
         return $this->hasMany(Course::class);
     }
 
-    public function curriculumBoks(): HasMany
+    public function boks(): HasMany
     {
         return $this->hasMany(CurriculumBok::class);
     }

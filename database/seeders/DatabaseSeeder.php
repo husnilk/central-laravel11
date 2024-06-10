@@ -18,7 +18,8 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             PmpUserSeeder::class,
 //            PmpInternshipSeeder::class,
-            PmpThesisSeeder::class,
+//            PmpThesisSeeder::class,
+            PmpCurriculumSeeder::class.
             //            BuildingSeeder::class,
             //            RoomSeeder::class,
             //            FacultySeeder::class,
