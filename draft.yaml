@@ -400,7 +400,7 @@ models:
     position: integer default:1
     grading: integer default:1
     relationships:
-      belongsTo: ClassCourse, Lecturer
+      belongsTo: Lecturer
 
   ## Manajemen KRS Mahasiswa
   CourseEnrollment: # KRS Mahasiswa
