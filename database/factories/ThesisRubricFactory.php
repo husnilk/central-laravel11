@@ -20,8 +20,8 @@ class ThesisRubricFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => $this->faker->name(),
-            'active' => $this->faker->numberBetween(-10000, 10000),
+            'name' => fake()->name,
+            'active' => fake()->numberBetween(0, 1),
         ];
     }
 }

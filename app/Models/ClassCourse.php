@@ -60,6 +60,6 @@ class ClassCourse extends Model
 
     public function meetings(): HasMany
     {
-        return $this->hasMany(ClassMeeting::class);
+        return $this->hasMany(ClassMeeting::class, 'class_id', 'id');
     }
 }

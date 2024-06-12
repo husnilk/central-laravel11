@@ -4,11 +4,11 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\ClassAttendance;
-use Illuminate\Support\Facades\Request;
+use Illuminate\Http\Request;
 
 class MyCourseAttendanceController extends Controller
 {
-    public function store(Request $request, $course_id)
+    public function store(Request $request)
     {
         $user = auth()->user();
         $attendance = new ClassAttendance();

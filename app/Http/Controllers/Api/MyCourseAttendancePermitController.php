@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class MyCourseAttendancePermitController extends Controller
 {
     //
-    public function store(Request $request, $course_id)
+    public function store(Request $request)
     {
         $user = auth()->user();
         $attendance = new ClassAttendance();

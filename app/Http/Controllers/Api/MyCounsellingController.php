@@ -9,7 +9,6 @@ use App\Models\Period;
 use App\Models\User;
 use Illuminate\Http\Request;
 
-
 class MyCounsellingController extends Controller
 {
     public function index()
@@ -47,9 +46,9 @@ class MyCounsellingController extends Controller
     public function store(Request $request)
     {
         $user = auth()->user();
-        if($user->type == User::STUDENT){
+        if ($user->type == User::STUDENT) {
             $counsellor_id = $user->student->counselor_id;
-        }else{
+        } else {
             $counsellor_id = $user->id;
         }
         $period = Period::getActive()->first();
@@ -88,7 +87,6 @@ class MyCounsellingController extends Controller
             ->where('student_id', $user->id)
             ->where('id', $id)
             ->first();
-
 
         $counselling->date = $request->date;
         $counselling->counselling_topic_id = $request->topic_id;

@@ -12,9 +12,9 @@ class MyExamCardController extends Controller
     {
         $user = auth()->user();
         $student = $user->civitas;
-        $period = Period::getActive();
+        $period = Period::getActive()->first();
         $enrollment = CourseEnrollment::where('student_id', $user->id)
-            ->where('periode_id', $period->id)
+            ->where('period_id', $period->id)
             ->first();
         if ($enrollment == null) {
             return response()->json([

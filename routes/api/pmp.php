@@ -6,13 +6,15 @@ Route::apiResource('/my-courses', \App\Http\Controllers\Api\MyCourseController::
     ->only(['index', 'show']);
 Route::apiResource('/my-counsellings', \App\Http\Controllers\Api\MyCounsellingController::class)
     ->only(['index', 'show', 'store', 'update']);
+Route::apiResource('/counselling-topics', \App\Http\Controllers\Api\CounsellingTopicController::class)
+    ->only(['index']);
 Route::apiResource('/my-exam-card', \App\Http\Controllers\Api\MyExamCardController::class)
     ->only(['show']);
-Route::apiResource('/my-courses.meeting', \App\Http\Controllers\Api\MyCourseMeetingController::class)
+Route::apiResource('/my-courses.meetings', \App\Http\Controllers\Api\MyCourseMeetingController::class)
     ->only(['index', 'show']);
-Route::apiResource('/my-attendance', \App\Http\Controllers\Api\MyCourseAttendanceController::class)
+Route::apiResource('/my-attendances', \App\Http\Controllers\Api\MyCourseAttendanceController::class)
     ->only(['index', 'store']);
-Route::apiResource('/my-attendance-permit', \App\Http\Controllers\Api\MyCourseAttendancePermitController::class)
+Route::apiResource('/my-attendance-permits', \App\Http\Controllers\Api\MyCourseAttendancePermitController::class)
     ->only(['store']);
 Route::apiResource('/my-course.evaluations', \App\Http\Controllers\Api\MyCourseMeetingEvaluationController::class)
     ->only(['store', 'update']);

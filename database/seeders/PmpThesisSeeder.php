@@ -37,6 +37,7 @@ class PmpThesisSeeder extends Seeder
                 ->create([
                     'student_id' => $student->id,
                     'topic_id' => array_rand($topic_ids),
+                    'created_by' => $student->id,
                 ]);
             $supervisor = ThesisSupervisor::create([
                 'thesis_id' => $thesis->id,
