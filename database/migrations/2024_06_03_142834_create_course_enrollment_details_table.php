@@ -21,7 +21,6 @@ return new class extends Migration
             $table->integer('in_transcript')->default(1);
             $table->double('weight')->nullable();
             $table->double('grade')->nullable();
-            $table->foreignId('class_course_id');
             $table->timestamps();
         });
 

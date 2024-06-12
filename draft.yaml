@@ -407,12 +407,12 @@ models:
     id: uuid primary
     student_id: uuid foreign:students.id onUpdate:cascade
     period_id: uuid foreign:periods.id onUpdate:cascade
-    counselor_id: uuid foreign:lecturers.id onUpdate:cascade
+    counselor_id: uuid foreign:lecturers.id onUpdate:cascade nullable
     status: integer default:1 #1:active
     mid_term_passcode: string nullable
     final_term_passcode: string nullable
-    registered_at: date
-    gpa: double:8,2
+    registered_at: date nullable
+    gpa: double:8,2 nullable
     relationships:
       belongsTo: Student, Period
       hasMany: CourseEnrollmentDetail
@@ -426,7 +426,7 @@ models:
     weight: double nullable
     grade: double nullable
     relationships:
-      belongsTo: CourseEnrollment, ClassCourse
+      belongsTo: CourseEnrollment
       hasMany: Assessment, ClassAttendance
 
   ## Manajemen Nilai per Kelas

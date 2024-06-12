@@ -17,12 +17,12 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->foreignUuid('student_id')->constrained()->cascadeOnUpdate();
             $table->foreignUuid('period_id')->constrained()->cascadeOnUpdate();
-            $table->foreignUuid('counselor_id')->constrained('lecturers')->cascadeOnUpdate();
+            $table->foreignUuid('counselor_id')->nullable()->constrained('lecturers')->cascadeOnUpdate();
             $table->integer('status')->default(1);
             $table->string('mid_term_passcode')->nullable();
             $table->string('final_term_passcode')->nullable();
-            $table->date('registered_at');
-            $table->double('gpa', 8, 2);
+            $table->date('registered_at')->nullable();
+            $table->double('gpa', 8, 2)->nullable();
             $table->timestamps();
         });
 

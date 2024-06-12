@@ -16,7 +16,7 @@ class DatabaseSeeder extends Seeder
             RolesAndPermissionsSeeder::class,
             PmpBasicSeeder::class,
             UserSeeder::class,
-//            PmpUserSeeder::class,
+            PmpUserSeeder::class,
 //            PmpInternshipSeeder::class,
 //            PmpThesisSeeder::class,
             PmpCurriculumSeeder::class,
