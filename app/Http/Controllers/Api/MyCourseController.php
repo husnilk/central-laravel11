@@ -12,7 +12,7 @@ class MyCourseController extends Controller
     public function index()
     {
         $user = auth()->user();
-        $period = Period::getActive();
+        $period = Period::where('active', 1)->first();
         $courseEnrolls = CourseEnrollment::with('details.classCourse.course')
             ->where('student_id', $user->id)
             ->where('period_id', $period->id)
@@ -20,8 +20,8 @@ class MyCourseController extends Controller
 
         $courses = collect();
         foreach ($courseEnrolls as $enrollment) {
-            $courses->add([
-
+            $courses->push([
+                'class' => $enrollment->details
             ]);
         }
 

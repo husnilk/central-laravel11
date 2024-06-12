@@ -34,7 +34,7 @@ class Internship extends Model
 
     public function proposal(): BelongsTo
     {
-        return $this->belongsTo(InternshipProposal::class);
+        return $this->belongsTo(InternshipProposal::class, 'internship_proposal_id', 'id');
     }
 
     public function student(): BelongsTo

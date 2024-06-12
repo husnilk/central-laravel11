@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Internship;
 use App\Models\InternshipProposal;
-use Illuminate\Support\Facades\Request;
+use Illuminate\Http\Request;
 
 class MyInternshipProposalController extends Controller
 {
@@ -19,7 +19,7 @@ class MyInternshipProposalController extends Controller
             'job_desc' => $request->job_desc,
             'start_at' => $request->start_at,
             'end_at' => $request->end_at,
-            'status' => 'proposed',
+            'status' => 'open',
         ]);
 
         $student_ids = $request->students;
@@ -27,9 +27,8 @@ class MyInternshipProposalController extends Controller
             $internship = Internship::create([
                 'internship_proposal_id' => $proposal->id,
                 'student_id' => $student_id,
-                'status' => 'proposed',
+                'status' => 'accepted',
             ]);
-            $proposal->student[] = $internship;
         }
 
         return response()->json([

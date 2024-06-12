@@ -23,7 +23,7 @@ return new class extends Migration
             $table->date('end_at')->nullable();
             $table->text('report_title')->nullable();
             $table->date('seminar_date')->nullable();
-            $table->foreignUuid('seminar_room_id')->constrained('rooms')->nullable();
+            $table->foreignUuid('seminar_room_id')->nullable()->constrained('rooms');
             $table->string('link_seminar')->nullable();
             $table->date('seminar_deadline')->nullable();
             $table->string('attendees_list')->nullable();
