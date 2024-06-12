@@ -37,8 +37,6 @@ class ClassMeetingFactory extends Factory
             'room_id' => Room::factory(),
             'meeting_start_at' => $this->faker->dateTime(),
             'meeting_end_at' => $this->faker->dateTime(),
-            'class_course_id' => ClassCourse::factory(),
-            'lecturer_id' => Lecturer::factory(),
         ];
     }
 }

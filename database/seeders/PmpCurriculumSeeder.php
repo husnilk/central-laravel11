@@ -6,10 +6,15 @@ use App\Models\ClassCourse;
 use App\Models\ClassLecturer;
 use App\Models\ClassMeeting;
 use App\Models\Course;
+use App\Models\CourseCurriculumIndicator;
 use App\Models\CourseEnrollment;
 use App\Models\CourseEnrollmentDetail;
+use App\Models\CoursePlan;
 use App\Models\CoursePlanDetail;
+use App\Models\CoursePlanLo;
 use App\Models\Curriculum;
+use App\Models\CurriculumIndicator;
+use App\Models\CurriculumPlo;
 use App\Models\Lecturer;
 use App\Models\Period;
 use App\Models\Student;
@@ -69,30 +74,45 @@ class PmpCurriculumSeeder extends Seeder
             ->create([
                 'curriculum_id' => $curriculum->id,
             ]);
+        $los_ids = CurriculumPlo::all()->pluck('id','id')->toArray();
+        foreach($los_ids as $los_id){
+            CurriculumIndicator::factory()
+                ->create([
+                    'curriculum_plo_id' => $los_id
+                ]);
+        }
+        $curlos_ids = CurriculumIndicator::all()->pluck('id', 'id')->toArray();
 
         foreach ($courses as $course) {
-            //            $plan_details = $course->plans[0]
-            //                ->factory()
-            //                ->hasDetails(16)
-            //                ->create();
+            $course_plan = $course->plans[0];
+            foreach($curlos_ids as $curlos_id){
+                CourseCurriculumIndicator::create([
+                    'curriculum_indicator_id' => $curlos_id,
+                    'course_id' => $course->id
+                ]);
+            }
+            $indicators = CurriculumIndicator::all()->pluck('id', 'id')->toArray();
+            $course_plan_lo = CoursePlanLo::factory()->create([
+                'course_plan_id' => $course_plan->id,
+                'curriculum_indicator_id' => array_rand($indicators),
+            ]);
             $id01 = array_rand($lecturer_ids);
             $id02 = array_rand($lecturer_ids);
 
-            $class = ClassCourse::factory()
-                ->create([
+            $class = ClassCourse::create([
                     'course_id' => $course->id,
                     'period_id' => $period->id,
                     'course_plan_id' => $course->plans[0]->id,
                     'name' => 'A',
                 ]);
 
-            ClassLecturer::create([
+            $class_lecturer01 = ClassLecturer::create([
                 'class_id' => $class->id,
                 'lecturer_id' => $id01,
                 'position' => 1,
                 'grading' => 1,
             ]);
-            ClassLecturer::create([
+            $class_lecturer02 = ClassLecturer::create([
                 'class_id' => $class->id,
                 'lecturer_id' => $id02,
                 'position' => 1,
@@ -105,20 +125,23 @@ class PmpCurriculumSeeder extends Seeder
                 ]);
             }
 
-            $course_plan = $course->plans[0];
             $details = CoursePlanDetail::factory()
                 ->count(16)
                 ->create([
+                    'course_plan_lo_id' => $course_plan_lo->id,
                     'course_plan_id' => $course_plan->id,
                 ]);
 
             $no = 1;
             foreach ($details as $detail) {
-                ClassMeeting::factory()->create([
+                ClassMeeting::create([
                     'meet_no' => $no,
                     'class_id' => $class->id,
                     'course_plan_detail_id' => $detail->id,
-                    'class_lecturer_id' => $id01,
+                    'class_lecturer_id' => $class_lecturer01->id,
+                    'material_real' => $detail->material,
+                    'assessment_real' => "-",
+                    'method' => 1
                 ]);
                 $no++;
             }
@@ -131,13 +154,13 @@ class PmpCurriculumSeeder extends Seeder
                     'name' => 'B',
                 ]);
 
-            ClassLecturer::create([
+            $class_lecturer01 = ClassLecturer::create([
                 'class_id' => $class->id,
                 'lecturer_id' => $id01,
                 'position' => 1,
                 'grading' => 1,
             ]);
-            ClassLecturer::create([
+            $class_lecturer02 = ClassLecturer::create([
                 'class_id' => $class->id,
                 'lecturer_id' => $id02,
                 'position' => 1,
@@ -151,11 +174,14 @@ class PmpCurriculumSeeder extends Seeder
             }
             $no = 1;
             foreach ($details as $detail) {
-                ClassMeeting::factory()->create([
+                ClassMeeting::create([
                     'meet_no' => $no,
                     'class_id' => $class->id,
                     'course_plan_detail_id' => $detail->id,
-                    'class_lecturer_id' => $id01,
+                    'class_lecturer_id' => $class_lecturer01->id,
+                    'material_real' => $detail->material,
+                    'assessment_real' => "-",
+                    'method' => 1
                 ]);
                 $no++;
             }
