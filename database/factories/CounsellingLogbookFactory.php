@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\CounsellingCategory;
 use App\Models\CounsellingLogbook;
+use App\Models\CounsellingTopic;
 use App\Models\Lecturer;
 use App\Models\Period;
 use App\Models\Student;
@@ -26,12 +27,11 @@ class CounsellingLogbookFactory extends Factory
         return [
             'student_id' => Student::factory(),
             'counsellor_id' => Lecturer::factory(),
-            'counselling_topic_id' => CounsellingCategory::factory(),
+            'counselling_topic_id' => CounsellingTopic::factory(),
             'period_id' => Period::factory(),
             'date' => $this->faker->date(),
-            'status' => $this->faker->numberBetween(-10000, 10000),
+            'status' => $this->faker->numberBetween(0, 1),
             'file' => $this->faker->word(),
-            'counselling_category_id' => CounsellingCategory::factory(),
         ];
     }
 }

@@ -838,7 +838,7 @@ models:
     id: uuid primary
     student_id: uuid foreign:students.id
     counsellor_id: uuid foreign:lecturers.id
-    counselling_topic_id: uuid foreign:counselling_categories.id
+    counselling_topic_id: uuid foreign:counselling_topics.id
     period_id: uuid foreign:periods.id
     date: date
     status: integer default:0

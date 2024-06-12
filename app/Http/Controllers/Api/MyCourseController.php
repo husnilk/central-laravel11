@@ -13,15 +13,21 @@ class MyCourseController extends Controller
     {
         $user = auth()->user();
         $period = Period::where('active', 1)->first();
-        $courseEnrolls = CourseEnrollment::with('details.classCourse.course')
+        $enrollment = CourseEnrollment::with('details.class.course')
             ->where('student_id', $user->id)
             ->where('period_id', $period->id)
-            ->get();
+            ->first();
 
         $courses = collect();
-        foreach ($courseEnrolls as $enrollment) {
+        foreach ($enrollment->details as $enrollment){
             $courses->push([
-                'class' => $enrollment->details
+                'id' => $enrollment->id,
+                'course_name' => $enrollment->class->course->name,
+                'course_credit' => $enrollment->class->course->credit,
+                'course_semester' => $enrollment->class->course->semester,
+                'class_name' => $enrollment->class->name,
+//                'lecturers' => $enrollment->class->lectures,
+                'status' => 1,
             ]);
         }
 

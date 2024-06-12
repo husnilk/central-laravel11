@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::apiResource('/my-courses', \App\Http\Controllers\Api\MyCourseController::class)
     ->only(['index', 'show']);
-Route::apiResource('/my-counselling', \App\Http\Controllers\Api\MyCounsellingController::class)
+Route::apiResource('/my-counsellings', \App\Http\Controllers\Api\MyCounsellingController::class)
     ->only(['index', 'show', 'store', 'update']);
 Route::apiResource('/my-exam-card', \App\Http\Controllers\Api\MyExamCardController::class)
     ->only(['show']);

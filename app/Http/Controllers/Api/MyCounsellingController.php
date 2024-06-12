@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Models\CounsellingLogbook;
 use App\Models\CounsellingLogbookDetail;
 use App\Models\Period;
-use Illuminate\Support\Facades\Request;
+use App\Models\User;
+use Illuminate\Http\Request;
+
 
 class MyCounsellingController extends Controller
 {
@@ -45,12 +47,19 @@ class MyCounsellingController extends Controller
     public function store(Request $request)
     {
         $user = auth()->user();
-        $period = Period::getActive();
+        if($user->type == User::STUDENT){
+            $counsellor_id = $user->student->counselor_id;
+        }else{
+            $counsellor_id = $user->id;
+        }
+        $period = Period::getActive()->first();
 
         $counselling = new CounsellingLogbook();
         $counselling->student_id = $user->id;
         $counselling->period_id = $period->id;
-        $counselling->date = $request->date;
+        $counselling->counsellor_id = $counsellor_id;
+        $counselling->counselling_topic_id = request()->topic_id;
+        $counselling->date = request()->date;
         $counselling->status = 1;
         $counselling->save();
 
@@ -75,16 +84,17 @@ class MyCounsellingController extends Controller
     public function update(Request $request, $id)
     {
         $user = auth()->user();
-
         $counselling = CounsellingLogbook::with('details')
             ->where('student_id', $user->id)
             ->where('id', $id)
             ->first();
 
+
         $counselling->date = $request->date;
+        $counselling->counselling_topic_id = $request->topic_id;
         $counselling->save();
 
-        $counsellingDetail = $counselling->details->get(1);
+        $counsellingDetail = $counselling->details->first();
         $counsellingDetail->description = $request->description;
         $counsellingDetail->save();
 

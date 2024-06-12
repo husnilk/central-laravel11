@@ -43,22 +43,22 @@ class ClassCourse extends Model
         return $this->belongsTo(Course::class);
     }
 
-    public function classSchedules(): HasMany
+    public function schedules(): HasMany
     {
         return $this->hasMany(ClassSchedule::class);
     }
 
-    public function classClecturers(): HasMany
+    public function lecturers(): HasMany
     {
-        return $this->hasMany(ClassClecturer::class);
+        return $this->hasMany(ClassLecturer::class);
     }
 
-    public function courseEnrollments(): HasMany
+    public function enrollments(): HasMany
     {
         return $this->hasMany(CourseEnrollment::class);
     }
 
-    public function classMeetings(): HasMany
+    public function meetings(): HasMany
     {
         return $this->hasMany(ClassMeeting::class);
     }
