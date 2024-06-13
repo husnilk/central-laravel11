@@ -23,18 +23,18 @@ class ThesisSeminarFactory extends Factory
     {
         return [
             'thesis_id' => Thesis::factory(),
-            'registered_at' => $this->faker->dateTime(),
-            'method' => $this->faker->numberBetween(-10000, 10000),
-            'seminar_at' => $this->faker->dateTime(),
+            'registered_at' => fake()->dateTime(),
+            'method' => fake()->numberBetween(-10000, 10000),
+            'seminar_at' => fake()->dateTime(),
             'room_id' => Room::factory(),
-            'online_url' => $this->faker->text(),
-            'file_report' => $this->faker->word(),
-            'file_slide' => $this->faker->word(),
-            'file_journal' => $this->faker->word(),
-            'file_attendance' => $this->faker->word(),
-            'recommendation' => $this->faker->numberBetween(-10000, 10000),
-            'status' => $this->faker->numberBetween(-10000, 10000),
-            'description' => $this->faker->text(),
+            'online_url' => fake()->text(),
+            'file_report' => fake()->word(),
+            'file_slide' => fake()->word(),
+            'file_journal' => fake()->word(),
+            'file_attendance' => fake()->word(),
+            'recommendation' => fake()->numberBetween(-10000, 10000),
+            'status' => fake()->numberBetween(0, 5),
+            'description' => fake()->text(),
         ];
     }
 }

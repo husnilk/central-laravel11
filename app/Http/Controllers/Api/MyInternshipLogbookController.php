@@ -5,15 +5,15 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Internship;
 use App\Models\InternshipLogbook;
-use Illuminate\Support\Facades\Request;
+use Illuminate\Http\Request;
 
 class MyInternshipLogbookController extends Controller
 {
     public function index($id)
     {
-        $student = auth()->user()->student();
-        $internship = Internship::whereId($id)
-            ->where('student_id', $student->id)
+        $user = auth()->user();
+        $internship = Internship::where('id', $id)
+            ->where('student_id', $user->id)
             ->first();
 
         if ($internship == null) {
@@ -35,7 +35,7 @@ class MyInternshipLogbookController extends Controller
     public function store(Request $request, $id)
     {
 
-        $student = auth()->user()->student();
+        $student = auth()->user()->student;
         $internship = Internship::whereId($id)
             ->where('student_id', $student->id)
             ->first();
@@ -63,7 +63,7 @@ class MyInternshipLogbookController extends Controller
 
     public function update(Request $request, $intern_id, $id)
     {
-        $student = auth()->user()->student();
+        $student = auth()->user()->student;
         $internship = Internship::whereId($intern_id)
             ->where('student_id', $student->id)
             ->first();

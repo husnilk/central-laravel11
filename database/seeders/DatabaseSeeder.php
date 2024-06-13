@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder
             PmpCounsellingSeeder::class,
             PmpInternshipSeeder::class,
             PmpThesisSeeder::class,
-            PmpCurriculumSeeder::class,
+//            PmpCurriculumSeeder::class,
             //            BuildingSeeder::class,
             //            RoomSeeder::class,
             //            FacultySeeder::class,

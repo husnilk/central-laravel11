@@ -15,11 +15,8 @@ class PmpCounsellingSeeder extends Seeder
      */
     public function run(): void
     {
-        $period = Period::create([
-            'year' => 2023,
-            'semester' => 2,
-            'active' => 1,
-        ]);
+        $period = Period::getActive()->first();
+
         $students = Student::where('year', 2021)->get();
         $topics = CounsellingTopic::factory()
             ->count(15)

@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Internship;
 use App\Models\InternshipSeminarAudience;
-use Illuminate\Support\Facades\Request;
+use Illuminate\Http\Request;
 
 class MyInternshipSeminarController extends Controller
 {
@@ -18,8 +18,8 @@ class MyInternshipSeminarController extends Controller
                 'message' => 'Data not found'
             ]);
         }
-        $internship->title = $request->title;
-        $internship->date = $request->seminar_date;
+        $internship->report_title = $request->title;
+        $internship->seminar_date = $request->seminar_date;
         $internship->seminar_room_id = $request->room_id;
         $internship->link_seminar = $request->link_seminar;
         $internship->save();
@@ -43,8 +43,9 @@ class MyInternshipSeminarController extends Controller
                 'message' => 'Data not found'
             ]);
         }
-        $internship->title = $request->title;
-        $internship->seminar_notes = $request->seminar_notes;
+        $internship->report_title = request()->title;
+        $internship->seminar_notes = request()->seminar_notes;
+        $internship->seminar_date = request()->date;
 
         $student_ids = $request->student_ids;
         foreach ($student_ids as $student_id) {
@@ -53,13 +54,12 @@ class MyInternshipSeminarController extends Controller
                 'student_id' => $student_id,
                 'role' => 'audience'
             ]);
-            $internship->students[] = $audience;
         }
 
         return response()->json([
             'status' => 'success',
             'message' => 'Internship Seminar saved successfully',
-            'internship' => $internship->students
+            'internship' => $internship
         ]);
 
     }

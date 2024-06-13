@@ -13,6 +13,8 @@ class InternshipCollection extends ResourceCollection
     public function toArray(Request $request): array
     {
         return [
+            'status' => 'success',
+            'message' => 'Internship data successfully retrieved',
             'data' => $this->collection,
         ];
     }

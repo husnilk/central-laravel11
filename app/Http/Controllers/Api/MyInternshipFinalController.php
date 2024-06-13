@@ -24,7 +24,6 @@ class MyInternshipFinalController extends Controller
         }
 
         $finished = true;
-        if ($internship->students->count <= 0) $finished = false;
         if (empty($internship->seminar_date)) $finished = false;
         if ($finished) {
             $internship->status = 'finished';

@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Building;
 use App\Models\Department;
 use App\Models\Faculty;
+use App\Models\Period;
 use App\Models\Room;
 use Faker\Factory as Faker;
 use Illuminate\Database\Seeder;
@@ -16,6 +17,11 @@ class PmpBasicSeeder extends Seeder
      */
     public function run(): void
     {
+        $period = Period::create([
+            'year' => 2023,
+            'semester' => 2,
+            'active' => 1,
+        ]);
         //Building Room
         for ($asciiCode = 65; $asciiCode <= 74; $asciiCode++) {
             $building = Building::create([

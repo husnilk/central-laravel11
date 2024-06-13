@@ -64,10 +64,10 @@ class MyInternshipProposalController extends Controller
             $internship = Internship::create([
                 'internship_proposal_id' => $proposal->id,
                 'student_id' => $student_id,
-                'status' => 'proposed',
+                'status' => 'accepted',
             ]);
-            $proposal->student[] = $internship;
         }
+        $proposal = InternshipProposal::with('internships')->find($id);
 
         return response()->json([
             'status' => 'success',

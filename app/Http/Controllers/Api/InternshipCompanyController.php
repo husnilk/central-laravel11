@@ -20,11 +20,11 @@ class InternshipCompanyController extends Controller
         return new InternshipCompanyCollection($internshipCompanies);
     }
 
-    public function store(InternshipCompanyStoreRequest $request): InternshipCompanyResource
+    public function store(InternshipCompanyStoreRequest $request)
     {
         $internshipCompany = InternshipCompany::create($request->validated());
 
-        return new InternshipCompanyResource($internshipCompany);
+        return response()->json($internshipCompany);
     }
 
     public function show(Request $request, InternshipCompany $internshipCompany): InternshipCompanyResource

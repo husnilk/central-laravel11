@@ -127,7 +127,7 @@ class PmpCurriculumSeeder extends Seeder
             $details = CoursePlanDetail::factory()
                 ->count(16)
                 ->create([
-                    'week_no' => new Sequence(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16),
+                    'week' => new Sequence(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16),
                     'course_plan_lo_id' => $course_plan_lo->id,
                     'course_plan_id' => $course_plan->id,
                 ]);

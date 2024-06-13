@@ -23,6 +23,7 @@ class MyInternshipController extends Controller
                 'start_at' => $internship->start_at,
                 'end_at' => $internship->end_at,
                 'status' => $internship->status,
+                'seminar_date' => $internship->seminar_date,
                 'grade' => $internship->grade ?? '-',
                 'lecturer' => $internship->lecturer->name ?? '-',
             ];
@@ -30,7 +31,7 @@ class MyInternshipController extends Controller
 
         return response()->json([
             'status' => 'success',
-            'message' => 'Welcome to MyInternship API',
+            'message' => 'Internship data retrieved successfully',
             'internships' => $internships_response,
         ]);
     }
@@ -38,7 +39,7 @@ class MyInternshipController extends Controller
     public function show(Request $request, $internship_id)
     {
         $user = auth()->user();
-        $internship = Internship::with('proposal.company')
+        $internship = Internship::with('proposal.company', 'audiences')
             ->where('student_id', $user->id)
             ->where('id', $internship_id)
             ->first();
