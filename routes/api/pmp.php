@@ -36,6 +36,10 @@ Route::apiResource('/my-internships.final', \App\Http\Controllers\Api\MyInternsh
 
 //Thesis
 Route::apiResource('/my-theses', \App\Http\Controllers\Api\MyThesisController::class);
+Route::post('/my-thesis/{thesis_id}/data-request', [\App\Http\Controllers\Api\MyThesisDataRequestController::class, 'store']);
 Route::apiResource('/my-thesis.logs', \App\Http\Controllers\Api\MyThesisLogController::class);
-Route::apiResource('/my-thesis.seminars', \App\Http\Controllers\Api\MyThesisSeminarController::class);
+Route::apiResource('/my-thesis.seminars', \App\Http\Controllers\Api\MyThesisSeminarController::class)
+    ->only(['store', 'show']);
 Route::apiResource('/my-thesis.defenses', \App\Http\Controllers\Api\MyThesisDefenseController::class);
+Route::apiResource('/theses-upcoming-seminars', \App\Http\Controllers\Api\ThesisSeminarUpcomingController::class)
+    ->only(['index']);

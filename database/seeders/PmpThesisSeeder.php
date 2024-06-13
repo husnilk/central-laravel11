@@ -35,7 +35,7 @@ class PmpThesisSeeder extends Seeder
 
         foreach ($students as $student) {
             $thesis = Thesis::factory()
-//                ->hasLogs(5)
+                ->hasLogs(5)
                 ->create([
                     'student_id' => $student->id,
                     'topic_id' => array_rand($topic_ids),
@@ -46,7 +46,6 @@ class PmpThesisSeeder extends Seeder
                 'lecturer_id' => array_rand($lecturer_ids),
                 'created_by' => $student->id,
             ]);
-            /**
             $seminar = ThesisSeminar::factory()
                 ->create([
                     'thesis_id' => $thesis->id,
@@ -70,7 +69,6 @@ class PmpThesisSeeder extends Seeder
                 'thesis_defense_id' => $defense->id,
                 'examiner_id' => array_rand($lecturer_ids),
             ]);
-             */
         }
 
     }

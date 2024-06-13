@@ -39,12 +39,12 @@ class ThesisSeminar extends Model
         return $this->belongsTo(Room::class);
     }
 
-    public function thesisSeminarAudiences(): HasMany
+    public function audiences(): HasMany
     {
         return $this->hasMany(ThesisSeminarAudience::class);
     }
 
-    public function thesisSeminarReviewers(): HasMany
+    public function reviewers(): HasMany
     {
         return $this->hasMany(ThesisSeminarReviewer::class);
     }

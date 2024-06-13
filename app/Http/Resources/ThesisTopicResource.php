@@ -16,7 +16,6 @@ class ThesisTopicResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'description' => $this->description,
-            'theses' => ThesisCollection::make($this->whenLoaded('theses')),
         ];
     }
 }

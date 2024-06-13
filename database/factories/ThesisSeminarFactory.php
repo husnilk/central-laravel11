@@ -25,7 +25,7 @@ class ThesisSeminarFactory extends Factory
             'thesis_id' => Thesis::factory(),
             'registered_at' => fake()->dateTime(),
             'method' => fake()->numberBetween(-10000, 10000),
-            'seminar_at' => fake()->dateTime(),
+            'seminar_at' => fake()->dateTimeBetween('-3 years', '2 months'),
             'room_id' => Room::factory(),
             'online_url' => fake()->text(),
             'file_report' => fake()->word(),

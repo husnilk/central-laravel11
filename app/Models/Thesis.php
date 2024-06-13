@@ -56,9 +56,9 @@ class Thesis extends Model
         return $this->hasMany(ThesisProposal::class);
     }
 
-    public function supervisor(): HasMany
+    public function supervisors(): HasMany
     {
-        return $this->hasMany(ThesisSupervisor::class);
+        return $this->hasMany(ThesisSupervisor::class, 'thesis_id', 'id');
     }
 
     public function logs(): HasMany
@@ -66,12 +66,12 @@ class Thesis extends Model
         return $this->hasMany(ThesisLogbook::class);
     }
 
-    public function seminar(): HasMany
+    public function seminars(): HasMany
     {
         return $this->hasMany(ThesisSeminar::class);
     }
 
-    public function defense(): HasMany
+    public function defenses(): HasMany
     {
         return $this->hasMany(ThesisDefense::class);
     }

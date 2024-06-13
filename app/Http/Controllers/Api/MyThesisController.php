@@ -26,12 +26,12 @@ class MyThesisController extends Controller
     {
         $student = auth()->user()->student;
         $thesis = new Thesis();
-        $thesis->topic_id = $request->topid_id;
+        $thesis->topic_id = $request->topic_id;
         $thesis->student_id = $student->id;
         $thesis->title = $request->title;
         $thesis->abstract = $request->abstract;
         $thesis->created_by = auth()->user()->id;
-        $thesis->status = 'proposed';
+        $thesis->status = 1;
         $thesis->save();
 
         return response()->json([
@@ -44,7 +44,8 @@ class MyThesisController extends Controller
     public function show($thesis_id)
     {
         $student = auth()->user()->student;
-        $thesis = Thesis::where('student_id', $student->id)
+        $thesis = Thesis::with('logs', 'supervisors', 'seminars', 'defenses')
+            ->where('student_id', $student->id)
             ->where('id', $thesis_id)
             ->first();
 
@@ -62,10 +63,9 @@ class MyThesisController extends Controller
             ->where('id', $thesis_id)
             ->first();
 
-        $thesis->topic_id = $request->topid_id;
+        $thesis->topic_id = $request->topic_id;
         $thesis->title = $request->title;
         $thesis->abstract = $request->abstract;
-        $thesis->status = 'proposed';
         $thesis->save();
 
         return response()->json([

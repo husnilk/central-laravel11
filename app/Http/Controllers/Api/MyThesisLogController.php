@@ -13,7 +13,9 @@ class MyThesisLogController extends Controller
     {
         $student = auth()->user()->student;
         $thesis = Thesis::where('id', $thesis_id)
-            ->where('student_id', $student)
+            ->where('student_id', $student->id)
+//            ->toRawSql();
+//        dd($thesis);
             ->first();
 
         if (is_null($thesis)) {
@@ -46,6 +48,7 @@ class MyThesisLogController extends Controller
         $log->supervisor_id = $request->supervisor_id;
         $log->date = $request->date;
         $log->progress = $request->progress;
+        $log->problem = request()->problem;
         $log->status = 0;
         $log->save();
 
@@ -74,8 +77,10 @@ class MyThesisLogController extends Controller
             ]);
         }
 
-        $log->date = $request->date;
-        $log->progress = $request->progress;
+        $log->supervisor_id = request()->supervisor_id;
+        $log->date = request()->date;
+        $log->progress = request()->progress;
+        $log->problem = request()->problem;
         $log->status = 0;
         $log->save();
 
