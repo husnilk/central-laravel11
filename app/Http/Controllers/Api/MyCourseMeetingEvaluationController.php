@@ -8,16 +8,16 @@ use App\Models\ClassMeeting;
 use App\Models\CourseEnrollment;
 use App\Models\CourseEnrollmentDetail;
 use App\Models\Period;
-use Illuminate\Support\Facades\Request;
+use Illuminate\Http\Request;
 
 class MyCourseMeetingEvaluationController extends Controller
 {
-    public function store(Request $request, $meeting_id)
+    public function store(Request $request, $course_id)
     {
         $user = auth()->user();
-        $period = Period::getActive();
+        $period = Period::getActive()->first();
 
-        $meeting = ClassMeeting::find($meeting_id);
+        $meeting = ClassMeeting::find($request->meeting_id);
         if ($meeting == null) {
             return response()->json([
                 'status' => 'failed',
@@ -35,7 +35,7 @@ class MyCourseMeetingEvaluationController extends Controller
             ], 404);
         }
         $enrollment_detail = CourseEnrollmentDetail::where('course_enrollment_id', $enrollment->id)
-            ->where('class_course_id', $meeting->class_id)
+            ->where('class_id', $meeting->class_id)
             ->first();
 
         if ($enrollment_detail == null) {
@@ -66,7 +66,7 @@ class MyCourseMeetingEvaluationController extends Controller
         ]);
     }
 
-    public function update(Request $request, $meeting_id, $id)
+    public function update(Request $request, $course_id, $meeting_id)
     {
         $meeting = ClassMeeting::find($meeting_id);
         if ($meeting == null) {

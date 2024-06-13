@@ -6,9 +6,9 @@ abstract class Controller
 {
     public function isnotfound($message = null)
     {
-       return [
+        return [
             'status' => 'success',
-            'mesage' => $message ? $message : "Data not found"
+            'mesage' => $message ? $message : 'Data not found',
         ];
     }
     //

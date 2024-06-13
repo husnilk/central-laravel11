@@ -18,7 +18,7 @@ Route::apiResource('/my-attendance-permits', \App\Http\Controllers\Api\MyCourseA
     ->only(['store']);
 Route::apiResource('/my-course.evaluations', \App\Http\Controllers\Api\MyCourseMeetingEvaluationController::class)
     ->only(['store', 'update']);
-Route::apiResource('/my-course.problem', \App\Http\Controllers\Api\MyCourseProblemController::class)
+Route::apiResource('/my-course.problems', \App\Http\Controllers\Api\MyCourseProblemController::class)
     ->only(['store']);
 
 // INTERNSHIP
