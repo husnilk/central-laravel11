@@ -400,19 +400,19 @@ models:
     position: integer default:1
     grading: integer default:1
     relationships:
-      belongsTo: ClassCourse, Lecturer
+      belongsTo: Lecturer
 
   ## Manajemen KRS Mahasiswa
   CourseEnrollment: # KRS Mahasiswa
     id: uuid primary
     student_id: uuid foreign:students.id onUpdate:cascade
     period_id: uuid foreign:periods.id onUpdate:cascade
-    counselor_id: uuid foreign:lecturers.id onUpdate:cascade
+    counselor_id: uuid foreign:lecturers.id onUpdate:cascade nullable
     status: integer default:1 #1:active
     mid_term_passcode: string nullable
     final_term_passcode: string nullable
-    registered_at: date
-    gpa: double:8,2
+    registered_at: date nullable
+    gpa: double:8,2 nullable
     relationships:
       belongsTo: Student, Period
       hasMany: CourseEnrollmentDetail
@@ -426,7 +426,7 @@ models:
     weight: double nullable
     grade: double nullable
     relationships:
-      belongsTo: CourseEnrollment, ClassCourse
+      belongsTo: CourseEnrollment
       hasMany: Assessment, ClassAttendance
 
   ## Manajemen Nilai per Kelas
@@ -601,7 +601,6 @@ models:
     response_letter: string nullable
     background: text nullable
     relationships:
-      belongsTo: InternshipCompany
       hasMany: Internship
 
   Internship:
@@ -609,24 +608,24 @@ models:
     internship_proposal_id: uuid foreign:internship_proposals.id
     student_id: uuid foreign:students.id
     advisor_id: uuid foreign:lecturers.id nullable
-    status: enum:"accepted","rejected","ongoing","seminar","administration","finished","cancelled"
+    status: enum:"proposed","accepted","rejected","ongoing","seminar","administration","finished","cancelled" default:"proposed"
     start_at: date nullable,
     end_at: date nullable
     report_title: text nullable
     seminar_date: date nullable
-    seminar_room_id: uuid foreign:rooms.id
+    seminar_room_id: uuid foreign:rooms.id nullable
     link_seminar: string nullable
     seminar_deadline: date nullable
     attendees_list: string nullable
     internship_score: string nullable
     activity_report: string nullable
-    news_event: string nullable
+    seminar_notes: string nullable
     work_report: string nullable
     certificate: string nullable
     report_receipt: string nullable
     grade: string nullable
     relationships:
-      belongsTo: InternshipProposal, Student, Lecturer
+      belongsTo: InternshipProposal, Student
       hasMany: InternshipLogbook, InternshipSeminarAudience
 
   InternshipLogbook:
@@ -670,7 +669,7 @@ models:
     id: uuid primary
     name: string
     description: text nullable
-    relationships:
+    relationship:
       hasMany: Thesis
 
   Thesis:
@@ -685,7 +684,7 @@ models:
     grade_by: biginteger unsigned nullable
     created_by: uuid foreign:users.id
     relationships:
-      belongsTo: ThesisTopic, User, Student
+      belongsTo: ThesisTopic
       hasMany: ThesisProposal, ThesisSupervisor, ThesisLogbook, ThesisSeminar, ThesisTrial
 
   ThesisSupervisor:
@@ -710,8 +709,6 @@ models:
     request_to_org: text nullable
     request_to_address: text nullable
     status: integer default:0
-    relationships:
-      belongsTo: Thesis, Student
 
   ThesisProposal:
     id: uuid primary
@@ -747,7 +744,7 @@ models:
     file_notes: string nullable
     status: integer default:0
     relationships:
-      belongsTo: Thesis, ThesisSupervisor
+      belongsTo: Thesis
 
   ThesisSeminar:
     id: uuid primary
@@ -784,7 +781,7 @@ models:
     recommendation: integer nullable
     notes: text nullable
     relationships:
-      belongsTo: ThesisSeminar, Lecturer
+      belongsTo: ThesisSeminar
 
   ThesisDefense:
     id: uuid primary
@@ -816,7 +813,7 @@ models:
     position: integer default:0
     notes: text nullable
     relationships:
-      belongsTo: ThesisDefense, Lecturer
+      belongsTo: ThesisDefense
       hasMany: ThesisDefenseScore
 
   ThesisDefenseScore:
@@ -841,7 +838,7 @@ models:
     id: uuid primary
     student_id: uuid foreign:students.id
     counsellor_id: uuid foreign:lecturers.id
-    counselling_topic_id: uuid foreign:counselling_categories.id
+    counselling_topic_id: uuid foreign:counselling_topics.id
     period_id: uuid foreign:periods.id
     date: date
     status: integer default:0

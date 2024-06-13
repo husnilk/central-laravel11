@@ -38,47 +38,47 @@ class CoursePlan extends Model
         return $this->belongsTo(Lecturer::class);
     }
 
-    public function coursePlanRequirements(): HasMany
+    public function requirements(): HasMany
     {
         return $this->hasMany(CoursePlanRequirement::class);
     }
 
-    public function coursePlanReferences(): HasMany
+    public function references(): HasMany
     {
         return $this->hasMany(CoursePlanReference::class);
     }
 
-    public function coursePlanMaterials(): HasMany
+    public function materials(): HasMany
     {
         return $this->hasMany(CoursePlanMaterial::class);
     }
 
-    public function coursePlanDetails(): HasMany
+    public function details(): HasMany
     {
         return $this->hasMany(CoursePlanDetail::class);
     }
 
-    public function coursePlanAssessments(): HasMany
+    public function assessment(): HasMany
     {
         return $this->hasMany(CoursePlanAssessment::class);
     }
 
-    public function coursePlanLecturers(): HasMany
+    public function lecturers(): HasMany
     {
         return $this->hasMany(CoursePlanLecturers::class);
     }
 
-    public function coursePlanLos(): HasMany
+    public function los(): HasMany
     {
         return $this->hasMany(CoursePlanLo::class);
     }
 
-    public function coursePlanMedia(): HasMany
+    public function medias(): HasMany
     {
         return $this->hasMany(CoursePlanMedia::class);
     }
 
-    public function classCourses(): HasMany
+    public function courses(): HasMany
     {
         return $this->hasMany(ClassCourse::class);
     }

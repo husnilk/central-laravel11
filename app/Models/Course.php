@@ -24,23 +24,18 @@ class Course extends Model
         return $this->belongsTo(Curriculum::class);
     }
 
-    public function coursePlans(): HasMany
+    public function plans(): HasMany
     {
         return $this->hasMany(CoursePlan::class);
     }
 
-    public function coursePlanRequirements(): HasMany
+    public function requirements(): HasMany
     {
         return $this->hasMany(CoursePlanRequirement::class);
     }
 
-    public function classCourses(): HasMany
+    public function classes(): HasMany
     {
         return $this->hasMany(ClassCourse::class);
-    }
-
-    public function curriculumIndicatorCourses(): HasMany
-    {
-        return $this->hasMany(CurriculumIndicatorCourse::class);
     }
 }

@@ -30,14 +30,9 @@ class CourseEnrollmentDetail extends Model
         'class_course_id' => 'integer',
     ];
 
-    public function courseEnrollment(): BelongsTo
+    public function enrollment(): BelongsTo
     {
         return $this->belongsTo(CourseEnrollment::class);
-    }
-
-    public function classCourse(): BelongsTo
-    {
-        return $this->belongsTo(ClassCourse::class);
     }
 
     public function class(): BelongsTo
@@ -50,7 +45,7 @@ class CourseEnrollmentDetail extends Model
         return $this->hasMany(Assessment::class);
     }
 
-    public function classAttendances(): HasMany
+    public function attendances(): HasMany
     {
         return $this->hasMany(ClassAttendance::class);
     }

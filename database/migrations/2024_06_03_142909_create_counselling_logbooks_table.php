@@ -17,12 +17,11 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->foreignUuid('student_id')->constrained();
             $table->foreignUuid('counsellor_id')->constrained('lecturers');
-            $table->foreignUuid('counselling_topic_id')->constrained('counselling_categories');
+            $table->foreignUuid('counselling_topic_id')->constrained('counselling_topics');
             $table->foreignUuid('period_id')->constrained();
             $table->date('date');
             $table->integer('status')->default(0);
             $table->string('file')->nullable();
-            $table->foreignId('counselling_category_id');
             $table->timestamps();
         });
 

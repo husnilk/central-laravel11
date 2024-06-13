@@ -6,6 +6,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -57,6 +58,35 @@ class User extends Authenticatable
             'active' => 'integer',
             'type' => 'integer',
         ];
+    }
+
+    public function civitas(): HasOne
+    {
+        switch ($this->type) {
+            case self::STUDENT:
+                return $this->student();
+            case self::LECTURER:
+                return $this->lecturer();
+            case self::STAFF:
+                return $this->staff();
+        }
+
+        return null;
+    }
+
+    public function student(): HasOne
+    {
+        return $this->hasOne(Student::class, 'id');
+    }
+
+    public function lecturer(): HasOne
+    {
+        return $this->hasOne(Lecturer::class, 'id');
+    }
+
+    public function staff(): HasOne
+    {
+        return $this->hasOne(Staff::class, 'id');
     }
 
     public function logins(): HasMany

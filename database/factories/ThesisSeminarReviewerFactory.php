@@ -28,7 +28,6 @@ class ThesisSeminarReviewerFactory extends Factory
             'position' => $this->faker->word(),
             'recommendation' => $this->faker->numberBetween(-10000, 10000),
             'notes' => $this->faker->text(),
-            'lecturer_id' => Lecturer::factory(),
         ];
     }
 }

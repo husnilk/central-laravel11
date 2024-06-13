@@ -14,17 +14,24 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             RolesAndPermissionsSeeder::class,
-            BuildingSeeder::class,
-            RoomSeeder::class,
-            FacultySeeder::class,
-            DepartmentSeeder::class,
+            PmpBasicSeeder::class,
             UserSeeder::class,
-            StudentSeeder::class,
-            LecturerSeeder::class,
-            StaffSeeder::class,
-        /**
-         * Seeder Manajemen Curriculum
-         */
+            PmpUserSeeder::class,
+            PmpCounsellingSeeder::class,
+            PmpInternshipSeeder::class,
+            PmpThesisSeeder::class,
+//            PmpCurriculumSeeder::class,
+            //            BuildingSeeder::class,
+            //            RoomSeeder::class,
+            //            FacultySeeder::class,
+            //            DepartmentSeeder::class,
+            //            UserSeeder::class,
+            //            StudentSeeder::class,
+            //            LecturerSeeder::class,
+            //            StaffSeeder::class,
+            /**
+             * Seeder Manajemen Curriculum
+             */
             //            CurriculumSeeder::class,
             //            CurriculumPeoSeeder::class,
             //            CurriculumPloSeeder::class,
@@ -44,54 +51,54 @@ class DatabaseSeeder extends Seeder
             //            CoursePlanDetailActivitySeeder::class,
             //            CoursePlanAssessmentSeeder::class,
             //            CourseCurriculumIndicatorSeeder::class,
-        /**
-         * Seeder Assessment
-         */
+            /**
+             * Seeder Assessment
+             */
             //            AssessmentDetailSeeder::class,
             //            AssessmentCriteriaSeeder::class,
             //            AssessmentRubricSeeder::class,
             //            AssessmentSeeder::class,
-        /**
-         * Seeder Manajemen Kelas
-         */
+            /**
+             * Seeder Manajemen Kelas
+             */
             //            PeriodSeeder::class,
             //            ClassCourseSeeder::class,
             //            ClassScheduleSeeder::class,
             //            ClassLecturerSeeder::class,
             //            StudyPlanSeeder::class,
             //            StudyPlanDetailSeeder::class,
-        /**
-         * Seeder Manajemen Jadwal
-         */
+            /**
+             * Seeder Manajemen Jadwal
+             */
             //            ClassMeetingSeeder::class,
             //            ClassAttendanceSeeder::class,
-        /**
-         * Seeder Manajemen Penelitian dan Pengabdian
-         */
+            /**
+             * Seeder Manajemen Penelitian dan Pengabdian
+             */
             //            ResearchSchemaSeeder::class,
             //            ResearchSeeder::class,
             //            ResearchMemberSeeder::class,
             //            CommunityServiceSchemaSeeder::class,
             //            CommunityServiceSeeder::class,
             //            CommunityServiceMemberSeeder::class,
-        /**
-         * Seeder Manajemen Data Publikasi
-         */
+            /**
+             * Seeder Manajemen Data Publikasi
+             */
             //            PublisherSeeder::class,
             //            PublicationTypeSeeder::class,
             //            PublicationSeeder::class,
             //            PublicationAuthorSeeder::class,
-        /**
-         * Seeder Manajemen Kerja Praktek
-         */
+            /**
+             * Seeder Manajemen Kerja Praktek
+             */
             //            InternshipCompanySeeder::class,
             //            InternshipProposalSeeder::class,
             //            InternshipSeeder::class,
             //            InternshipLogbookSeeder::class,
             //            InternshipSeminarAudienceSeeder::class,
-        /**
-         * Seeder Manajemen Tugas Akhir
-         */
+            /**
+             * Seeder Manajemen Tugas Akhir
+             */
             //            ThesisRubricSeeder::class,
             //            ThesisRubricDetailSeeder::class,
             //            ThesisTopicSeeder::class,
@@ -106,6 +113,10 @@ class DatabaseSeeder extends Seeder
             //            ThesisDefenseSeeder::class,
             //            ThesisDefenseExaminerSeeder::class,
             //            ThesisDefenseScoreSeeder::class
+
+            /**
+             * Seeder khusus untuk PmP
+             */
         ]);
     }
 }

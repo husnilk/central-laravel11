@@ -30,11 +30,6 @@ class InternshipProposal extends Model
         'internship_company_id' => 'integer',
     ];
 
-    public function internshipCompany(): BelongsTo
-    {
-        return $this->belongsTo(InternshipCompany::class);
-    }
-
     public function company(): BelongsTo
     {
         return $this->belongsTo(InternshipCompany::class);
