@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Route;
 /--------------------------------------------------------------------------*/
 //    Route::apiResource('thesis-rubrics', App\Http\Controllers\Api\ThesisRubricController::class);
 //    Route::apiResource('thesis-rubric-details', App\Http\Controllers\Api\ThesisRubricDetailController::class);
-//    Route::apiResource('thesis-topics', App\Http\Controllers\Api\ThesisTopicController::class);
+    Route::apiResource('thesis-topics', App\Http\Controllers\Api\ThesisTopicController::class);
 //    Route::apiResource('theses', App\Http\Controllers\Api\ThesisController::class);
 //    Route::apiResource('thesis-supervisors', App\Http\Controllers\Api\ThesisSupervisorController::class);
 //    Route::apiResource('thesis-proposals', App\Http\Controllers\Api\ThesisProposalController::class);

@@ -29,4 +29,6 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     require __DIR__.'/api/internship.php';
     require __DIR__.'/api/thesis.php';
     require __DIR__.'/api/research.php';
+
+    require __DIR__.'/api/pmp.php';
 });

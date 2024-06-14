@@ -29,8 +29,8 @@ class ClassCourseFactory extends Factory
             'name' => $this->faker->name(),
             'course_code' => $this->faker->word(),
             'course_name' => $this->faker->word(),
-            'course_credits' => $this->faker->numberBetween(-10000, 10000),
-            'course_semester' => $this->faker->numberBetween(-10000, 10000),
+            'course_credits' => $this->faker->numberBetween(2, 3),
+            'course_semester' => $this->faker->numberBetween(1, 8),
             'meeting_nonconformity' => $this->faker->text(),
             'meeting_verified' => $this->faker->boolean(),
         ];

@@ -27,7 +27,6 @@ class ThesisDefenseExaminerFactory extends Factory
             'status' => $this->faker->numberBetween(-10000, 10000),
             'position' => $this->faker->numberBetween(-10000, 10000),
             'notes' => $this->faker->text(),
-            'lecturer_id' => Lecturer::factory(),
         ];
     }
 }

@@ -20,7 +20,6 @@ return new class extends Migration
             $table->integer('status')->default(0);
             $table->integer('position')->default(0);
             $table->text('notes')->nullable();
-            $table->foreignId('lecturer_id');
             $table->timestamps();
         });
 

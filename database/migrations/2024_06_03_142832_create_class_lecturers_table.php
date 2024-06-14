@@ -19,7 +19,6 @@ return new class extends Migration
             $table->foreignUuid('lecturer_id')->constrained()->cascadeOnUpdate();
             $table->integer('position')->default(1);
             $table->integer('grading')->default(1);
-            $table->foreignId('class_course_id');
             $table->timestamps();
         });
 

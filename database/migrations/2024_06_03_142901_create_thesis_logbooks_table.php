@@ -26,7 +26,6 @@ return new class extends Migration
             $table->text('notes')->nullable();
             $table->string('file_notes')->nullable();
             $table->integer('status')->default(0);
-            $table->foreignId('thesis_supervisor_id');
             $table->timestamps();
         });
 

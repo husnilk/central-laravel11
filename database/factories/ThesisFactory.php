@@ -25,15 +25,13 @@ class ThesisFactory extends Factory
         return [
             'topic_id' => ThesisTopic::factory(),
             'student_id' => Student::factory(),
-            'title' => $this->faker->sentence(4),
-            'abstract' => $this->faker->text(),
-            'start_at' => $this->faker->date(),
-            'status' => $this->faker->numberBetween(-10000, 10000),
-            'grade' => $this->faker->word(),
-            'grade_by' => $this->faker->randomNumber(),
+            'title' => fake()->sentence(4),
+            'abstract' => fake()->text(),
+            'start_at' => fake()->date(),
+            'status' => fake()->numberBetween(0, 5),
+            'grade' => fake()->randomNumber(['A', 'B', 'C', 'D', 'E']),
+            'grade_by' => fake()->randomNumber(),
             'created_by' => User::factory(),
-            'thesis_topic_id' => ThesisTopic::factory(),
-            'user_id' => User::factory(),
         ];
     }
 }

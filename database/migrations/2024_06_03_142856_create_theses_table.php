@@ -24,8 +24,6 @@ return new class extends Migration
             $table->string('grade')->nullable();
             $table->unsignedBigInteger('grade_by')->nullable();
             $table->foreignUuid('created_by')->constrained('users');
-            $table->foreignId('thesis_topic_id');
-            $table->foreignId('user_id');
             $table->timestamps();
         });
 

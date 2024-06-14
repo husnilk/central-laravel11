@@ -31,14 +31,14 @@ class ClassMeeting extends Model
         'lecturer_id' => 'integer',
     ];
 
-    public function classCourse(): BelongsTo
+    public function classcourse(): BelongsTo
     {
         return $this->belongsTo(ClassCourse::class);
     }
 
-    public function coursePlanDetail(): BelongsTo
+    public function detail(): BelongsTo
     {
-        return $this->belongsTo(CoursePlanDetail::class);
+        return $this->belongsTo(CoursePlanDetail::class, 'course_plan_detail_id', 'id');
     }
 
     public function room(): BelongsTo
@@ -51,17 +51,7 @@ class ClassMeeting extends Model
         return $this->belongsTo(Lecturer::class);
     }
 
-    public function class(): BelongsTo
-    {
-        return $this->belongsTo(ClassCourse::class);
-    }
-
-    public function classLecturer(): BelongsTo
-    {
-        return $this->belongsTo(ClassLecturer::class);
-    }
-
-    public function classAttendances(): HasMany
+    public function attendances(): HasMany
     {
         return $this->hasMany(ClassAttendance::class);
     }

@@ -27,8 +27,6 @@ return new class extends Migration
             $table->foreignUuid('room_id')->nullable()->constrained()->cascadeOnUpdate();
             $table->timestamp('meeting_start_at')->nullable();
             $table->timestamp('meeting_end_at')->nullable();
-            $table->foreignId('class_course_id');
-            $table->foreignId('lecturer_id');
             $table->timestamps();
         });
 

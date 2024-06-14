@@ -31,7 +31,7 @@ class Thesis extends Model
         'user_id' => 'integer',
     ];
 
-    public function thesisTopic(): BelongsTo
+    public function topic(): BelongsTo
     {
         return $this->belongsTo(ThesisTopic::class);
     }
@@ -46,38 +46,33 @@ class Thesis extends Model
         return $this->belongsTo(Student::class);
     }
 
-    public function topic(): BelongsTo
-    {
-        return $this->belongsTo(ThesisTopic::class);
-    }
-
-    public function createdBy(): BelongsTo
+    public function createdby(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
 
-    public function thesisProposals(): HasMany
+    public function proposal(): HasMany
     {
         return $this->hasMany(ThesisProposal::class);
     }
 
-    public function thesisSupervisors(): HasMany
+    public function supervisors(): HasMany
     {
-        return $this->hasMany(ThesisSupervisor::class);
+        return $this->hasMany(ThesisSupervisor::class, 'thesis_id', 'id');
     }
 
-    public function thesisLogbooks(): HasMany
+    public function logs(): HasMany
     {
         return $this->hasMany(ThesisLogbook::class);
     }
 
-    public function thesisSeminars(): HasMany
+    public function seminars(): HasMany
     {
         return $this->hasMany(ThesisSeminar::class);
     }
 
-    public function thesisTrials(): HasMany
+    public function defenses(): HasMany
     {
-        return $this->hasMany(ThesisTrial::class);
+        return $this->hasMany(ThesisDefense::class);
     }
 }

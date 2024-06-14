@@ -20,8 +20,8 @@ class InternshipCompanyFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => $this->faker->name(),
-            'address' => $this->faker->text(),
+            'name' => fake('id_ID')->company,
+            'address' => fake('id_ID')->address
         ];
     }
 }

@@ -22,17 +22,16 @@ class InternshipProposalFactory extends Factory
     {
         return [
             'company_id' => InternshipCompany::factory(),
-            'type' => $this->faker->numberBetween(-10000, 10000),
+            'type' => $this->faker->randomElement([1, 2]),
             'title' => $this->faker->sentence(4),
             'job_desc' => $this->faker->text(),
             'start_at' => $this->faker->date(),
             'end_at' => $this->faker->date(),
-            'status' => $this->faker->randomElement(['draft', 'open', '']),
+            'status' => $this->faker->randomElement(['draft', 'open']),
             'note' => $this->faker->text(),
-            'active' => $this->faker->numberBetween(-10000, 10000),
+            'active' => $this->faker->randomElement([0, 1]),
             'response_letter' => $this->faker->word(),
             'background' => $this->faker->text(),
-            'internship_company_id' => InternshipCompany::factory(),
         ];
     }
 }
