@@ -10,6 +10,11 @@ use App\Http\Controllers\Api\StudentController;
 use Illuminate\Support\Facades\Route;
 
 /*--------------------------------------------------------------------------
+/ User Managements
+/--------------------------------------------------------------------------*/
+Route::apiResource('roles', \App\Http\Controllers\Api\Bo\RoleController::class);
+Route::apiResource('permissions', \App\Http\Controllers\Api\Bo\PermissionController::class);
+/*--------------------------------------------------------------------------
 / Manajemen Data Master
 /--------------------------------------------------------------------------*/
 Route::apiResource('buildings', BuildingController::class);
