@@ -12,8 +12,10 @@ use Illuminate\Support\Facades\Route;
 /*--------------------------------------------------------------------------
 / User Managements
 /--------------------------------------------------------------------------*/
-Route::apiResource('roles', \App\Http\Controllers\Api\Bo\RoleController::class);
-Route::apiResource('permissions', \App\Http\Controllers\Api\Bo\PermissionController::class);
+Route::prefix('bo')->name('bo.')->group(function () {
+    Route::apiResource('roles', \App\Http\Controllers\Api\Bo\RoleController::class);
+    Route::apiResource('permissions', \App\Http\Controllers\Api\Bo\PermissionController::class);
+});
 /*--------------------------------------------------------------------------
 / Manajemen Data Master
 /--------------------------------------------------------------------------*/

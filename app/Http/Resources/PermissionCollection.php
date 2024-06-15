@@ -14,6 +14,11 @@ class PermissionCollection extends ResourceCollection
      */
     public function toArray(Request $request): array
     {
-        return parent::toArray($request);
+        return [
+            'status' => 'success',
+            'message' => 'Permissions list retrieved successfully',
+            'count' => $this->collection->count(),
+            'data' => $this->collection,
+        ];
     }
 }

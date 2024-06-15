@@ -9,15 +9,21 @@ use App\Http\Resources\RoleCollection;
 use App\Http\Resources\RoleResource;
 use App\Models\Role;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class RoleController extends Controller
 {
+    public function __construct()
+    {
+        Gate::authorize('roles:access', Role::class);
+    }
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $roles = Role::with('permissions')->get();
+        $roles = Role::all();
 
         return new RoleCollection($roles);
     }
