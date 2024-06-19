@@ -11,7 +11,7 @@ use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
 /**
- * @see \App\Http\Controllers\Api\StudentController
+ * @see \App\Http\Controllers\Api\Bo\StudentController
  */
 final class StudentControllerTest extends TestCase
 {
@@ -32,7 +32,7 @@ final class StudentControllerTest extends TestCase
     public function store_uses_form_request_validation(): void
     {
         $this->assertActionUsesFormRequest(
-            \App\Http\Controllers\Api\StudentController::class,
+            \App\Http\Controllers\Api\Bo\StudentController::class,
             'store',
             \App\Http\Requests\StudentStoreRequest::class
         );
@@ -84,7 +84,7 @@ final class StudentControllerTest extends TestCase
     public function update_uses_form_request_validation(): void
     {
         $this->assertActionUsesFormRequest(
-            \App\Http\Controllers\Api\StudentController::class,
+            \App\Http\Controllers\Api\Bo\StudentController::class,
             'update',
             \App\Http\Requests\StudentUpdateRequest::class
         );

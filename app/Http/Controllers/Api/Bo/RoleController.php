@@ -15,7 +15,7 @@ class RoleController extends Controller
 {
     public function __construct()
     {
-        Gate::authorize('roles:access', Role::class);
+//        Gate::authorize('roles:manage', Role::class);
     }
 
     /**
@@ -35,10 +35,7 @@ class RoleController extends Controller
     {
         $role = Role::create($request->all());
 
-        return $this->successApiResponse(
-            RoleResource::make($role),
-            'Role created successfully'
-        );
+        return new RoleResource($role, 'success', 'Role created successfully');
     }
 
     /**
@@ -56,10 +53,7 @@ class RoleController extends Controller
     {
         $role->update($request->all());
 
-        return $this->successApiResponse(
-            RoleResource::make($role),
-            'Role updated successfully'
-        );
+        return new RoleResource($role, 'success', 'Role updated successfully');
     }
 
     /**

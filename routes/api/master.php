@@ -1,12 +1,5 @@
 <?php
 
-use App\Http\Controllers\Api\BuildingController;
-use App\Http\Controllers\Api\DepartmentController;
-use App\Http\Controllers\Api\FacultyController;
-use App\Http\Controllers\Api\LecturerController;
-use App\Http\Controllers\Api\RoomController;
-use App\Http\Controllers\Api\StaffController;
-use App\Http\Controllers\Api\StudentController;
 use Illuminate\Support\Facades\Route;
 
 /*--------------------------------------------------------------------------
@@ -15,14 +8,16 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('bo')->name('bo.')->group(function () {
     Route::apiResource('roles', \App\Http\Controllers\Api\Bo\RoleController::class);
     Route::apiResource('permissions', \App\Http\Controllers\Api\Bo\PermissionController::class);
+    Route::apiResource('role-permissions', \App\Http\Controllers\Api\Bo\RolePermissionController::class);
+
+    /*--------------------------------------------------------------------------
+    / Manajemen Data Master
+    /--------------------------------------------------------------------------*/
+    Route::apiResource('buildings', \App\Http\Controllers\Api\Bo\BuildingController::class);
+    Route::apiResource('rooms', \App\Http\Controllers\Api\Bo\RoomController::class);
+    Route::apiResource('faculties', \App\Http\Controllers\Api\Bo\FacultyController::class);
+    Route::apiResource('departments', \App\Http\Controllers\Api\Bo\DepartmentController::class);
+    Route::apiResource('staffs', \App\Http\Controllers\Api\Bo\StaffController::class);
+    Route::apiResource('lecturers', \App\Http\Controllers\Api\Bo\LecturerController::class);
+    Route::apiResource('students', \App\Http\Controllers\Api\Bo\StudentController::class);
 });
-/*--------------------------------------------------------------------------
-/ Manajemen Data Master
-/--------------------------------------------------------------------------*/
-Route::apiResource('buildings', BuildingController::class);
-Route::apiResource('rooms', RoomController::class);
-Route::apiResource('faculties', FacultyController::class);
-Route::apiResource('departments', DepartmentController::class);
-Route::apiResource('students', StudentController::class);
-Route::apiResource('lecturers', LecturerController::class);
-Route::apiResource('staff', StaffController::class);

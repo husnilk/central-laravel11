@@ -14,7 +14,7 @@ class PermissionController extends Controller
 {
     public function __construct()
     {
-        Gate::authorize('role:access', Permission::class);
+        Gate::authorize('role:manage', Permission::class);
     }
 
     /**

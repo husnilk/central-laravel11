@@ -3,9 +3,8 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Request;
-use Illuminate\Http\Resources\Json\JsonResource;
 
-class RoleResource extends JsonResource
+class RoleResource extends ApiResource
 {
     public bool $preserveKeys = false;
 
@@ -16,11 +15,15 @@ class RoleResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return [
-            'id' => $this->uuid,
-            'name' => $this->name,
-            'guard_name' => $this->guard_name,
-            'permissions' => PermissionResource::collection($this->whenLoaded('permissions')),
-        ];
+        if ($this->status == null || $this->message == null) {
+            return [
+                'id' => $this->uuid,
+                'name' => $this->name,
+                'guard_name' => $this->guard_name,
+                'permissions' => PermissionResource::collection($this->whenLoaded('permissions')),
+            ];
+        }
+
+        return $this->responseWithStatus();
     }
 }
